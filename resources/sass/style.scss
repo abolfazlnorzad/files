@@ -1,0 +1,28 @@
+@font-face {
+    font-family: 'iranyekan';
+    font-style:normal;
+    font-weight: 400;
+    src: url("./fonts/iranyekanweblight.woff") format('woff');
+
+}
+body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'iranyekan' !important;
+}
+
+.form-check .form-check-label span {
+    left: 0;
+    right: -1px;
+}
+
+.form-check .form-check-sign {
+    padding-left: 10px;
+    padding-right: 0;
+}
+
+html[dir="rtl"] .form-check-label {
+    padding-right: 1.5rem;
+}
+
+.navbar {
+    box-shadow: 0 4px 18px 0 rgba(0,0,0,0), 0 7px 10px -5px rgba(0,0,0,0);
+}
