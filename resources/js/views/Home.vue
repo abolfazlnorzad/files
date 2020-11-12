@@ -13,14 +13,19 @@
 
 <script>
     import MainSvg from "@/components/svg/MainSvg";
+
     export default {
         name: "Home",
-        components: {MainSvg}
+        components: {MainSvg},
+        metaInfo: {
+            title: 'فروشگاه فایل | صفحه اصلی'
+        },
+
     }
 </script>
 e
 <style scoped>
- .mt-r5{
-     margin-top: 5rem;
- }
+    .mt-r5 {
+        margin-top: 5rem;
+    }
 </style>

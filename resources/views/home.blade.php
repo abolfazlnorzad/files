@@ -2,6 +2,7 @@
 <html lang="en" dir="rtl">
 <head>
     <link href="/css/app.css" rel="stylesheet">
+    <title>فروشگاه فایل</title>
 </head>
 
 <body>

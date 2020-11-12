@@ -36,7 +36,7 @@
             v-model="form.password_confirmation"
         >
         </base-input>
-        <base-btn class="btn-block">ساخت حساب کاربری</base-btn>
+        <base-btn :loading="form.busy" btn="success" class="btn-block">ساخت حساب کاربری</base-btn>
     </form>
 </template>
 <script>
@@ -55,10 +55,13 @@
                     email: null,
                     password: null,
                     password_confirmation: null,
-
+                    busy:false
                 }),
 
             }
+        },
+        metaInfo:{
+            title:'فرم ثبت نام'
         },
 
         methods: {
@@ -66,7 +69,6 @@
                 //
             }
         }
-
 
 
     }

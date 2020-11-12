@@ -11,11 +11,13 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Login */ "./resources/js/views/Auth/Login.vue");
 /* harmony import */ var _Register__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Register */ "./resources/js/views/Auth/Register.vue");
+/* harmony import */ var _errors_NotFound__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../errors/NotFound */ "./resources/js/views/errors/NotFound.vue");
 //
 //
 //
 //
 //
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27,7 +29,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['url'],
   computed: {
     componentName: function componentName() {
-      return ['login', 'register'].includes(this.url) ? this.url : 'home';
+      return ['login', 'register'].includes(this.url) ? this.url : _errors_NotFound__WEBPACK_IMPORTED_MODULE_2__["default"];
     }
   }
 });
@@ -98,9 +100,13 @@ __webpack_require__.r(__webpack_exports__);
       form: new vform__WEBPACK_IMPORTED_MODULE_1__["Form"]({
         email: null,
         password: null,
-        remember: false
+        remember: false,
+        busy: false
       })
     };
+  },
+  metaInfo: {
+    title: 'فرم ورود'
   },
   methods: {
     login: function login() {//
@@ -182,9 +188,13 @@ __webpack_require__.r(__webpack_exports__);
         name: null,
         email: null,
         password: null,
-        password_confirmation: null
+        password_confirmation: null,
+        busy: false
       })
     };
+  },
+  metaInfo: {
+    title: 'فرم ثبت نام'
   },
   methods: {
     register: function register() {//
@@ -387,9 +397,14 @@ var render = function() {
         _vm._v(" آیا رمز عبور خود را فراموش کرده اید ؟ ")
       ]),
       _vm._v(" "),
-      _c("base-btn", { staticClass: "btn-block" }, [
-        _vm._v("ورود به حساب کاربری")
-      ])
+      _c(
+        "base-btn",
+        {
+          staticClass: "btn-block",
+          attrs: { loading: _vm.form.busy, btn: "success" }
+        },
+        [_vm._v("ورود به حساب کاربری")]
+      )
     ],
     1
   )
@@ -479,7 +494,14 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c("base-btn", { staticClass: "btn-block" }, [_vm._v("ساخت حساب کاربری")])
+      _c(
+        "base-btn",
+        {
+          staticClass: "btn-block",
+          attrs: { loading: _vm.form.busy, btn: "success" }
+        },
+        [_vm._v("ساخت حساب کاربری")]
+      )
     ],
     1
   )

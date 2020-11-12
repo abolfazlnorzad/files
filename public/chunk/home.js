@@ -47,6 +47,9 @@ __webpack_require__.r(__webpack_exports__);
   name: "Home",
   components: {
     MainSvg: _components_svg_MainSvg__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  metaInfo: {
+    title: 'فروشگاه فایل | صفحه اصلی'
   }
 });
 
@@ -64,7 +67,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.mt-r5[data-v-63cd6604]{\n    margin-top: 5rem;\n}\n", ""]);
+exports.push([module.i, "\n.mt-r5[data-v-63cd6604] {\n    margin-top: 5rem;\n}\n", ""]);
 
 // exports
 

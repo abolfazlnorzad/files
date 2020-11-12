@@ -28,7 +28,7 @@
         >
         </base-check>
         <a href="#" class="my-4"> آیا رمز عبور خود را فراموش کرده اید ؟ </a>
-        <base-btn class="btn-block">ورود به حساب کاربری</base-btn>
+        <base-btn :loading="form.busy" btn="success" class="btn-block">ورود به حساب کاربری</base-btn>
     </form>
 </template>
 
@@ -48,9 +48,14 @@
                     email: null,
                     password: null,
                     remember: false,
+                    busy:false
                 }),
 
             }
+        },
+
+        metaInfo:{
+            title:'فرم ورود'
         },
 
         methods: {
