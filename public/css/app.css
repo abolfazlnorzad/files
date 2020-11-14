@@ -5873,3 +5873,9 @@ html[dir=rtl] .form-check-label {
   box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0), 0 7px 10px -5px rgba(0, 0, 0, 0);
 }
 
+.sidebar[data-color=purple] li > a.active {
+  background-color: #6537ff;
+  box-shadow: 0 16px 38px -12px #6537ff78, 0 4px 25px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+  color: #fff;
+}
+

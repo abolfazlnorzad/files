@@ -54,8 +54,8 @@
         methods: {
             register() {
                 this.$store.dispatch('auth/register',this.form)
-                .then(({data})=>{
-
+                .then(()=>{
+                    this.$router.push({name:'dashboard'});
                 })
             }
         },

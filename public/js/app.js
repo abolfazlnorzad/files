@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"chunk/AccessDenied":"chunk/AccessDenied","chunk/AppLayout":"chunk/AppLayout","chunk/NotFound":"chunk/NotFound","chunk/AuthRoutes":"chunk/AuthRoutes","chunk/home":"chunk/home"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"chunk/AccessDenied":"chunk/AccessDenied","chunk/AdminDashboard":"chunk/AdminDashboard","chunk/AdminDashboardLayout~chunk/AppLayout~chunk/DashboardLayout":"chunk/AdminDashboardLayout~chunk/AppLayout~chunk/DashboardLayout","chunk/AdminDashboardLayout":"chunk/AdminDashboardLayout","chunk/AppLayout":"chunk/AppLayout","chunk/DashboardLayout":"chunk/DashboardLayout","chunk/NotFound":"chunk/NotFound","chunk/AuthRoutes":"chunk/AuthRoutes","js/admin-user-routes":"js/admin-user-routes","chunk/Profile":"chunk/Profile","chunk/UserDashboard":"chunk/UserDashboard","chunk/home":"chunk/home","js/admin-user":"js/admin-user"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -68895,6 +68895,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
+  linkExactActiveClass: 'active',
   mode: 'history',
   routes: _routes_js__WEBPACK_IMPORTED_MODULE_2__["default"]
 });
@@ -68944,7 +68945,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var AppLayout = function AppLayout() {
-  return __webpack_require__.e(/*! import() | chunk/AppLayout */ "chunk/AppLayout").then(__webpack_require__.bind(null, /*! ../views/layout/AppLayout */ "./resources/js/views/layout/AppLayout.vue"));
+  return Promise.all(/*! import() | chunk/AppLayout */[__webpack_require__.e("chunk/AdminDashboardLayout~chunk/AppLayout~chunk/DashboardLayout"), __webpack_require__.e("chunk/AppLayout")]).then(__webpack_require__.bind(null, /*! ../views/layout/AppLayout */ "./resources/js/views/layout/AppLayout.vue"));
+};
+
+var DashboardLayout = function DashboardLayout() {
+  return Promise.all(/*! import() | chunk/DashboardLayout */[__webpack_require__.e("chunk/AdminDashboardLayout~chunk/AppLayout~chunk/DashboardLayout"), __webpack_require__.e("chunk/DashboardLayout")]).then(__webpack_require__.bind(null, /*! ../views/layout/DashboardLayout */ "./resources/js/views/layout/DashboardLayout.vue"));
+};
+
+var AdminDashboardLayout = function AdminDashboardLayout() {
+  return Promise.all(/*! import() | chunk/AdminDashboardLayout */[__webpack_require__.e("chunk/AdminDashboardLayout~chunk/AppLayout~chunk/DashboardLayout"), __webpack_require__.e("chunk/AdminDashboardLayout")]).then(__webpack_require__.bind(null, /*! ../views/layout/AdminDashboardLayout */ "./resources/js/views/layout/AdminDashboardLayout.vue"));
 };
 
 var Home = function Home() {
@@ -68963,6 +68972,30 @@ var AccessDenied = function AccessDenied() {
   return __webpack_require__.e(/*! import() | chunk/AccessDenied */ "chunk/AccessDenied").then(__webpack_require__.bind(null, /*! ../views/errors/AccessDenied */ "./resources/js/views/errors/AccessDenied.vue"));
 };
 
+var UserDashboard = function UserDashboard() {
+  return __webpack_require__.e(/*! import() | chunk/UserDashboard */ "chunk/UserDashboard").then(__webpack_require__.bind(null, /*! ../views/Dashboard/Index */ "./resources/js/views/Dashboard/Index.vue"));
+};
+
+var Profile = function Profile() {
+  return __webpack_require__.e(/*! import() | chunk/Profile */ "chunk/Profile").then(__webpack_require__.bind(null, /*! ../views/Dashboard/Profile */ "./resources/js/views/Dashboard/Profile.vue"));
+};
+
+var AdminDashboard = function AdminDashboard() {
+  return __webpack_require__.e(/*! import() | chunk/AdminDashboard */ "chunk/AdminDashboard").then(__webpack_require__.bind(null, /*! ../views/Admin/AdminDashboard */ "./resources/js/views/Admin/AdminDashboard.vue"));
+};
+
+var AdminUserRoutes = function AdminUserRoutes() {
+  return Promise.all(/*! import() | js/admin-user-routes */[__webpack_require__.e("chunk/NotFound"), __webpack_require__.e("js/admin-user-routes")]).then(__webpack_require__.bind(null, /*! ../views/Admin/User/AdminUserRoutes.vue */ "./resources/js/views/Admin/User/AdminUserRoutes.vue"));
+};
+
+var AdminUserIndex = function AdminUserIndex() {
+  return __webpack_require__.e(/*! import() | js/admin-user */ "js/admin-user").then(__webpack_require__.bind(null, /*! ../views/Admin/User/Index.vue */ "./resources/js/views/Admin/User/Index.vue"));
+};
+
+var UserDashboardRoutes = function UserDashboardRoutes() {
+  return Promise.resolve().then(function webpackMissingModule() { var e = new Error("Cannot find module '../views/Dashboard/DashboardRoutes.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; });
+};
+
 /* harmony default export */ __webpack_exports__["default"] = ([{
   path: '/',
   component: AppLayout,
@@ -68979,6 +69012,46 @@ var AccessDenied = function AccessDenied() {
       middleware: [_middleware_guest__WEBPACK_IMPORTED_MODULE_1__["default"]]
     }
   }]
+}, {
+  path: '/dashboard',
+  component: DashboardLayout,
+  children: [{
+    name: 'dashboard',
+    path: '',
+    component: UserDashboard
+  }, {
+    path: 'profile',
+    name: 'profile',
+    component: Profile
+  }, {
+    path: ':url',
+    name: 'dashboard',
+    component: UserDashboardRoutes,
+    props: true
+  }],
+  meta: {
+    middleware: [_middleware_auth__WEBPACK_IMPORTED_MODULE_0__["default"]]
+  }
+}, {
+  path: '/admin',
+  component: AdminDashboardLayout,
+  children: [{
+    path: 'dashboard',
+    name: 'admin-dashboard',
+    component: AdminDashboard
+  }, {
+    path: 'dashboard/:url',
+    name: 'admin-dashboard-routes',
+    component: AdminUserRoutes,
+    props: true
+  }, {
+    path: 'user',
+    name: 'admin-user',
+    component: AdminUserIndex
+  }],
+  meta: {
+    middleware: [_middleware_auth__WEBPACK_IMPORTED_MODULE_0__["default"]]
+  }
 }, {
   path: '/404',
   component: NotFound,

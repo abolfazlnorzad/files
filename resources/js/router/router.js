@@ -7,6 +7,7 @@ import middlewarePipeline from "./middlewarePipeline";
 
 Vue.use(VueRouter);
 const router = new VueRouter({
+    linkExactActiveClass: 'active',
     mode: 'history',
     routes,
 

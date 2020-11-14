@@ -3,7 +3,7 @@
         <div class="sidebar-wrapper">
             <ul class="nav">
                 <li class="nav-item">
-                    <router-link class="nav-link" :to="{ name: 'dashboard' }">
+                    <router-link class="nav-link" :to="{ name: 'admin-dashboard' }">
                         <i class="fa fa-tachometer-alt"></i>
                         <p>داشبورد</p>
                     </router-link>
@@ -12,6 +12,12 @@
                     <router-link class="nav-link" :to="{ name: 'admin-user' }">
                         <i class="fa fa-users"></i>
                         <p>کاربران</p>
+                    </router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link class="nav-link" :to="{ name: 'profile' }">
+                        <i class="fa fa-user"></i>
+                        <p>پروفایل</p>
                     </router-link>
                 </li>
                 <li class="nav-item">

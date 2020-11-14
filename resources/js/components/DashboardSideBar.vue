@@ -15,6 +15,12 @@
                     </router-link>
                 </li>
                 <li class="nav-item">
+                    <router-link class="nav-link" :to="{ name: 'profile' }">
+                        <i class="fa fa-user"></i>
+                        <p>پروفایل</p>
+                    </router-link>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="#" @click.prevent="logout">
                         <i class="fa fa-sign-out-alt"></i>
                         <p>خروج</p>

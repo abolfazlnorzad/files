@@ -46,10 +46,10 @@
 
         methods: {
             login() {
-                this.$store.dispatch('auth/login',this.form)
-                .then(({data})=>{
-
-                })
+                this.$store.dispatch('auth/login', this.form)
+                    .then(() => {
+                        this.$router.push({name:'dashboard'});
+                    })
             }
         },
     }

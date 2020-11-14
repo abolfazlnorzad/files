@@ -5,5 +5,14 @@
     "/chunk/AppLayout.js": "/chunk/AppLayout.js",
     "/chunk/AuthRoutes.js": "/chunk/AuthRoutes.js",
     "/chunk/NotFound.js": "/chunk/NotFound.js",
-    "/chunk/home.js": "/chunk/home.js"
+    "/chunk/home.js": "/chunk/home.js",
+    "/chunk/UserDashboard.js": "/chunk/UserDashboard.js",
+    "/chunk/AppLayout~chunk/DashboardLayout.js": "/chunk/AppLayout~chunk/DashboardLayout.js",
+    "/chunk/DashboardLayout.js": "/chunk/DashboardLayout.js",
+    "/chunk/AdminDashboardLayout.js": "/chunk/AdminDashboardLayout.js",
+    "/chunk/AdminDashboardLayout~chunk/AppLayout~chunk/DashboardLayout.js": "/chunk/AdminDashboardLayout~chunk/AppLayout~chunk/DashboardLayout.js",
+    "/chunk/AdminDashboard.js": "/chunk/AdminDashboard.js",
+    "/chunk/Profile.js": "/chunk/Profile.js",
+    "/js/admin-user.js": "/js/admin-user.js",
+    "/js/admin-user-routes.js": "/js/admin-user-routes.js"
 }
