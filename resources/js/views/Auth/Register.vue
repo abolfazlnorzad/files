@@ -1,53 +1,45 @@
 <template>
-    <form
-        @submit.prevent="register"
-        class="container d-flex flex-column card py-5 my-5 mx-auto align-items-center form-width">
-
-        <h2 class="my-5"> فرم ثبت نام </h2>
-
-        <base-input
-            name="name"
-            type="name"
-            label="نام"
-            v-model="form.name"
-        >
-        </base-input>
-
-        <base-input
-            name="email"
-            type="email"
-            label="ایمیل"
-            v-model="form.email"
-        >
-        </base-input>
-
-        <base-input
-            name="password"
-            type="password"
-            label="رمز عبور"
-            v-model="form.password"
-        >
-        </base-input>
-
-        <base-input
-            name="password_confirmation"
-            type="password"
-            label="رمز عبور خود را مجددا وارد کنید"
-            v-model="form.password_confirmation"
-        >
-        </base-input>
-        <base-btn :loading="form.busy" btn="success" class="btn-block">ساخت حساب کاربری</base-btn>
+    <form class="d-flex flex-column align-items-center mt-5 login-width mx-auto card py-5 container"
+          @submit.prevent="register"
+    >
+        <h3>فرم ثبت نام</h3>
+        <base-input name="name"
+                    type="name"
+                    label="نام"
+                    v-model="form.name"
+        ></base-input>
+        <base-input name="email"
+                    type="email"
+                    label="ایمیل"
+                    v-model="form.email"
+        ></base-input>
+        <base-input name="password"
+                    type="password"
+                    label="رمز عبور"
+                    v-model="form.password"
+        ></base-input>
+        <base-input name="password_confirmation"
+                    type="password"
+                    label="تایید رمز عبور"
+                    v-model="form.password_confirmation"
+        ></base-input>
+        <base-btn :loading="form.busy"
+                  btn="success"
+                  class="btn-block mt-3"
+        >ثبت نام</base-btn>
     </form>
 </template>
+
 <script>
-    import BaseInput from "@/components/BaseInput";
-    import {Form} from "vform";
-    import BaseBtn from "../../components/BaseBtn";
-    import BaseCheck from "../../components/BaseCheck";
+    import { Form } from "vform";
 
     export default {
         name: "Register",
-        components: {BaseBtn, BaseCheck, BaseInput},
+
+        metaInfo: {
+            title: 'فرم ثبت نام'
+        },
+
         data() {
             return {
                 form: new Form({
@@ -55,27 +47,24 @@
                     email: null,
                     password: null,
                     password_confirmation: null,
-                    busy:false
-                }),
-
+                })
             }
-        },
-        metaInfo:{
-            title:'فرم ثبت نام'
         },
 
         methods: {
             register() {
-                //
+                this.$store.dispatch('auth/register',this.form)
+                .then(({data})=>{
+
+                })
             }
-        }
-
-
+        },
     }
 </script>
 
 <style scoped>
-    .form-width {
-        width: 400px !important;
+
+    .login-width {
+        width: 360px;
     }
 </style>

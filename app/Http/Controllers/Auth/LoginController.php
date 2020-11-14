@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Traits\TokenTrait;
 use Illuminate\Http\Request;
@@ -26,23 +27,21 @@ class LoginController extends Controller
         if ($response->status() !== 200) {
             return $response;
         }
-        return [$user, $this->getContent()];
+        return new UserResource($user,$this->getContent());
 
 
     }
 
-    /**
-     * @param LoginRequest $request
-     * @throws ValidationException
-     */
-    public function getUser(LoginRequest $request)
+
+    protected function getUser(LoginRequest $request)
     {
         $user = User::whereEmail($request->email)->first();
-        if (!Hash::check($request->password, optional($user)->password)) {
+        if (! Hash::check($request->password, optional($user)->password)) {
             throw ValidationException::withMessages([
                 'email' => 'اطلاعات شما درست نیست '
             ]);
         }
+        return $user;
     }
 
 

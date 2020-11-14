@@ -10,6 +10,15 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
 //
 //
 //
@@ -60,14 +69,15 @@ __webpack_require__.r(__webpack_exports__);
       dropDownShow: null
     };
   },
-  // computed: {
-  //     ...mapGetters('auth', ['user', 'isLoggedIn'])
-  // },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', ['user', 'isLoggedIn'])),
   methods: {
     logout: function logout() {
-      // this.$store.dispatch('auth/logout');
-      this.$router.push({
-        name: 'home'
+      var _this = this;
+
+      this.$store.dispatch('auth/logout').then(function () {
+        _this.$router.push({
+          name: 'home'
+        });
       });
     }
   }
@@ -209,40 +219,99 @@ var render = function() {
                 "div",
                 { staticClass: "form-inline my-2 my-lg-0" },
                 [
-                  _c(
-                    "router-link",
-                    {
-                      attrs: {
-                        to: { name: "auth", params: { url: "register" } }
-                      }
-                    },
-                    [
-                      _c(
-                        "base-btn",
-                        {
-                          staticClass: "my-2 my-sm-0 mr-2",
-                          attrs: { btn: "success" }
-                        },
-                        [_vm._v("ثبت نام")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      attrs: { to: { name: "auth", params: { url: "login" } } }
-                    },
-                    [
-                      _c("base-btn", { staticClass: "my-2 my-sm-0 mr-2" }, [
-                        _vm._v("ورود")
-                      ])
-                    ],
-                    1
-                  )
+                  !_vm.isLoggedIn
+                    ? [
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              to: { name: "auth", params: { url: "register" } }
+                            }
+                          },
+                          [
+                            _c(
+                              "base-btn",
+                              {
+                                staticClass: "my-2 my-sm-0 mr-2",
+                                attrs: { btn: "success" }
+                              },
+                              [_vm._v("ثبت نام")]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              to: { name: "auth", params: { url: "login" } }
+                            }
+                          },
+                          [
+                            _c(
+                              "base-btn",
+                              { staticClass: "my-2 my-sm-0 mr-2" },
+                              [_vm._v("ورود")]
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    : [
+                        _c("div", { staticClass: "dropdown" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn dropdown-toggle",
+                              on: {
+                                click: function($event) {
+                                  _vm.dropDownShow = _vm.dropDownShow
+                                    ? null
+                                    : "show"
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(_vm.user.name) +
+                                  "\n                            "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "dropdown-menu",
+                              class: _vm.dropDownShow
+                            },
+                            [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "dropdown-item",
+                                  attrs: { href: "#" }
+                                },
+                                [_vm._v("پروفایل")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "dropdown-item",
+                                  attrs: { href: "#" },
+                                  on: { click: _vm.logout }
+                                },
+                                [_vm._v("خروج")]
+                              )
+                            ]
+                          )
+                        ])
+                      ]
                 ],
-                1
+                2
               )
             ]
           )

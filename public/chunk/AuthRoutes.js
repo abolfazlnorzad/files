@@ -16,20 +16,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AuthRoutes",
   components: {
+    Login: _Login__WEBPACK_IMPORTED_MODULE_0__["default"],
     Register: _Register__WEBPACK_IMPORTED_MODULE_1__["default"],
-    Login: _Login__WEBPACK_IMPORTED_MODULE_0__["default"]
+    NotFound: _errors_NotFound__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   props: ['url'],
   computed: {
     componentName: function componentName() {
-      return ['login', 'register'].includes(this.url) ? this.url : _errors_NotFound__WEBPACK_IMPORTED_MODULE_2__["default"];
+      return ['login', 'register'].includes(this.url) ? this.url : 'not-found';
     }
   }
 });
@@ -45,11 +45,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_BaseInput__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/BaseInput */ "./resources/js/components/BaseInput.vue");
-/* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vform */ "./node_modules/vform/dist/vform.common.js");
-/* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vform__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components_BaseCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/BaseCheck */ "./resources/js/components/BaseCheck.vue");
-/* harmony import */ var _components_BaseBtn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/BaseBtn */ "./resources/js/components/BaseBtn.vue");
+/* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vform */ "./node_modules/vform/dist/vform.common.js");
+/* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vform__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _plugin_axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../plugin/axios */ "./resources/js/plugin/axios.js");
 //
 //
 //
@@ -75,41 +73,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Login",
-  components: {
-    BaseBtn: _components_BaseBtn__WEBPACK_IMPORTED_MODULE_3__["default"],
-    BaseCheck: _components_BaseCheck__WEBPACK_IMPORTED_MODULE_2__["default"],
-    BaseInput: _components_BaseInput__WEBPACK_IMPORTED_MODULE_0__["default"]
-  },
-  data: function data() {
-    return {
-      form: new vform__WEBPACK_IMPORTED_MODULE_1__["Form"]({
-        email: null,
-        password: null,
-        remember: false,
-        busy: false
-      })
-    };
-  },
   metaInfo: {
     title: 'فرم ورود'
   },
+  data: function data() {
+    return {
+      form: new vform__WEBPACK_IMPORTED_MODULE_0__["Form"]({
+        email: null,
+        password: null,
+        remember: false
+      })
+    };
+  },
   methods: {
-    login: function login() {//
+    login: function login() {
+      this.$store.dispatch('auth/login', this.form).then(function (_ref) {
+        var data = _ref.data;
+      });
     }
   }
 });
@@ -125,11 +109,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_BaseInput__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/BaseInput */ "./resources/js/components/BaseInput.vue");
-/* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vform */ "./node_modules/vform/dist/vform.common.js");
-/* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vform__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components_BaseBtn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/BaseBtn */ "./resources/js/components/BaseBtn.vue");
-/* harmony import */ var _components_BaseCheck__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/BaseCheck */ "./resources/js/components/BaseCheck.vue");
+/* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vform */ "./node_modules/vform/dist/vform.common.js");
+/* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vform__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -162,42 +143,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Register",
-  components: {
-    BaseBtn: _components_BaseBtn__WEBPACK_IMPORTED_MODULE_2__["default"],
-    BaseCheck: _components_BaseCheck__WEBPACK_IMPORTED_MODULE_3__["default"],
-    BaseInput: _components_BaseInput__WEBPACK_IMPORTED_MODULE_0__["default"]
-  },
-  data: function data() {
-    return {
-      form: new vform__WEBPACK_IMPORTED_MODULE_1__["Form"]({
-        name: null,
-        email: null,
-        password: null,
-        password_confirmation: null,
-        busy: false
-      })
-    };
-  },
   metaInfo: {
     title: 'فرم ثبت نام'
   },
+  data: function data() {
+    return {
+      form: new vform__WEBPACK_IMPORTED_MODULE_0__["Form"]({
+        name: null,
+        email: null,
+        password: null,
+        password_confirmation: null
+      })
+    };
+  },
   methods: {
-    register: function register() {//
+    register: function register() {
+      this.$store.dispatch('auth/register', this.form).then(function (_ref) {
+        var data = _ref.data;
+      });
     }
   }
 });
@@ -216,7 +182,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.form-width[data-v-be5ebcfe] {\n    width: 400px !important;\n}\n", ""]);
+exports.push([module.i, "\n.login-width[data-v-be5ebcfe] {\n    width: 360px;\n}\n", ""]);
 
 // exports
 
@@ -235,7 +201,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.form-width[data-v-1629088a] {\n    width: 400px !important;\n}\n", ""]);
+exports.push([module.i, "\n.login-width[data-v-1629088a] {\n    width: 360px;\n}\n", ""]);
 
 // exports
 
@@ -345,7 +311,7 @@ var render = function() {
     "form",
     {
       staticClass:
-        "container d-flex flex-column card py-5 my-5 mx-auto align-items-center form-width",
+        "d-flex flex-column align-items-center mt-5 login-width mx-auto card py-5 container",
       on: {
         submit: function($event) {
           $event.preventDefault()
@@ -354,7 +320,7 @@ var render = function() {
       }
     },
     [
-      _c("h2", { staticClass: "my-5" }, [_vm._v(" فرم ورود ")]),
+      _c("h3", [_vm._v("فرم ورود")]),
       _vm._v(" "),
       _c("base-input", {
         attrs: { name: "email", type: "email", label: "ایمیل" },
@@ -381,8 +347,8 @@ var render = function() {
       _c("base-check", {
         attrs: {
           name: "remember",
-          field: "checkbox",
-          label: "مرا بخاطر بسپار"
+          field: "remember",
+          label: "مرا به خاطر بسپار"
         },
         model: {
           value: _vm.form.remember,
@@ -393,17 +359,14 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c("a", { staticClass: "my-4", attrs: { href: "#" } }, [
-        _vm._v(" آیا رمز عبور خود را فراموش کرده اید ؟ ")
+      _c("a", { staticClass: "my-2", attrs: { href: "#" } }, [
+        _vm._v("ایا رمز عبور خود را فراموش کرده اید؟")
       ]),
       _vm._v(" "),
       _c(
         "base-btn",
-        {
-          staticClass: "btn-block",
-          attrs: { loading: _vm.form.busy, btn: "success" }
-        },
-        [_vm._v("ورود به حساب کاربری")]
+        { staticClass: "btn-block", attrs: { loading: _vm.form.busy } },
+        [_vm._v("ورود")]
       )
     ],
     1
@@ -435,7 +398,7 @@ var render = function() {
     "form",
     {
       staticClass:
-        "container d-flex flex-column card py-5 my-5 mx-auto align-items-center form-width",
+        "d-flex flex-column align-items-center mt-5 login-width mx-auto card py-5 container",
       on: {
         submit: function($event) {
           $event.preventDefault()
@@ -444,7 +407,7 @@ var render = function() {
       }
     },
     [
-      _c("h2", { staticClass: "my-5" }, [_vm._v(" فرم ثبت نام ")]),
+      _c("h3", [_vm._v("فرم ثبت نام")]),
       _vm._v(" "),
       _c("base-input", {
         attrs: { name: "name", type: "name", label: "نام" },
@@ -483,7 +446,7 @@ var render = function() {
         attrs: {
           name: "password_confirmation",
           type: "password",
-          label: "رمز عبور خود را مجددا وارد کنید"
+          label: "تایید رمز عبور"
         },
         model: {
           value: _vm.form.password_confirmation,
@@ -497,10 +460,10 @@ var render = function() {
       _c(
         "base-btn",
         {
-          staticClass: "btn-block",
+          staticClass: "btn-block mt-3",
           attrs: { loading: _vm.form.busy, btn: "success" }
         },
-        [_vm._v("ساخت حساب کاربری")]
+        [_vm._v("ثبت نام")]
       )
     ],
     1

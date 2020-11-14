@@ -6,6 +6,7 @@ import PerfectScrollbarPlugin from "vue2-perfect-scrollbar";
 
 require('vue2-perfect-scrollbar/src/style.css');
 import router from "./router/router";
+import store from "./store/store";
 window.Vue = require('vue');
 import VueMeta from "vue-meta";
 
@@ -19,5 +20,7 @@ Vue.use(VueMeta);
 const app = new Vue({
     el: '#app',
     router,
+    store,
+
 
 });

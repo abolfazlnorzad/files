@@ -1,10 +1,9 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
+    "/chunk/AccessDenied.js": "/chunk/AccessDenied.js",
     "/chunk/AppLayout.js": "/chunk/AppLayout.js",
     "/chunk/AuthRoutes.js": "/chunk/AuthRoutes.js",
-    "/chunk/home.js": "/chunk/home.js",
-    "/vendors~chunk/AppLayout.js": "/vendors~chunk/AppLayout.js",
     "/chunk/NotFound.js": "/chunk/NotFound.js",
-    "/chunk/AccessDenied.js": "/chunk/AccessDenied.js"
+    "/chunk/home.js": "/chunk/home.js"
 }
