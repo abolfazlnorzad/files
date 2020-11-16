@@ -80,7 +80,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     storeCategory: function storeCategory() {
-      this.$store.dispatch('category/store', this.form).then(function (data) {// this.$router.push({ name: 'admin-category'});
+      var _this = this;
+
+      this.$store.dispatch('category/store', this.form).then(function (data) {
+        _this.$router.push({
+          name: 'admin-category'
+        });
       });
     }
   }
@@ -141,9 +146,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     updateCategory: function updateCategory() {
-      this.$store.dispatch("category/update", this.form).then(function (_ref2) {// this.$router.push({ name: 'admin-category'})
+      var _this2 = this;
 
+      this.$store.dispatch("category/update", this.form).then(function (_ref2) {
         var data = _ref2.data;
+
+        _this2.$router.push({
+          name: 'admin-category'
+        });
       });
     }
   }

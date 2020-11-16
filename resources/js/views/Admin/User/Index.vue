@@ -92,7 +92,7 @@
             deleteUser(id, index) {
                 axios.delete(`/api/admin/users/${id}`)
                     .then(() => {
-                        this.users.splice(index, 1)
+                        this.users.data.splice(index, 1)
                     })
             },
             getUsers(page = 1) {

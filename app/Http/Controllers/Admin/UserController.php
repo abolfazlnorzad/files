@@ -19,7 +19,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $allUsers = User::paginate(2);
+        $allUsers = User::paginate(10);
         return new UserCollection($allUsers);
     }
 

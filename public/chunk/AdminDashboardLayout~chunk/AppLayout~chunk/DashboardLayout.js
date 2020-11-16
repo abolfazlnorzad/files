@@ -61,6 +61,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Navbar",
@@ -270,6 +278,24 @@ var render = function() {
                                 [_vm._v("پروفایل")]
                               ),
                               _vm._v(" "),
+                              _vm.user.isAdmin == true
+                                ? _c(
+                                    "router-link",
+                                    {
+                                      staticClass: "dropdown-item",
+                                      attrs: { to: { name: "admin-dashboard" } }
+                                    },
+                                    [_vm._v("داشبورد")]
+                                  )
+                                : _c(
+                                    "router-link",
+                                    {
+                                      staticClass: "dropdown-item",
+                                      attrs: { to: { name: "dashboard" } }
+                                    },
+                                    [_vm._v("داشبورد")]
+                                  ),
+                              _vm._v(" "),
                               _c(
                                 "a",
                                 {
@@ -279,7 +305,8 @@ var render = function() {
                                 },
                                 [_vm._v("خروج")]
                               )
-                            ]
+                            ],
+                            1
                           )
                         ])
                       ]

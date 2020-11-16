@@ -15,6 +15,7 @@ const AdminDashboard = () => import( /*  webpackChunkName:"chunk/AdminDashboard"
 const AdminUserRoutes = () => import( /* webpackChunkName: "js/admin-user-routes" */ '../views/Admin/User/AdminUserRoutes.vue');
 const AdminCategoryRoutes = () => import( /* webpackChunkName: "js/AdminCategoryRoutes" */ '../views/Admin/Category/AdminCategoryRoutes.vue');
 const AdminUserIndex = () => import( /* webpackChunkName: "js/admin-user" */ '../views/Admin/User/Index.vue');
+const AdminCategoryIndex = () => import( /* webpackChunkName: "js/AdminCategoryIndex" */ '../views/Admin/Category/Index');
 const UserDashboardRoutes = () => import( /* webpackChunkName: "js/user-dashboard-routes" */ '../views/Dashboard/DashboardRoutes');
 
 export default [
@@ -107,6 +108,14 @@ export default [
 
 
             {
+                path: 'category',
+                name: 'admin-category',
+                component: AdminCategoryIndex,
+                props: true,
+
+            },
+
+            {
                 path: 'category/:url',
                 name: 'admin-categories',
                 component: AdminCategoryRoutes,
@@ -114,7 +123,7 @@ export default [
                 children:[
                     {
                         path:':slug',
-                        name: 'admin-categories-slug',
+                        name: 'admin-categories-edit',
                     }
                 ]
             }

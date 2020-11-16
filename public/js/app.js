@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"chunk/AccessDenied":"chunk/AccessDenied","chunk/AdminDashboard":"chunk/AdminDashboard","chunk/AdminDashboardLayout~chunk/AppLayout~chunk/DashboardLayout":"chunk/AdminDashboardLayout~chunk/AppLayout~chunk/DashboardLayout","chunk/AdminDashboardLayout":"chunk/AdminDashboardLayout","chunk/AppLayout":"chunk/AppLayout","chunk/DashboardLayout":"chunk/DashboardLayout","chunk/NotFound":"chunk/NotFound","chunk/AuthRoutes":"chunk/AuthRoutes","js/AdminCategoryRoutes":"js/AdminCategoryRoutes","js/admin-user-routes":"js/admin-user-routes","js/user-dashboard-routes":"js/user-dashboard-routes","chunk/Profile":"chunk/Profile","chunk/UserDashboard":"chunk/UserDashboard","chunk/home":"chunk/home","js/admin-user":"js/admin-user"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"chunk/AccessDenied":"chunk/AccessDenied","chunk/AdminDashboard":"chunk/AdminDashboard","chunk/AdminDashboardLayout~chunk/AppLayout~chunk/DashboardLayout":"chunk/AdminDashboardLayout~chunk/AppLayout~chunk/DashboardLayout","chunk/AdminDashboardLayout":"chunk/AdminDashboardLayout","chunk/AppLayout":"chunk/AppLayout","chunk/DashboardLayout":"chunk/DashboardLayout","chunk/NotFound":"chunk/NotFound","chunk/AuthRoutes":"chunk/AuthRoutes","js/AdminCategoryRoutes":"js/AdminCategoryRoutes","js/admin-user-routes":"js/admin-user-routes","js/user-dashboard-routes":"js/user-dashboard-routes","chunk/Profile":"chunk/Profile","chunk/UserDashboard":"chunk/UserDashboard","chunk/home":"chunk/home","js/AdminCategoryIndex":"js/AdminCategoryIndex","js/admin-user":"js/admin-user"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -69617,6 +69617,10 @@ var AdminUserIndex = function AdminUserIndex() {
   return __webpack_require__.e(/*! import() | js/admin-user */ "js/admin-user").then(__webpack_require__.bind(null, /*! ../views/Admin/User/Index.vue */ "./resources/js/views/Admin/User/Index.vue"));
 };
 
+var AdminCategoryIndex = function AdminCategoryIndex() {
+  return __webpack_require__.e(/*! import() | js/AdminCategoryIndex */ "js/AdminCategoryIndex").then(__webpack_require__.bind(null, /*! ../views/Admin/Category/Index */ "./resources/js/views/Admin/Category/Index.vue"));
+};
+
 var UserDashboardRoutes = function UserDashboardRoutes() {
   return Promise.all(/*! import() | js/user-dashboard-routes */[__webpack_require__.e("chunk/NotFound"), __webpack_require__.e("js/user-dashboard-routes")]).then(__webpack_require__.bind(null, /*! ../views/Dashboard/DashboardRoutes */ "./resources/js/views/Dashboard/DashboardRoutes.vue"));
 };
@@ -69683,13 +69687,18 @@ var UserDashboardRoutes = function UserDashboardRoutes() {
       name: 'admin-users-edit'
     }]
   }, {
+    path: 'category',
+    name: 'admin-category',
+    component: AdminCategoryIndex,
+    props: true
+  }, {
     path: 'category/:url',
     name: 'admin-categories',
     component: AdminCategoryRoutes,
     props: true,
     children: [{
       path: ':slug',
-      name: 'admin-categories-slug'
+      name: 'admin-categories-edit'
     }]
   }],
   meta: {
@@ -69825,6 +69834,12 @@ var actions = {
   update: function update(_ref2, payload) {
     var commit = _ref2.commit;
     return payload.patch("/api/admin/categories/".concat(payload.slug), payload);
+  },
+  categories: function categories(state, payload) {
+    return _plugin_axios__WEBPACK_IMPORTED_MODULE_0__["default"].get("/api/admin/categories?page=".concat(payload));
+  },
+  "delete": function _delete(state, payload) {
+    return _plugin_axios__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]("/api/admin/categories/".concat(payload.slug));
   }
 };
 

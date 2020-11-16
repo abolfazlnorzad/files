@@ -15,6 +15,12 @@ export const actions = {
     },
     update({commit}, payload) {
         return payload.patch(`/api/admin/categories/${payload.slug}`, payload);
+    },
+    categories(state, payload) {
+        return axios.get(`/api/admin/categories?page=${payload}`)
+    },
+    delete(state,payload){
+        return axios.delete(`/api/admin/categories/${payload.slug}`);
     }
 
 

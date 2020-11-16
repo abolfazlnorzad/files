@@ -15,5 +15,6 @@
     "/js/AdminCategoryRoutes.js": "/js/AdminCategoryRoutes.js",
     "/js/admin-user.js": "/js/admin-user.js",
     "/js/admin-user-routes.js": "/js/admin-user-routes.js",
-    "/js/user-dashboard-routes.js": "/js/user-dashboard-routes.js"
+    "/js/user-dashboard-routes.js": "/js/user-dashboard-routes.js",
+    "/js/AdminCategoryIndex.js": "/js/AdminCategoryIndex.js"
 }

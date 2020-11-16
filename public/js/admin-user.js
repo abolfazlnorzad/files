@@ -100,7 +100,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       _plugin_axios__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]("/api/admin/users/".concat(id)).then(function () {
-        _this.users.splice(index, 1);
+        _this.users.data.splice(index, 1);
       });
     },
     getUsers: function getUsers() {

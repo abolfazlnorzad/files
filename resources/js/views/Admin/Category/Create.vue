@@ -37,7 +37,7 @@
             storeCategory() {
                 this.$store.dispatch('category/store', this.form)
                     .then(data => {
-                        // this.$router.push({ name: 'admin-category'});
+                        this.$router.push({ name: 'admin-category'});
                     })
             }
         },

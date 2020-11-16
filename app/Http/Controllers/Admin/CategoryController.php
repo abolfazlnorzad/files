@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CategoryCollection;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -16,6 +17,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
+
+        return new CategoryCollection(Category::paginate(10));
 
     }
 
@@ -46,6 +49,7 @@ class CategoryController extends Controller
 
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return response('deleted',200);
     }
 }
