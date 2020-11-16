@@ -16,5 +16,6 @@ Route::group(['namespace' => 'Auth'], function () {
 });
 Route::group(['middleware' => ['auth:api', 'admin'], 'prefix' => 'admin', 'namespace' => 'Admin'],function (){
     Route::apiResource('users', 'UserController');
+    Route::apiResource('categories', 'CategoryController');
 });
 

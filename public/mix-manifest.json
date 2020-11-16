@@ -12,6 +12,7 @@
     "/chunk/Profile.js": "/chunk/Profile.js",
     "/chunk/UserDashboard.js": "/chunk/UserDashboard.js",
     "/chunk/home.js": "/chunk/home.js",
+    "/js/AdminCategoryRoutes.js": "/js/AdminCategoryRoutes.js",
     "/js/admin-user.js": "/js/admin-user.js",
     "/js/admin-user-routes.js": "/js/admin-user-routes.js",
     "/js/user-dashboard-routes.js": "/js/user-dashboard-routes.js"
