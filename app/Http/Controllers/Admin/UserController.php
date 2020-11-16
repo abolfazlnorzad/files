@@ -19,7 +19,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $allUsers = User::all();
+        $allUsers = User::paginate(2);
         return new UserCollection($allUsers);
     }
 
@@ -35,7 +35,7 @@ class UserController extends Controller
         $data = $request->validated();
         $data['password'] = bcrypt($data['password']);
         $user = User::create($data);
-        return response(['user'=>$user], 200);
+        return response(['user' => $user], 200);
     }
 
     /**
@@ -59,23 +59,21 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, User $user)
     {
-        $data=$request->validated();
+        $data = $request->validated();
         if (is_null($data['password'])) unset($data['password']);
-        else{
-            $data['password']=bcrypt($data['password']);
+        else {
+            $data['password'] = bcrypt($data['password']);
         }
         $user->update($data);
-        return response('ok',200);
+        return response('ok', 200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param \App\Moldes\User $user
-     * @return Response
-     */
+
+
+
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return response('ok', 200);
     }
 }

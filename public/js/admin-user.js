@@ -75,6 +75,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Index",
@@ -87,12 +93,26 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    var _this = this;
+    this.getUsers(this.$route.query.page);
+  },
+  methods: {
+    deleteUser: function deleteUser(id, index) {
+      var _this = this;
 
-    _plugin_axios__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/admin/users').then(function (_ref) {
-      var data = _ref.data;
-      _this.users = data.data;
-    });
+      _plugin_axios__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]("/api/admin/users/".concat(id)).then(function () {
+        _this.users.splice(index, 1);
+      });
+    },
+    getUsers: function getUsers() {
+      var _this2 = this;
+
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      _plugin_axios__WEBPACK_IMPORTED_MODULE_0__["default"].get("/api/admin/users?page=".concat(page)).then(function (_ref) {
+        var data = _ref.data;
+        _this2.users = data;
+        window.history.replaceState('User', 'User', "/admin/user?page=".concat(page));
+      });
+    }
   }
 });
 
@@ -142,83 +162,102 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
-        _c("div", { staticClass: "table-responsive" }, [
-          _c("table", { staticClass: "table" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c(
-              "tbody",
-              _vm._l(_vm.users, function(user) {
-                return _c("tr", { key: user.id }, [
-                  _c("td", [
-                    _vm._v(
-                      "\n                            " +
-                        _vm._s(user.id) +
-                        "\n                        "
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _vm._v(
-                      "\n                            " +
-                        _vm._s(user.name) +
-                        "\n                        "
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _vm._v(
-                      "\n                            " +
-                        _vm._s(user.email) +
-                        "\n                        "
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _vm._v(
-                      "\n                            " +
-                        _vm._s(user.type) +
-                        "\n\n                        "
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _vm._v(
-                      "\n                            " +
-                        _vm._s(user.created_at) +
-                        "\n                        "
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "btn btn-info",
-                          attrs: {
-                            to: {
-                              name: "admin-users-edit",
-                              params: { url: "edit", id: user.id }
+        _c(
+          "div",
+          { staticClass: "table-responsive" },
+          [
+            _c("table", { staticClass: "table" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.users.data, function(user, index) {
+                  return _c("tr", { key: user.id }, [
+                    _c("td", [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(user.id) +
+                          "\n                        "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(user.name) +
+                          "\n                        "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(user.email) +
+                          "\n                        "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(user.type) +
+                          "\n\n                        "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(user.created_at) +
+                          "\n                        "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "btn btn-info",
+                            attrs: {
+                              to: {
+                                name: "admin-users-edit",
+                                params: { url: "edit", id: user.id }
+                              }
                             }
-                          }
-                        },
-                        [_vm._v("ویرایش")]
-                      ),
-                      _vm._v(" "),
-                      _c("button", { staticClass: "btn btn-danger" }, [
-                        _vm._v("حذف")
-                      ])
-                    ],
-                    1
-                  )
-                ])
-              }),
-              0
-            )
-          ])
-        ])
+                          },
+                          [_vm._v("ویرایش\n                            ")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-danger",
+                            on: {
+                              click: function($event) {
+                                return _vm.deleteUser(user.id, index)
+                              }
+                            }
+                          },
+                          [_vm._v("حذف\n                            ")]
+                        )
+                      ],
+                      1
+                    )
+                  ])
+                }),
+                0
+              )
+            ]),
+            _vm._v(" "),
+            _c("pagination", {
+              attrs: { data: _vm.users },
+              on: { "pagination-change-page": _vm.getUsers }
+            })
+          ],
+          1
+        )
       ])
     ])
   ])

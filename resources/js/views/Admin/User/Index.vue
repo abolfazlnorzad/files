@@ -31,7 +31,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="user in users" :key="user.id">
+                        <tr v-for="(user,index) in users.data" :key="user.id">
                             <td>
                                 {{ user.id }}
                             </td>
@@ -51,12 +51,18 @@
                             <td>
                                 <router-link
                                     :to="{name:'admin-users-edit',params:{url:'edit',id:user.id}}"
-                                    class="btn btn-info">ویرایش</router-link>
-                                <button class="btn btn-danger">حذف</button>
+                                    class="btn btn-info">ویرایش
+                                </router-link>
+                                <button
+                                    @click="deleteUser(user.id,index)"
+                                    class="btn btn-danger">حذف
+                                </button>
                             </td>
                         </tr>
                         </tbody>
                     </table>
+                    <pagination :data="users" @pagination-change-page="getUsers"></pagination>
+
                 </div>
             </div>
         </div>
@@ -65,6 +71,7 @@
 
 <script>
     import axios from "@/plugin/axios";
+
     export default {
         name: "Index",
 
@@ -79,12 +86,23 @@
         },
 
         created() {
-            axios.get('/api/admin/users')
-                .then(({ data }) => {
-
-                    this.users = data.data;
-                })
-        }
+            this.getUsers(this.$route.query.page)
+        },
+        methods: {
+            deleteUser(id, index) {
+                axios.delete(`/api/admin/users/${id}`)
+                    .then(() => {
+                        this.users.splice(index, 1)
+                    })
+            },
+            getUsers(page = 1) {
+                axios.get(`/api/admin/users?page=${page}`)
+                    .then(({data}) => {
+                        this.users = data;
+                        window.history.replaceState('User','User',`/admin/user?page=${page}`)
+                    })
+            }
+        },
     }
 </script>
 

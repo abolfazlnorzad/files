@@ -16,6 +16,7 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
 
 Vue.use(PerfectScrollbarPlugin);
 Vue.use(VueMeta);
+Vue.component('pagination', require('laravel-vue-pagination'));
 
 const app = new Vue({
     el: '#app',
