@@ -1,5 +1,6 @@
 import auth from "../middleware/auth";
 import guest from "../middleware/guest";
+import admin from "../middleware/admin";
 
 const AppLayout = () => import( /*  webpackChunkName:"chunk/AppLayout" */ "../views/layout/AppLayout");
 const DashboardLayout = () => import( /*  webpackChunkName:"chunk/DashboardLayout" */ "../views/layout/DashboardLayout");
@@ -13,7 +14,7 @@ const Profile = () => import( /*  webpackChunkName:"chunk/Profile" */ "../views/
 const AdminDashboard = () => import( /*  webpackChunkName:"chunk/AdminDashboard" */ "../views/Admin/AdminDashboard");
 const AdminUserRoutes = () => import( /* webpackChunkName: "js/admin-user-routes" */ '../views/Admin/User/AdminUserRoutes.vue');
 const AdminUserIndex = () => import( /* webpackChunkName: "js/admin-user" */ '../views/Admin/User/Index.vue');
-const UserDashboardRoutes = () => import( /* webpackChunkName: "js/user-dashboard-routes" */ '../views/Dashboard/DashboardRoutes.vue');
+const UserDashboardRoutes = () => import( /* webpackChunkName: "js/user-dashboard-routes" */ '../views/Dashboard/DashboardRoutes');
 
 export default [
     {
@@ -57,7 +58,7 @@ export default [
             },
             {
                 path: ':url',
-                name: 'dashboard',
+                name: 'dashboards',
                 component: UserDashboardRoutes,
                 props: true
             },
@@ -88,12 +89,25 @@ export default [
                 path: 'user',
                 name: 'admin-user',
                 component: AdminUserIndex,
+
+            },
+            {
+                path: 'user/:url',
+                name: 'admin-users',
+                component: AdminUserRoutes,
+                props: true,
+                children:[
+                    {
+                        path:':id',
+                        name: 'admin-users-edit',
+                    }
+                ]
             }
 
         ],
         meta: {
             middleware: [
-                auth
+                admin
             ]
         }
     },

@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"chunk/AccessDenied":"chunk/AccessDenied","chunk/AdminDashboard":"chunk/AdminDashboard","chunk/AdminDashboardLayout~chunk/AppLayout~chunk/DashboardLayout":"chunk/AdminDashboardLayout~chunk/AppLayout~chunk/DashboardLayout","chunk/AdminDashboardLayout":"chunk/AdminDashboardLayout","chunk/AppLayout":"chunk/AppLayout","chunk/DashboardLayout":"chunk/DashboardLayout","chunk/NotFound":"chunk/NotFound","chunk/AuthRoutes":"chunk/AuthRoutes","js/admin-user-routes":"js/admin-user-routes","chunk/Profile":"chunk/Profile","chunk/UserDashboard":"chunk/UserDashboard","chunk/home":"chunk/home","js/admin-user":"js/admin-user"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"chunk/AccessDenied":"chunk/AccessDenied","chunk/AdminDashboard":"chunk/AdminDashboard","chunk/AdminDashboardLayout~chunk/AppLayout~chunk/DashboardLayout":"chunk/AdminDashboardLayout~chunk/AppLayout~chunk/DashboardLayout","chunk/AdminDashboardLayout":"chunk/AdminDashboardLayout","chunk/AppLayout":"chunk/AppLayout","chunk/DashboardLayout":"chunk/DashboardLayout","chunk/NotFound":"chunk/NotFound","chunk/AuthRoutes":"chunk/AuthRoutes","js/admin-user-routes":"js/admin-user-routes","js/user-dashboard-routes":"js/user-dashboard-routes","chunk/Profile":"chunk/Profile","chunk/UserDashboard":"chunk/UserDashboard","chunk/home":"chunk/home","js/admin-user":"js/admin-user"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -68265,6 +68265,31 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/middleware/admin.js":
+/*!******************************************!*\
+  !*** ./resources/js/middleware/admin.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return admin; });
+function admin(_ref) {
+  var next = _ref.next,
+      store = _ref.store;
+
+  if (store.getters['auth/user'].isAdmin) {
+    return next();
+  }
+
+  return next({
+    name: 'access-denied'
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/js/middleware/auth.js":
 /*!*****************************************!*\
   !*** ./resources/js/middleware/auth.js ***!
@@ -68941,6 +68966,8 @@ router.beforeEach(function (to, from, next) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _middleware_auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../middleware/auth */ "./resources/js/middleware/auth.js");
 /* harmony import */ var _middleware_guest__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../middleware/guest */ "./resources/js/middleware/guest.js");
+/* harmony import */ var _middleware_admin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../middleware/admin */ "./resources/js/middleware/admin.js");
+
 
 
 
@@ -68993,7 +69020,7 @@ var AdminUserIndex = function AdminUserIndex() {
 };
 
 var UserDashboardRoutes = function UserDashboardRoutes() {
-  return Promise.resolve().then(function webpackMissingModule() { var e = new Error("Cannot find module '../views/Dashboard/DashboardRoutes.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; });
+  return Promise.all(/*! import() | js/user-dashboard-routes */[__webpack_require__.e("chunk/NotFound"), __webpack_require__.e("js/user-dashboard-routes")]).then(__webpack_require__.bind(null, /*! ../views/Dashboard/DashboardRoutes */ "./resources/js/views/Dashboard/DashboardRoutes.vue"));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = ([{
@@ -69025,7 +69052,7 @@ var UserDashboardRoutes = function UserDashboardRoutes() {
     component: Profile
   }, {
     path: ':url',
-    name: 'dashboard',
+    name: 'dashboards',
     component: UserDashboardRoutes,
     props: true
   }],
@@ -69048,9 +69075,18 @@ var UserDashboardRoutes = function UserDashboardRoutes() {
     path: 'user',
     name: 'admin-user',
     component: AdminUserIndex
+  }, {
+    path: 'user/:url',
+    name: 'admin-users',
+    component: AdminUserRoutes,
+    props: true,
+    children: [{
+      path: ':id',
+      name: 'admin-users-edit'
+    }]
   }],
   meta: {
-    middleware: [_middleware_auth__WEBPACK_IMPORTED_MODULE_0__["default"]]
+    middleware: [_middleware_admin__WEBPACK_IMPORTED_MODULE_2__["default"]]
   }
 }, {
   path: '/404',

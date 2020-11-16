@@ -9,12 +9,91 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _plugin_axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/plugin/axios */ "./resources/js/plugin/axios.js");
 //
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Index"
+  name: "Index",
+  metaInfo: {
+    title: 'لیست کاربران'
+  },
+  data: function data() {
+    return {
+      users: {}
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    _plugin_axios__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/admin/users').then(function (_ref) {
+      var data = _ref.data;
+      _this.users = data.data;
+    });
+  }
 });
 
 /***/ }),
@@ -34,9 +113,152 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", { staticClass: "col-md-12" }, [
+    _c("div", { staticClass: "card" }, [
+      _c(
+        "div",
+        {
+          staticClass:
+            "card-header card-header-primary d-flex justify-content-between"
+        },
+        [
+          _c("h4", { staticClass: "card-title " }, [
+            _vm._v("لیست کاربران سایت")
+          ]),
+          _vm._v(" "),
+          _c(
+            "router-link",
+            {
+              staticClass: "btn btn-info",
+              attrs: { to: { name: "admin-users", params: { url: "create" } } }
+            },
+            [
+              _c("i", { staticClass: "fa fa-user-plus" }),
+              _vm._v("\n                ساخت کاربر جدید\n            ")
+            ]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body" }, [
+        _c("div", { staticClass: "table-responsive" }, [
+          _c("table", { staticClass: "table" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.users, function(user) {
+                return _c("tr", { key: user.id }, [
+                  _c("td", [
+                    _vm._v(
+                      "\n                            " +
+                        _vm._s(user.id) +
+                        "\n                        "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      "\n                            " +
+                        _vm._s(user.name) +
+                        "\n                        "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      "\n                            " +
+                        _vm._s(user.email) +
+                        "\n                        "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      "\n                            " +
+                        _vm._s(user.type) +
+                        "\n\n                        "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      "\n                            " +
+                        _vm._s(user.created_at) +
+                        "\n                        "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "btn btn-info",
+                          attrs: {
+                            to: {
+                              name: "admin-users-edit",
+                              params: { url: "edit", id: user.id }
+                            }
+                          }
+                        },
+                        [_vm._v("ویرایش")]
+                      ),
+                      _vm._v(" "),
+                      _c("button", { staticClass: "btn btn-danger" }, [
+                        _vm._v("حذف")
+                      ])
+                    ],
+                    1
+                  )
+                ])
+              }),
+              0
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: " text-primary" }, [
+      _c("tr", [
+        _c("th", [
+          _vm._v("\n                            #\n                        ")
+        ]),
+        _vm._v(" "),
+        _c("th", [
+          _vm._v("\n                            نام\n                        ")
+        ]),
+        _vm._v(" "),
+        _c("th", [
+          _vm._v(
+            "\n                            ایمیل\n                        "
+          )
+        ]),
+        _vm._v(" "),
+        _c("th", [
+          _vm._v(
+            "\n                            نوع حساب کاربری\n                        "
+          )
+        ]),
+        _vm._v(" "),
+        _c("th", [
+          _vm._v(
+            "\n                            تاریخ ساخت حساب\n                        "
+          )
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 

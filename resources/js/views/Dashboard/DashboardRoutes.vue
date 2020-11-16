@@ -4,23 +4,19 @@
 
 <script>
     import NotFound from "@/views/errors/NotFound";
-    import Create from "./Create";
-    import Edit from "./Edit";
-
 
     export default {
-        name: "AdminUserRoutes",
+        name: "DashboardRoutes",
+
         components: {
             NotFound,
-            Create,
-            Edit
         },
 
         props: ['url'],
 
         computed: {
             componentName() {
-                return ['create','edit'].includes(this.url) ? this.url : 'not-found'
+                return [].includes(this.url) ? this.url : 'not-found'
             }
         }
     }
