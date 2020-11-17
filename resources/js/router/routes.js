@@ -14,8 +14,10 @@ const Profile = () => import( /*  webpackChunkName:"chunk/Profile" */ "../views/
 const AdminDashboard = () => import( /*  webpackChunkName:"chunk/AdminDashboard" */ "../views/Admin/AdminDashboard");
 const AdminUserRoutes = () => import( /* webpackChunkName: "js/admin-user-routes" */ '../views/Admin/User/AdminUserRoutes.vue');
 const AdminCategoryRoutes = () => import( /* webpackChunkName: "js/AdminCategoryRoutes" */ '../views/Admin/Category/AdminCategoryRoutes.vue');
+const AdminMembershipRoutes = () => import( /* webpackChunkName: "js/AdminMembershipRoutes" */ '../views/Admin/Membership/AdminMembershipRoutes.vue');
 const AdminUserIndex = () => import( /* webpackChunkName: "js/admin-user" */ '../views/Admin/User/Index.vue');
 const AdminCategoryIndex = () => import( /* webpackChunkName: "js/AdminCategoryIndex" */ '../views/Admin/Category/Index');
+const AdminMembershipIndex = () => import( /* webpackChunkName: "js/AdminMembershipIndex" */ '../views/Admin/Membership/Index');
 const UserDashboardRoutes = () => import( /* webpackChunkName: "js/user-dashboard-routes" */ '../views/Dashboard/DashboardRoutes');
 
 export default [
@@ -126,7 +128,26 @@ export default [
                         name: 'admin-categories-edit',
                     }
                 ]
-            }
+            },
+            {
+                path: 'membership',
+                name: 'admin-membership',
+                component: AdminMembershipIndex
+            },
+
+            {
+                path: 'membership/:url',
+                name: 'admin-memberships',
+                component: AdminMembershipRoutes,
+                props: true,
+                children: [
+                    {
+                        path: ':id',
+                        name: 'admin-membership-edit'
+                    }
+                ]
+            },
+
 
 
 

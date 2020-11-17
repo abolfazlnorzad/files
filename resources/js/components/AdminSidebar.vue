@@ -26,6 +26,14 @@
                         <p>دسته بندی ها</p>
                     </router-link>
                 </li>
+
+                <li class="nav-item">
+                    <router-link class="nav-link" :to="{ name: 'admin-membership' }">
+                        <i class="fa fa-user-friends"></i>
+                        <p> اشتراک های ویژه </p>
+                    </router-link>
+                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="#" @click.prevent="logout">
                         <i class="fa fa-sign-out-alt"></i>

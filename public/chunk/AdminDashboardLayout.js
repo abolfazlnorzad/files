@@ -48,6 +48,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "DashboardSideBar",
   methods: {
@@ -196,6 +204,26 @@ var render = function() {
                   _c("i", { staticClass: "fa fa-circle-notch" }),
                   _vm._v(" "),
                   _c("p", [_vm._v("دسته بندی ها")])
+                ]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "li",
+            { staticClass: "nav-item" },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "nav-link",
+                  attrs: { to: { name: "admin-membership" } }
+                },
+                [
+                  _c("i", { staticClass: "fa fa-user-friends" }),
+                  _vm._v(" "),
+                  _c("p", [_vm._v(" اشتراک های ویژه ")])
                 ]
               )
             ],

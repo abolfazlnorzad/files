@@ -9,6 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _plugin_swal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../plugin/swal */ "./resources/js/plugin/swal.js");
 //
 //
 //
@@ -51,6 +52,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Index",
   metaInfo: {
@@ -77,11 +79,15 @@ __webpack_require__.r(__webpack_exports__);
     deleteCategory: function deleteCategory(slug, index) {
       var _this2 = this;
 
-      this.$store.dispatch('category/delete', {
-        slug: slug,
-        index: index
-      }).then(function () {
-        _this2.categories.data.splice(index, 1);
+      _plugin_swal__WEBPACK_IMPORTED_MODULE_0__["default"].confirm().then(function (result) {
+        if (result.value) {
+          _this2.$store.dispatch('category/delete', {
+            slug: slug,
+            index: index
+          }).then(function () {
+            _this2.categories.data.splice(index, 1);
+          });
+        }
       });
     }
   }

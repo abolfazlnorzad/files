@@ -41,6 +41,8 @@
 </template>
 
 <script>
+    import swal from "../../../plugin/swal";
+
     export default {
         name: "Index",
         metaInfo: {
@@ -64,10 +66,15 @@
             },
 
             deleteCategory(slug, index) {
-                this.$store.dispatch('category/delete', { slug: slug, index: index })
-                    .then(() => {
-                        this.categories.data.splice(index, 1);
-                    });
+
+                swal.confirm().then((result) => {
+                    if (result.value) {
+                        this.$store.dispatch('category/delete', {slug: slug, index: index})
+                            .then(() => {
+                                this.categories.data.splice(index, 1);
+                            });
+                    }
+                })
             },
         },
     }

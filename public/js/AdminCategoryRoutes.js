@@ -65,6 +65,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Create",
@@ -83,6 +84,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.$store.dispatch('category/store', this.form).then(function (data) {
+        swal.success();
+
         _this.$router.push({
           name: 'admin-category'
         });

@@ -19,7 +19,11 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
+import swal from './plugin/swal';
 import axios from './plugin/axios';
+
+window.swal=swal;
+window.axios=axios;
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

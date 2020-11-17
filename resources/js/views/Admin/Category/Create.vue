@@ -3,7 +3,8 @@
         <div class="card">
             <div class="card-header card-header-primary d-flex justify-content-between">
                 <h4 class="card-title pt-2">ایجاد دسته بندی جدید</h4>
-                <router-link :to="{ name: 'admin-category' }" class="btn btn-outline-primary text-white"> بازگشت <i class="fa fa-arrow-left"></i></router-link>
+                <router-link :to="{ name: 'admin-category' }" class="btn btn-outline-primary text-white"> بازگشت <i
+                    class="fa fa-arrow-left"></i></router-link>
             </div>
             <div class="card-body">
                 <form @submit.prevent="storeCategory">
@@ -16,7 +17,7 @@
 </template>
 
 <script>
-    import { Form } from 'vform';
+    import {Form} from 'vform';
 
     export default {
         name: "Create",
@@ -37,7 +38,8 @@
             storeCategory() {
                 this.$store.dispatch('category/store', this.form)
                     .then(data => {
-                        this.$router.push({ name: 'admin-category'});
+                        swal.success();
+                        this.$router.push({name: 'admin-category'});
                     })
             }
         },
