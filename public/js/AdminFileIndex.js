@@ -68,6 +68,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -77,14 +87,39 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      moment: moment_jalaali__WEBPACK_IMPORTED_MODULE_0___default.a
+      moment: moment_jalaali__WEBPACK_IMPORTED_MODULE_0___default.a,
+      sortBy: null,
+      sortDir: null
     };
   },
   created: function created() {
-    this.getFiles(this.$route.query.page);
+    this.sortBy = this.$route.query.sortBy ? this.$route.query.sortBy : 'i';
+    this.sortDir = this.$route.query.sortDir ? this.$route.query.sortDir : 'asc';
+    this.getFiles();
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])('file', ['files'])),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])('file', ['getFiles', 'deleteFile']))
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])('file', ['files'])), {}, {
+    sortDirClass: function sortDirClass() {
+      return this.sortDir === 'asc' ? 'fa-arrow-down' : 'fa-arrow-up';
+    }
+  }),
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])('file', ['deleteFile'])), {}, {
+    getFiles: function getFiles() {
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      var queries = this.$route.query;
+      queries.page = page;
+      queries.sortBy = this.sortBy;
+      queries.sortDir = this.sortDir;
+      this.$store.dispatch('file/getFiles', queries);
+    },
+    changeSort: function changeSort(item) {
+      if (this.sortBy == item) {
+        this.sortDir = this.sortDir == 'asc' ? 'desc' : 'asc';
+      }
+
+      this.sortBy = item;
+      this.getFiles(this.$route.query.page);
+    }
+  })
 });
 
 /***/ }),
@@ -440,7 +475,165 @@ var render = function() {
           { staticClass: "table-responsive" },
           [
             _c("table", { staticClass: "table" }, [
-              _vm._m(0),
+              _c("thead", { staticClass: "text-primary" }, [
+                _c("tr", [
+                  _c(
+                    "th",
+                    {
+                      on: {
+                        click: function($event) {
+                          return _vm.changeSort("i")
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("# "),
+                      _c("i", {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: this.sortBy === "i",
+                            expression: "this.sortBy==='i'"
+                          }
+                        ],
+                        staticClass: "fa ",
+                        class: _vm.sortDirClass
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "th",
+                    {
+                      on: {
+                        click: function($event) {
+                          return _vm.changeSort("n")
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("نام"),
+                      _c("i", {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: this.sortBy === "n",
+                            expression: "this.sortBy==='n'"
+                          }
+                        ],
+                        staticClass: "fa ",
+                        class: _vm.sortDirClass
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "th",
+                    {
+                      on: {
+                        click: function($event) {
+                          return _vm.changeSort("d")
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("توضیحات"),
+                      _c("i", {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: this.sortBy === "d",
+                            expression: "this.sortBy==='d'"
+                          }
+                        ],
+                        staticClass: "fa ",
+                        class: _vm.sortDirClass
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "th",
+                    {
+                      on: {
+                        click: function($event) {
+                          return _vm.changeSort("p")
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("قیمت"),
+                      _c("i", {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: this.sortBy === "p",
+                            expression: "this.sortBy==='p'"
+                          }
+                        ],
+                        staticClass: "fa ",
+                        class: _vm.sortDirClass
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "th",
+                    {
+                      on: {
+                        click: function($event) {
+                          return _vm.changeSort("m")
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("اشتراک ویژه"),
+                      _c("i", {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: this.sortBy === "m",
+                            expression: "this.sortBy==='m'"
+                          }
+                        ],
+                        staticClass: "fa ",
+                        class: _vm.sortDirClass
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "th",
+                    {
+                      on: {
+                        click: function($event) {
+                          return _vm.changeSort("ca")
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("تاریخ ساخت فایل"),
+                      _c("i", {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: this.sortBy === "ca",
+                            expression: "this.sortBy==='ca'"
+                          }
+                        ],
+                        staticClass: "fa ",
+                        class: _vm.sortDirClass
+                      })
+                    ]
+                  )
+                ])
+              ]),
               _vm._v(" "),
               _c(
                 "tbody",
@@ -537,28 +730,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", { staticClass: "text-primary" }, [
-      _c("tr", [
-        _c("th", [_vm._v("#")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("نام")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("توضیحات")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("قیمت")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("اشتراک ویژه")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("تاریخ ساخت فایل")])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

@@ -15,6 +15,14 @@ use Illuminate\Support\Facades\Storage;
 class FileController extends Controller
 {
     protected $file;
+    protected $columns = [
+        'i' => 'id',
+        'n' => 'name',
+        'd' => 'description',
+        'p' => 'price',
+        'm' => 'membership_id',
+        'ca' => 'created_at',
+    ];
 
     public function __construct()
     {
@@ -27,9 +35,10 @@ class FileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return new FileCollection(File::paginate(10));
+        $sortby =$this->columns[$request->sortBy];
+        return new FileCollection(File::orderBy($sortby,$request->sortDir)->paginate(10));
     }
 
     /**

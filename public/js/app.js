@@ -73417,13 +73417,14 @@ var actions = {
       }]
     });
   },
-  getFiles: function getFiles(_ref2) {
+  getFiles: function getFiles(_ref2, queries) {
     var commit = _ref2.commit;
-    var page = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
-    axios.get("/api/admin/file?page=".concat(page)).then(function (_ref3) {
+    axios.get("/api/admin/file", {
+      params: queries
+    }).then(function (_ref3) {
       var data = _ref3.data;
       commit('setFile', data);
-      window.history.pushState('files', 'FILES', "/admin/file?page=".concat(page));
+      window.history.pushState('files', 'FILES', "/admin/file?".concat(data.meta.queries));
     });
   },
   deleteFile: function deleteFile(_ref4, payload) {

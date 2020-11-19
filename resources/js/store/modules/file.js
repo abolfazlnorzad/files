@@ -23,12 +23,11 @@ export const actions = {
             }]
         })
     },
-    getFiles({commit}, page = 1) {
-        axios.get(`/api/admin/file?page=${page}`)
+    getFiles({commit},queries) {
+        axios.get(`/api/admin/file`,{params:queries})
             .then(({data}) => {
                 commit('setFile', data)
-                window.history.pushState('files', 'FILES', `/admin/file?page=${page}`)
-
+                window.history.pushState('files', 'FILES', `/admin/file?${data.meta.queries}`)
             })
     },
     deleteFile({commit}, payload) {

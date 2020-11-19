@@ -16,4 +16,13 @@ class FileCollection extends ResourceCollection
     {
         return parent::toArray($request);
     }
+
+ public function with($request)
+ {
+     return [
+         'meta'=>[
+             'queries'=>$request->getQueryString()
+         ]
+     ];
+ }
 }
