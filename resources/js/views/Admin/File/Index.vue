@@ -27,8 +27,10 @@
                             <th>{{ file.description }}</th>
                             <th>{{ file.price }}</th>
                             <th>{{ file.membership_name }}</th>
-                            <th>{{ file.created_at }}</th>
+                            <th>{{ moment(file.created_at).format('jYY/jM/jD') }}</th>
                             <th>
+                                <a class="btn btn-primary" :href="`/download/${file.slug}?access_token=${$store.state.auth.token}`">دانلود</a>
+
                                 <router-link :to="{ name: 'admin-file-edit', params: { url: 'edit', slug: file.slug } }"
                                              class="btn btn-info">
                                     ویرایش
@@ -47,12 +49,18 @@
     </div>
 </template>
 <script>
+    import moment  from 'moment-jalaali';
     import {mapActions,mapState} from 'vuex';
 
     export default {
         name: "Index",
         metaInfo: {
             title: 'لیست فایل ها'
+        },
+        data() {
+            return {
+                moment
+            }
         },
 
         created() {

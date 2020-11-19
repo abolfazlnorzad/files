@@ -46,7 +46,7 @@
 
                             </td>
                             <td>
-                                {{ user.created_at }}
+                                {{ moment(user.created_at ).format('jYY/jM/jD')}}
                             </td>
                             <td>
                                 <router-link
@@ -70,6 +70,8 @@
 </template>
 
 <script>
+    import moment  from 'moment-jalaali';
+
     import axios from "@/plugin/axios";
 
     export default {
@@ -81,6 +83,7 @@
 
         data() {
             return {
+                moment,
                 users: {}
             }
         },
