@@ -18,7 +18,9 @@ const AdminMembershipRoutes = () => import( /* webpackChunkName: "js/AdminMember
 const AdminUserIndex = () => import( /* webpackChunkName: "js/admin-user" */ '../views/Admin/User/Index.vue');
 const AdminCategoryIndex = () => import( /* webpackChunkName: "js/AdminCategoryIndex" */ '../views/Admin/Category/Index');
 const AdminMembershipIndex = () => import( /* webpackChunkName: "js/AdminMembershipIndex" */ '../views/Admin/Membership/Index');
+const AdminFileIndex = () => import( /* webpackChunkName: "js/AdminFileIndex" */ '../views/Admin/File/Index');
 const UserDashboardRoutes = () => import( /* webpackChunkName: "js/user-dashboard-routes" */ '../views/Dashboard/DashboardRoutes');
+const AdminFileRoutes = () => import( /* webpackChunkName: "js/AdminFileRoutes" */ '../views/Admin/File/AdminFileRoutes');
 
 export default [
     {
@@ -148,6 +150,25 @@ export default [
                 ]
             },
 
+
+            {
+                path: 'file',
+                name: 'admin-file',
+                component: AdminFileIndex
+            },
+
+            {
+                path: 'file/:url',
+                name: 'admin-files',
+                component: AdminFileRoutes,
+                props: true,
+                children: [
+                    {
+                        path: ':slug',
+                        name: 'admin-file-edit'
+                    }
+                ]
+            },
 
 
 

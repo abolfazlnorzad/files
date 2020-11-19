@@ -25,6 +25,9 @@ class Category extends Model
         return 'slug';
     }
 
-
+    public function files()
+    {
+        return $this->belongsToMany(File::class);
+    }
 
 }

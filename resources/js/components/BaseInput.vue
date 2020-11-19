@@ -10,6 +10,7 @@
                @input="updateInput"
                @focus="isFocused = 'is-focused'"
                @blur="blurInput"
+
         >
         <span class="password-eye"
               v-if="type === 'password'"

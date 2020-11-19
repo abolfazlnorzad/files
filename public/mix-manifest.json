@@ -14,9 +14,12 @@
     "/chunk/home.js": "/chunk/home.js",
     "/js/AdminCategoryIndex.js": "/js/AdminCategoryIndex.js",
     "/js/AdminCategoryRoutes.js": "/js/AdminCategoryRoutes.js",
+    "/js/AdminFileIndex.js": "/js/AdminFileIndex.js",
+    "/js/AdminFileRoutes.js": "/js/AdminFileRoutes.js",
+    "/js/AdminMembershipIndex.js": "/js/AdminMembershipIndex.js",
+    "/js/AdminMembershipRoutes.js": "/js/AdminMembershipRoutes.js",
     "/js/admin-user.js": "/js/admin-user.js",
     "/js/admin-user-routes.js": "/js/admin-user-routes.js",
     "/js/user-dashboard-routes.js": "/js/user-dashboard-routes.js",
-    "/js/AdminMembershipRoutes.js": "/js/AdminMembershipRoutes.js",
-    "/js/AdminMembershipIndex.js": "/js/AdminMembershipIndex.js"
+    "/vendors~js/AdminFileRoutes.js": "/vendors~js/AdminFileRoutes.js"
 }

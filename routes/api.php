@@ -18,5 +18,11 @@ Route::group(['middleware' => ['auth:api', 'admin'], 'prefix' => 'admin', 'names
     Route::apiResource('users', 'UserController');
     Route::apiResource('categories', 'CategoryController');
     Route::apiResource('memberships', 'MembershipController');
+    Route::apiResource('file', 'FileController');
+
+
+    Route::get('membership-search','Search\MembershipController@index');
+    Route::get('category-search','Search\CategoryController@index');
+
 });
 
