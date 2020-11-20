@@ -24,7 +24,7 @@ export const actions = {
         })
     },
     getFiles({commit},queries) {
-        axios.get(`/api/admin/file`,{params:queries})
+       return axios.get(`/api/admin/file`,{params:queries})
             .then(({data}) => {
                 commit('setFile', data)
                 window.history.pushState('files', 'FILES', `/admin/file?${data.meta.queries}`)

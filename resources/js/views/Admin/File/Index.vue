@@ -8,6 +8,11 @@
                 </router-link>
             </div>
             <div class="card-body">
+                <div class="col-md-6 d-flex justify-content-around">
+                    <base-input label="جستجو" name="search" v-model="form.search"/>
+                    <base-btn btn="default" :loading="searchLoading" @click="searchFiles"><i class="fa fa-search"></i>
+                    </base-btn>
+                </div>
                 <div class="table-responsive">
                     <table class="table">
                         <thead class="text-primary">
@@ -61,6 +66,7 @@
 <script>
     import moment from 'moment-jalaali';
     import {mapActions, mapState} from 'vuex';
+    import {Form} from "vform";
 
     export default {
         name: "Index",
@@ -72,13 +78,17 @@
                 moment,
                 sortBy: null,
                 sortDir: null,
+                form: new Form({
+                    search: null
+                }),
+                searchLoading: false,
             }
         },
 
         created() {
-            this.sortBy = this.$route.query.sortBy ? this.$route.query.sortBy  : 'i';
+            this.sortBy = this.$route.query.sortBy ? this.$route.query.sortBy : 'i';
             this.sortDir = this.$route.query.sortDir ? this.$route.query.sortDir : 'asc';
-            this.getFiles()
+            this.getFiles(this.$route.query.page)
         },
         computed: {
             ...mapState('file', ['files']),
@@ -94,7 +104,7 @@
                 queries.page = page;
                 queries.sortBy = this.sortBy;
                 queries.sortDir = this.sortDir;
-                this.$store.dispatch('file/getFiles', queries);
+               return this.$store.dispatch('file/getFiles', queries);
             },
             changeSort(item) {
                 if (this.sortBy == item) {
@@ -103,7 +113,16 @@
                 this.sortBy = item;
                 this.getFiles(this.$route.query.page)
 
+            },
+            searchFiles() {
+                let queries = this.$route.query;
+                queries.search = this.form.search;
+                this.searchLoading = true;
+                this.getFiles().finally(() => {
+                    this.searchLoading = false;
+                })
             }
+
         },
 
     }

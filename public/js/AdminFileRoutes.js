@@ -86,6 +86,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -289,6 +291,9 @@ var render = function() {
             _c("tags-input", {
               attrs: {
                 "element-id": "tags",
+                "wrapper-class": _vm.form.errors.has("selectedTags.0")
+                  ? "form-control is-invalid tags-input-wrapper-default tags-input"
+                  : "tags-input-wrapper-default tags-input",
                 "only-existing-tags": true,
                 "existing-tags": _vm.categories,
                 typeahead: true
@@ -300,6 +305,10 @@ var render = function() {
                 },
                 expression: "form.selectedTags"
               }
+            }),
+            _vm._v(" "),
+            _c("has-error", {
+              attrs: { form: _vm.form, field: "selectedTags.0" }
             }),
             _vm._v(" "),
             _c("base-select", {

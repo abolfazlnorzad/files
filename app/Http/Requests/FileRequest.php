@@ -27,9 +27,9 @@ class FileRequest extends FormRequest
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'file' => 'required|file',
-            'price' => 'required_if:membership_id,|numeric',
-            'membership_id' => 'required_if:price,|numeric',
-            'selectedTags' => 'required',
+            'price' => 'required_if:membership_id,',
+            'membership_id' => 'required_if:price,',
+            'selectedTags.*' => 'required',
         ];
     }
 }

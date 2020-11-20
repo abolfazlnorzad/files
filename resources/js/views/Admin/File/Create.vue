@@ -16,10 +16,12 @@
                     </div>
                     <base-input label="قیمت" name="price" v-model="form.price"/>
                     <tags-input element-id="tags"
+                                :wrapper-class="form.errors.has('selectedTags.0')  ? 'form-control is-invalid tags-input-wrapper-default tags-input' : 'tags-input-wrapper-default tags-input'"
                                 v-model="form.selectedTags"
                                 :only-existing-tags="true"
                                 :existing-tags="categories"
                                 :typeahead="true"></tags-input>
+                    <has-error :form="form" field="selectedTags.0"></has-error>
                     <base-select label="اشتراک ویژه"
                                  :items="memberships"
                                  field="membership_id"

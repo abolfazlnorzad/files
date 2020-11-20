@@ -22,6 +22,5 @@
     "/js/admin-user-routes.js": "/js/admin-user-routes.js",
     "/js/user-dashboard-routes.js": "/js/user-dashboard-routes.js",
     "/vendors~js/AdminFileIndex~js/AdminFileRoutes~js/admin-user.js": "/vendors~js/AdminFileIndex~js/AdminFileRoutes~js/admin-user.js",
-    "/vendors~js/AdminFileRoutes.js": "/vendors~js/AdminFileRoutes.js",
-    "/vendors~js/admin-user.js": "/vendors~js/admin-user.js"
+    "/vendors~js/AdminFileRoutes.js": "/vendors~js/AdminFileRoutes.js"
 }

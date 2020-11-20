@@ -16,7 +16,7 @@ class FileController extends Controller
 {
     protected $file;
     protected $columns = [
-        'i' => 'id',
+
         'n' => 'name',
         'd' => 'description',
         'p' => 'price',
@@ -37,8 +37,13 @@ class FileController extends Controller
      */
     public function index(Request $request)
     {
-        $sortby =$this->columns[$request->sortBy];
-        return new FileCollection(File::orderBy($sortby,$request->sortDir)->paginate(10));
+        $sortby = $this->columns[$request->sortBy] ?? 'id';
+        $files = File::orderBy($sortby, $request->sortDir);
+        if ($request->search) {
+            $files->where('name',"LIKE","%$request->search%")
+            ->orWhere('description',"LIKE","%$request->search%");
+        }
+        return new FileCollection($files->paginate(10));
     }
 
     /**

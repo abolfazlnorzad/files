@@ -12,6 +12,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment_jalaali__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment-jalaali */ "./node_modules/moment-jalaali/index.js");
 /* harmony import */ var moment_jalaali__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment_jalaali__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vform */ "./node_modules/vform/dist/vform.common.js");
+/* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vform__WEBPACK_IMPORTED_MODULE_2__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -78,6 +80,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -89,13 +97,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       moment: moment_jalaali__WEBPACK_IMPORTED_MODULE_0___default.a,
       sortBy: null,
-      sortDir: null
+      sortDir: null,
+      form: new vform__WEBPACK_IMPORTED_MODULE_2__["Form"]({
+        search: null
+      }),
+      searchLoading: false
     };
   },
   created: function created() {
     this.sortBy = this.$route.query.sortBy ? this.$route.query.sortBy : 'i';
     this.sortDir = this.$route.query.sortDir ? this.$route.query.sortDir : 'asc';
-    this.getFiles();
+    this.getFiles(this.$route.query.page);
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])('file', ['files'])), {}, {
     sortDirClass: function sortDirClass() {
@@ -109,7 +121,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       queries.page = page;
       queries.sortBy = this.sortBy;
       queries.sortDir = this.sortDir;
-      this.$store.dispatch('file/getFiles', queries);
+      return this.$store.dispatch('file/getFiles', queries);
     },
     changeSort: function changeSort(item) {
       if (this.sortBy == item) {
@@ -118,6 +130,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       this.sortBy = item;
       this.getFiles(this.$route.query.page);
+    },
+    searchFiles: function searchFiles() {
+      var _this = this;
+
+      var queries = this.$route.query;
+      queries.search = this.form.search;
+      this.searchLoading = true;
+      this.getFiles()["finally"](function () {
+        _this.searchLoading = false;
+      });
     }
   })
 });
@@ -470,6 +492,33 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
+        _c(
+          "div",
+          { staticClass: "col-md-6 d-flex justify-content-around" },
+          [
+            _c("base-input", {
+              attrs: { label: "جستجو", name: "search" },
+              model: {
+                value: _vm.form.search,
+                callback: function($$v) {
+                  _vm.$set(_vm.form, "search", $$v)
+                },
+                expression: "form.search"
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "base-btn",
+              {
+                attrs: { btn: "default", loading: _vm.searchLoading },
+                on: { click: _vm.searchFiles }
+              },
+              [_c("i", { staticClass: "fa fa-search" })]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
         _c(
           "div",
           { staticClass: "table-responsive" },

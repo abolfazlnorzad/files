@@ -73419,7 +73419,7 @@ var actions = {
   },
   getFiles: function getFiles(_ref2, queries) {
     var commit = _ref2.commit;
-    axios.get("/api/admin/file", {
+    return axios.get("/api/admin/file", {
       params: queries
     }).then(function (_ref3) {
       var data = _ref3.data;
