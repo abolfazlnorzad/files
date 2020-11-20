@@ -12,7 +12,7 @@ class File extends Model
 
     protected $guarded = [];
     protected $appends = [
-        'membership_name', 'file_src'
+        'membership_name', 'file_src','selectedTags'
     ];
 
     public function sluggable()
@@ -55,6 +55,15 @@ class File extends Model
     public function getFileSrcAttribute()
     {
         return 'files/' . $this->file;
+    }
+
+    public function getSelectedTagsAttribute()
+    {
+        return $this->categories->map(function ($item){
+            return [
+                'key' =>$item->id,'value'=>$item->name
+            ];
+        });
     }
 
 }

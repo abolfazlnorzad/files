@@ -23,13 +23,24 @@ class FileRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'file' => 'required|file',
-            'price' => 'required_if:membership_id,',
-            'membership_id' => 'required_if:price,',
-            'selectedTags.*' => 'required',
-        ];
+        if (request()->method == 'post' || request()->method == 'POST') {
+            return [
+                'name' => 'required|string|max:255',
+                'description' => 'required|string',
+                'file' => 'required|file',
+                'price' => 'required_if:membership_id,',
+                'membership_id' => 'required_if:price,',
+                'selectedTags.*' => 'required',
+            ];
+        } else {
+            return [
+                'name' => 'required|string|max:255',
+                'description' => 'required|string',
+                'file' => 'nullable|file',
+                'price' => 'required_if:membership_id,',
+                'membership_id' => 'required_if:price,',
+                'selectedTags.*' => 'required',
+            ];
+        }
     }
 }

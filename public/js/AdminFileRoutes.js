@@ -155,12 +155,104 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vform */ "./node_modules/vform/dist/vform.common.js");
+/* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vform__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _voerro_vue_tagsinput__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @voerro/vue-tagsinput */ "./node_modules/@voerro/vue-tagsinput/src/main.js");
 //
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Edit"
+  name: "Edit",
+  metaInfo: {
+    title: 'ویرایش فایل'
+  },
+  components: {
+    HasError: vform__WEBPACK_IMPORTED_MODULE_0__["HasError"],
+    TagsInput: _voerro_vue_tagsinput__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  data: function data() {
+    return {
+      form: new vform__WEBPACK_IMPORTED_MODULE_0__["Form"]({}),
+      categories: [],
+      memberships: {}
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get('/api/admin/membership-search').then(function (_ref) {
+      var data = _ref.data;
+      _this.memberships = data;
+    });
+    axios.get('/api/admin/category-search').then(function (_ref2) {
+      var data = _ref2.data;
+      _this.categories = data.data;
+    });
+    this.$store.dispatch('file/get', this.$route.params.slug).then(function (data) {
+      _this.form = new vform__WEBPACK_IMPORTED_MODULE_0__["Form"]({
+        name: data.name,
+        slug: data.slug,
+        description: data.description,
+        file: null,
+        price: data.price,
+        membership_id: data.membership_id.toString(),
+        selectedTags: data.selectedTags,
+        _method: 'patch'
+      });
+    });
+  },
+  methods: {
+    updateFile: function updateFile() {
+      var _this2 = this;
+
+      this.$store.dispatch('file/update', this.form).then(function () {
+        _this2.$router.push({
+          name: 'admin-file'
+        });
+
+        swal.success('فایل به درستی اپدیت شد');
+      });
+    },
+    changeFile: function changeFile(event) {
+      this.form.file = event.target.files[0];
+    }
+  }
 });
 
 /***/ }),
@@ -358,7 +450,138 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", { staticClass: "col-md-12" }, [
+    _c("div", { staticClass: "card" }, [
+      _c(
+        "div",
+        {
+          staticClass:
+            "card-header card-header-primary d-flex justify-content-between"
+        },
+        [
+          _c("h4", { staticClass: "card-title pt-2" }, [
+            _vm._v("ویرایش فایل " + _vm._s(_vm.form.name))
+          ]),
+          _vm._v(" "),
+          _c(
+            "router-link",
+            {
+              staticClass: "btn btn-outline-primary text-white",
+              attrs: { to: { name: "admin-file" } }
+            },
+            [_vm._v(" بازگشت "), _c("i", { staticClass: "fa fa-arrow-left" })]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body" }, [
+        _c(
+          "form",
+          {
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.updateFile($event)
+              }
+            }
+          },
+          [
+            _c("base-input", {
+              attrs: { label: "نام", name: "name" },
+              model: {
+                value: _vm.form.name,
+                callback: function($$v) {
+                  _vm.$set(_vm.form, "name", $$v)
+                },
+                expression: "form.name"
+              }
+            }),
+            _vm._v(" "),
+            _c("base-input", {
+              attrs: { label: "توضیحات", name: "description" },
+              model: {
+                value: _vm.form.description,
+                callback: function($$v) {
+                  _vm.$set(_vm.form, "description", $$v)
+                },
+                expression: "form.description"
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-md-12" },
+              [
+                _c("input", {
+                  attrs: { type: "file" },
+                  on: { change: _vm.changeFile }
+                }),
+                _vm._v(" "),
+                _c("has-error", { attrs: { form: _vm.form, field: "file" } })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("base-input", {
+              attrs: { label: "قیمت", name: "price" },
+              model: {
+                value: _vm.form.price,
+                callback: function($$v) {
+                  _vm.$set(_vm.form, "price", $$v)
+                },
+                expression: "form.price"
+              }
+            }),
+            _vm._v(" "),
+            _c("tags-input", {
+              attrs: {
+                "element-id": "tags",
+                "wrapper-class": _vm.form.errors.has("selectedTags.0")
+                  ? "tags-input-wrapper-default tags-input form-control is-invalid"
+                  : "tags-input-wrapper-default tags-input",
+                "only-existing-tags": true,
+                "existing-tags": _vm.categories,
+                placeholder: "دسته بندی های فایل",
+                typeahead: true
+              },
+              model: {
+                value: _vm.form.selectedTags,
+                callback: function($$v) {
+                  _vm.$set(_vm.form, "selectedTags", $$v)
+                },
+                expression: "form.selectedTags"
+              }
+            }),
+            _vm._v(" "),
+            _c("has-error", {
+              attrs: { form: _vm.form, field: "selectedTags.0" }
+            }),
+            _vm._v(" "),
+            _c("base-select", {
+              attrs: {
+                label: "اشتراک ویژه",
+                items: _vm.memberships,
+                field: "membership_id"
+              },
+              model: {
+                value: _vm.form.membership_id,
+                callback: function($$v) {
+                  _vm.$set(_vm.form, "membership_id", $$v)
+                },
+                expression: "form.membership_id"
+              }
+            }),
+            _vm._v(" "),
+            _c("base-btn", { attrs: { loading: _vm.form.busy } }, [
+              _vm._v("ذخیره")
+            ])
+          ],
+          1
+        )
+      ])
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

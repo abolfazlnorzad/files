@@ -4,6 +4,7 @@
 namespace App\Service;
 
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class FileService
@@ -27,6 +28,15 @@ class FileService
     {
         return Str::random(7) . $file->getClientOriginalName();
 
+    }
+
+    public function remove($src)
+    {
+        if (Storage::exists($src)) {
+            Storage::delete($src);
+            return true;
+        }
+        return false;
     }
 
 }

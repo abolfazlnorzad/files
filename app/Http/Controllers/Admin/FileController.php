@@ -40,8 +40,8 @@ class FileController extends Controller
         $sortby = $this->columns[$request->sortBy] ?? 'id';
         $files = File::orderBy($sortby, $request->sortDir);
         if ($request->search) {
-            $files->where('name',"LIKE","%$request->search%")
-            ->orWhere('description',"LIKE","%$request->search%");
+            $files->where('name', "LIKE", "%$request->search%")
+                ->orWhere('description', "LIKE", "%$request->search%");
         }
         return new FileCollection($files->paginate(10));
     }
@@ -63,9 +63,7 @@ class FileController extends Controller
                 return response('created', 200);
             } catch (\Exception $e) {
                 DB::rollBack();
-                if (Storage::exists('files/' . $data['file'])) {
-                    Storage::delete('files/' . $data['file']);
-                }
+                $this->file->remove('files/' . $data['file']);
                 return response('error', 500);
             }
         });
@@ -81,7 +79,7 @@ class FileController extends Controller
      */
     public function show(File $file)
     {
-        //
+        return $file;
     }
 
     /**
@@ -93,7 +91,19 @@ class FileController extends Controller
      */
     public function update(Request $request, File $file)
     {
-        //
+        DB::transaction(function () use ($request, $file) {
+            try {
+               $this->file->remove($file->file_src);
+                $data = $this->dataForCrud($request);
+                $file->update($data);
+                $file->syncCategories($request->selectedTags);
+                return response('created', 200);
+            } catch (\Exception $e) {
+                DB::rollBack();
+                $this->file->remove('files/' . $data['file']);
+                return response('error', 500);
+            }
+        });
     }
 
     /**
@@ -104,8 +114,7 @@ class FileController extends Controller
      */
     public function destroy(File $file)
     {
-        Storage::delete($file->file_src);
-        $file->delete();
+        $this->file->remove($file->file_src);
         return response('deleted', 200);
     }
 
@@ -115,9 +124,11 @@ class FileController extends Controller
      */
     public function dataForCrud($request)
     {
-        $file_name = $this->file->storeStorage($request->file('file'));
         $data = $request->except('selectedTags', 'file');
-        $data['file'] = $file_name;
+        if ($request->hasFile('file')) {
+            $file_name = $this->file->storeStorage($request->file('file'));
+            $data['file'] = $file_name;
+        }
         return $data;
     }
 }
