@@ -7,75 +7,50 @@ use App\Http\Requests\FileRequest;
 use App\Http\Resources\FileCollection;
 use App\Models\File;
 use App\Service\FileService;
+use App\Traits\FileTrait;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 
 
 class FileController extends Controller
 {
-    protected $file;
-    protected $columns = [
+    use FileTrait;
 
-        'n' => 'name',
-        'd' => 'description',
-        'p' => 'price',
-        'm' => 'membership_id',
-        'ca' => 'created_at',
-    ];
+    protected $file;
 
     public function __construct()
     {
         $this->file = new FileService();
     }
 
-
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return FileCollection
      */
-    public function index(Request $request)
+    public function index()
     {
-        $sortby = $this->columns[$request->sortBy] ?? 'id';
-        $files = File::orderBy($sortby, $request->sortDir);
-        if ($request->search) {
-            $files->where('name', "LIKE", "%$request->search%")
-                ->orWhere('description', "LIKE", "%$request->search%");
-        }
-        return new FileCollection($files->paginate(10));
+        return new FileCollection(File::sortByUrl()->SearchByUrl()->paginate(10));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param FileRequest $request
+     * @return void
      */
     public function store(FileRequest $request)
     {
-        DB::transaction(function () use ($request) {
-            try {
-                $data = $this->dataForCrud($request);
-                $file = File::create($data);
-                $file->syncCategories($request->selectedTags);
-
-                return response('created', 200);
-            } catch (\Exception $e) {
-                DB::rollBack();
-                $this->file->remove('files/' . $data['file']);
-                return response('error', 500);
-            }
-        });
-
-
+        $status = $this->createOrUpdateFile($request);
+        return response(['ok'], $status);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\File $file
-     * @return \Illuminate\Http\Response
+     * @param File $file
+     * @return File
      */
     public function show(File $file)
     {
@@ -85,32 +60,22 @@ class FileController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\File $file
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param File $file
+     * @return void
      */
-    public function update(Request $request, File $file)
+    public function update(FileRequest $request, File $file)
     {
-        DB::transaction(function () use ($request, $file) {
-            try {
-               $this->file->remove($file->file_src);
-                $data = $this->dataForCrud($request);
-                $file->update($data);
-                $file->syncCategories($request->selectedTags);
-                return response('created', 200);
-            } catch (\Exception $e) {
-                DB::rollBack();
-                $this->file->remove('files/' . $data['file']);
-                return response('error', 500);
-            }
-        });
+        $status = $this->createOrUpdateFile($request, $file);
+        return response('error', $status);
     }
+
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\File $file
-     * @return \Illuminate\Http\Response
+     * @param File $file
+     * @return Response
      */
     public function destroy(File $file)
     {
@@ -118,17 +83,6 @@ class FileController extends Controller
         return response('deleted', 200);
     }
 
-    /**
-     * @param $request
-     * @return mixed
-     */
-    public function dataForCrud($request)
-    {
-        $data = $request->except('selectedTags', 'file');
-        if ($request->hasFile('file')) {
-            $file_name = $this->file->storeStorage($request->file('file'));
-            $data['file'] = $file_name;
-        }
-        return $data;
-    }
+
 }
+

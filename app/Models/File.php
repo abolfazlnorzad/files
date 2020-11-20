@@ -10,9 +10,17 @@ class File extends Model
 {
     use HasFactory, Sluggable;
 
+    protected $columns = [
+
+        'n' => 'name',
+        'd' => 'description',
+        'p' => 'price',
+        'm' => 'membership_id',
+        'ca' => 'created_at',
+    ];
     protected $guarded = [];
     protected $appends = [
-        'membership_name', 'file_src','selectedTags'
+        'membership_name', 'file_src', 'selectedTags'
     ];
 
     public function sluggable()
@@ -28,7 +36,6 @@ class File extends Model
     {
         return 'slug';
     }
-
 
     public function categories()
     {
@@ -59,11 +66,26 @@ class File extends Model
 
     public function getSelectedTagsAttribute()
     {
-        return $this->categories->map(function ($item){
+        return $this->categories->map(function ($item) {
             return [
-                'key' =>$item->id,'value'=>$item->name
+                'key' => $item->id, 'value' => $item->name
             ];
         });
+    }
+
+    public function scopeSortByUrl($query)
+    {
+        $sortby = $this->columns[request()->sortBy] ?? 'id';
+        return $query->orderBy($sortby, request()->sortDir);
+    }
+
+    public function scopeSearchByUrl($query)
+    {
+        if (request()->search) {
+            $query->where('name', "LIKE", "%" . request()->search . "%")
+                ->orWhere('description', "LIKE", "%" . request()->search . "%");
+        }
+        return $query;
     }
 
 }
