@@ -25,5 +25,9 @@
     "/vendors~js/AdminFileRoutes.js": "/vendors~js/AdminFileRoutes.js",
     "/vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/admin-user.js": "/vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/admin-user.js",
     "/js/FileRoutes.js": "/js/FileRoutes.js",
-    "/js/FileShow.js": "/js/FileShow.js"
+    "/js/FileShow.js": "/js/FileShow.js",
+    "/js/AdminDiscontIndex.js": "/js/AdminDiscontIndex.js",
+    "/js/AdminDiscontRoutes.js": "/js/AdminDiscontRoutes.js",
+    "/js/AdminDiscountIndex.js": "/js/AdminDiscountIndex.js",
+    "/js/AdminDiscountRoutes.js": "/js/AdminDiscountRoutes.js"
 }

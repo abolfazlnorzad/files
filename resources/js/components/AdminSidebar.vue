@@ -42,6 +42,13 @@
                 </li>
 
                 <li class="nav-item">
+                    <router-link class="nav-link" :to="{ name: 'admin-discount' }">
+                        <i class="fa fa-discount"></i>
+                        <p> کد تخفیف</p>
+                    </router-link>
+                </li>
+
+                <li class="nav-item">
                     <a class="nav-link" href="#" @click.prevent="logout">
                         <i class="fa fa-sign-out-alt"></i>
                         <p>خروج</p>

@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"chunk/AccessDenied":"chunk/AccessDenied","chunk/AdminDashboard":"chunk/AdminDashboard","chunk/AdminDashboardLayout~chunk/AppLayout~chunk/DashboardLayout":"chunk/AdminDashboardLayout~chunk/AppLayout~chunk/DashboardLayout","chunk/AdminDashboardLayout":"chunk/AdminDashboardLayout","chunk/AppLayout":"chunk/AppLayout","chunk/DashboardLayout":"chunk/DashboardLayout","chunk/NotFound":"chunk/NotFound","chunk/AuthRoutes":"chunk/AuthRoutes","js/AdminCategoryRoutes":"js/AdminCategoryRoutes","js/AdminMembershipRoutes":"js/AdminMembershipRoutes","js/FileShow":"js/FileShow","js/FileRoutes":"js/FileRoutes","js/admin-user-routes":"js/admin-user-routes","js/user-dashboard-routes":"js/user-dashboard-routes","chunk/Profile":"chunk/Profile","chunk/UserDashboard":"chunk/UserDashboard","js/AdminCategoryIndex":"js/AdminCategoryIndex","js/AdminMembershipIndex":"js/AdminMembershipIndex","vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/admin-user":"vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/admin-user","chunk/home":"chunk/home","js/AdminFileIndex":"js/AdminFileIndex","js/admin-user":"js/admin-user","vendors~js/AdminFileRoutes":"vendors~js/AdminFileRoutes","js/AdminFileRoutes":"js/AdminFileRoutes"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"chunk/AccessDenied":"chunk/AccessDenied","chunk/AdminDashboard":"chunk/AdminDashboard","chunk/AdminDashboardLayout~chunk/AppLayout~chunk/DashboardLayout":"chunk/AdminDashboardLayout~chunk/AppLayout~chunk/DashboardLayout","chunk/AdminDashboardLayout":"chunk/AdminDashboardLayout","chunk/AppLayout":"chunk/AppLayout","chunk/DashboardLayout":"chunk/DashboardLayout","chunk/NotFound":"chunk/NotFound","chunk/AuthRoutes":"chunk/AuthRoutes","js/AdminCategoryRoutes":"js/AdminCategoryRoutes","js/AdminDiscountRoutes":"js/AdminDiscountRoutes","js/AdminMembershipRoutes":"js/AdminMembershipRoutes","js/FileShow":"js/FileShow","js/FileRoutes":"js/FileRoutes","js/admin-user-routes":"js/admin-user-routes","js/user-dashboard-routes":"js/user-dashboard-routes","chunk/Profile":"chunk/Profile","chunk/UserDashboard":"chunk/UserDashboard","js/AdminCategoryIndex":"js/AdminCategoryIndex","js/AdminDiscountIndex":"js/AdminDiscountIndex","js/AdminMembershipIndex":"js/AdminMembershipIndex","vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/admin-user":"vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/admin-user","chunk/home":"chunk/home","js/AdminFileIndex":"js/AdminFileIndex","js/admin-user":"js/admin-user","vendors~js/AdminFileRoutes":"vendors~js/AdminFileRoutes","js/AdminFileRoutes":"js/AdminFileRoutes"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -73147,6 +73147,14 @@ var AdminFileIndex = function AdminFileIndex() {
   return Promise.all(/*! import() | js/AdminFileIndex */[__webpack_require__.e("vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/admin-user"), __webpack_require__.e("js/AdminFileIndex")]).then(__webpack_require__.bind(null, /*! ../views/Admin/File/Index */ "./resources/js/views/Admin/File/Index.vue"));
 };
 
+var AdminDiscountIndex = function AdminDiscountIndex() {
+  return __webpack_require__.e(/*! import() | js/AdminDiscountIndex */ "js/AdminDiscountIndex").then(__webpack_require__.bind(null, /*! ../views/Admin/Discount/Index */ "./resources/js/views/Admin/Discount/Index.vue"));
+};
+
+var AdminDiscountRoutes = function AdminDiscountRoutes() {
+  return Promise.all(/*! import() | js/AdminDiscountRoutes */[__webpack_require__.e("chunk/NotFound"), __webpack_require__.e("js/AdminDiscountRoutes")]).then(__webpack_require__.bind(null, /*! ../views/Admin/Discount/AdminDiscountRoutes */ "./resources/js/views/Admin/Discount/AdminDiscountRoutes.vue"));
+};
+
 var UserDashboardRoutes = function UserDashboardRoutes() {
   return Promise.all(/*! import() | js/user-dashboard-routes */[__webpack_require__.e("chunk/NotFound"), __webpack_require__.e("js/user-dashboard-routes")]).then(__webpack_require__.bind(null, /*! ../views/Dashboard/DashboardRoutes */ "./resources/js/views/Dashboard/DashboardRoutes.vue"));
 };
@@ -73275,6 +73283,19 @@ var FileShow = function FileShow() {
     children: [{
       path: ':slug',
       name: 'admin-file-edit'
+    }]
+  }, {
+    path: 'discount',
+    name: 'admin-discount',
+    component: AdminDiscountIndex
+  }, {
+    path: 'discount/:url',
+    name: 'admin-discounts',
+    props: true,
+    component: AdminDiscountRoutes,
+    children: [{
+      path: ':code',
+      name: 'admin-discount-edit'
     }]
   }],
   meta: {

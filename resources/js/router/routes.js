@@ -19,6 +19,8 @@ const AdminUserIndex = () => import( /* webpackChunkName: "js/admin-user" */ '..
 const AdminCategoryIndex = () => import( /* webpackChunkName: "js/AdminCategoryIndex" */ '../views/Admin/Category/Index');
 const AdminMembershipIndex = () => import( /* webpackChunkName: "js/AdminMembershipIndex" */ '../views/Admin/Membership/Index');
 const AdminFileIndex = () => import( /* webpackChunkName: "js/AdminFileIndex" */ '../views/Admin/File/Index');
+const AdminDiscountIndex = () => import( /* webpackChunkName: "js/AdminDiscountIndex" */ '../views/Admin/Discount/Index');
+const AdminDiscountRoutes = () => import( /* webpackChunkName: "js/AdminDiscountRoutes" */ '../views/Admin/Discount/AdminDiscountRoutes');
 const UserDashboardRoutes = () => import( /* webpackChunkName: "js/user-dashboard-routes" */ '../views/Dashboard/DashboardRoutes');
 const AdminFileRoutes = () => import( /* webpackChunkName: "js/AdminFileRoutes" */ '../views/Admin/File/AdminFileRoutes');
 const FileRoutes = () => import( /* webpackChunkName: "js/FileRoutes" */ '../views/Front/File/FileRoutes');
@@ -59,8 +61,8 @@ export default [
                 children: [
                     {
                         path: ':slug',
-                        component:FileShow,
-                        name:'file-show',
+                        component: FileShow,
+                        name: 'file-show',
                     }
                 ]
             }
@@ -129,8 +131,6 @@ export default [
                     }
                 ]
             },
-
-
             {
                 path: 'category',
                 name: 'admin-category',
@@ -138,7 +138,6 @@ export default [
                 props: true,
 
             },
-
             {
                 path: 'category/:url',
                 name: 'admin-categories',
@@ -156,7 +155,6 @@ export default [
                 name: 'admin-membership',
                 component: AdminMembershipIndex
             },
-
             {
                 path: 'membership/:url',
                 name: 'admin-memberships',
@@ -169,14 +167,11 @@ export default [
                     }
                 ]
             },
-
-
             {
                 path: 'file',
                 name: 'admin-file',
                 component: AdminFileIndex
             },
-
             {
                 path: 'file/:url',
                 name: 'admin-files',
@@ -186,6 +181,23 @@ export default [
                     {
                         path: ':slug',
                         name: 'admin-file-edit'
+                    }
+                ]
+            },
+            {
+                path: 'discount',
+                name: 'admin-discount',
+                component: AdminDiscountIndex
+            },
+            {
+                path: 'discount/:url',
+                name: 'admin-discounts',
+                props: true,
+                component: AdminDiscountRoutes,
+                children: [
+                    {
+                        path: ':code',
+                        name: 'admin-discount-edit'
                     }
                 ]
             },
