@@ -21,6 +21,8 @@ const AdminMembershipIndex = () => import( /* webpackChunkName: "js/AdminMembers
 const AdminFileIndex = () => import( /* webpackChunkName: "js/AdminFileIndex" */ '../views/Admin/File/Index');
 const UserDashboardRoutes = () => import( /* webpackChunkName: "js/user-dashboard-routes" */ '../views/Dashboard/DashboardRoutes');
 const AdminFileRoutes = () => import( /* webpackChunkName: "js/AdminFileRoutes" */ '../views/Admin/File/AdminFileRoutes');
+const FileRoutes = () => import( /* webpackChunkName: "js/FileRoutes" */ '../views/Front/File/FileRoutes');
+const FileShow = () => import( /* webpackChunkName: "js/FileShow" */ '../views/Front/File/Show');
 
 export default [
     {
@@ -39,11 +41,29 @@ export default [
                 name: 'auth',
                 props: true,
                 meta: {
-                    middleware:[
+                    middleware: [
                         guest
                     ]
                 }
             },
+
+            {
+                path: 'file/:url',
+                props: true,
+                component: FileRoutes,
+                meta: {
+                    middleware: [
+                        auth
+                    ]
+                },
+                children: [
+                    {
+                        path: ':slug',
+                        component:FileShow,
+                        name:'file-show',
+                    }
+                ]
+            }
 
 
         ],
@@ -53,7 +73,7 @@ export default [
         component: DashboardLayout,
         children: [
             {
-                name:'dashboard',
+                name: 'dashboard',
                 path: '',
                 component: UserDashboard,
             },
@@ -69,7 +89,7 @@ export default [
                 props: true
             },
         ],
-        meta:{
+        meta: {
             middleware: [
                 auth
             ]
@@ -102,9 +122,9 @@ export default [
                 name: 'admin-users',
                 component: AdminUserRoutes,
                 props: true,
-                children:[
+                children: [
                     {
-                        path:':id',
+                        path: ':id',
                         name: 'admin-users-edit',
                     }
                 ]
@@ -124,9 +144,9 @@ export default [
                 name: 'admin-categories',
                 component: AdminCategoryRoutes,
                 props: true,
-                children:[
+                children: [
                     {
-                        path:':slug',
+                        path: ':slug',
                         name: 'admin-categories-edit',
                     }
                 ]
@@ -169,7 +189,6 @@ export default [
                     }
                 ]
             },
-
 
 
         ],

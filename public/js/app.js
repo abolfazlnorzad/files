@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"chunk/AccessDenied":"chunk/AccessDenied","chunk/AdminDashboard":"chunk/AdminDashboard","chunk/AdminDashboardLayout~chunk/AppLayout~chunk/DashboardLayout":"chunk/AdminDashboardLayout~chunk/AppLayout~chunk/DashboardLayout","chunk/AdminDashboardLayout":"chunk/AdminDashboardLayout","chunk/AppLayout":"chunk/AppLayout","chunk/DashboardLayout":"chunk/DashboardLayout","chunk/NotFound":"chunk/NotFound","chunk/AuthRoutes":"chunk/AuthRoutes","js/AdminCategoryRoutes":"js/AdminCategoryRoutes","js/AdminMembershipRoutes":"js/AdminMembershipRoutes","js/admin-user-routes":"js/admin-user-routes","js/user-dashboard-routes":"js/user-dashboard-routes","chunk/Profile":"chunk/Profile","chunk/UserDashboard":"chunk/UserDashboard","js/AdminCategoryIndex":"js/AdminCategoryIndex","js/AdminMembershipIndex":"js/AdminMembershipIndex","vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/admin-user":"vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/admin-user","chunk/home":"chunk/home","js/AdminFileIndex":"js/AdminFileIndex","js/admin-user":"js/admin-user","vendors~js/AdminFileRoutes":"vendors~js/AdminFileRoutes","js/AdminFileRoutes":"js/AdminFileRoutes"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"chunk/AccessDenied":"chunk/AccessDenied","chunk/AdminDashboard":"chunk/AdminDashboard","chunk/AdminDashboardLayout~chunk/AppLayout~chunk/DashboardLayout":"chunk/AdminDashboardLayout~chunk/AppLayout~chunk/DashboardLayout","chunk/AdminDashboardLayout":"chunk/AdminDashboardLayout","chunk/AppLayout":"chunk/AppLayout","chunk/DashboardLayout":"chunk/DashboardLayout","chunk/NotFound":"chunk/NotFound","chunk/AuthRoutes":"chunk/AuthRoutes","js/AdminCategoryRoutes":"js/AdminCategoryRoutes","js/AdminMembershipRoutes":"js/AdminMembershipRoutes","js/FileShow":"js/FileShow","js/FileRoutes":"js/FileRoutes","js/admin-user-routes":"js/admin-user-routes","js/user-dashboard-routes":"js/user-dashboard-routes","chunk/Profile":"chunk/Profile","chunk/UserDashboard":"chunk/UserDashboard","js/AdminCategoryIndex":"js/AdminCategoryIndex","js/AdminMembershipIndex":"js/AdminMembershipIndex","vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/admin-user":"vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/admin-user","chunk/home":"chunk/home","js/AdminFileIndex":"js/AdminFileIndex","js/admin-user":"js/admin-user","vendors~js/AdminFileRoutes":"vendors~js/AdminFileRoutes","js/AdminFileRoutes":"js/AdminFileRoutes"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -73155,6 +73155,14 @@ var AdminFileRoutes = function AdminFileRoutes() {
   return Promise.all(/*! import() | js/AdminFileRoutes */[__webpack_require__.e("vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/admin-user"), __webpack_require__.e("vendors~js/AdminFileRoutes"), __webpack_require__.e("chunk/NotFound"), __webpack_require__.e("js/AdminFileIndex"), __webpack_require__.e("js/AdminFileRoutes")]).then(__webpack_require__.bind(null, /*! ../views/Admin/File/AdminFileRoutes */ "./resources/js/views/Admin/File/AdminFileRoutes.vue"));
 };
 
+var FileRoutes = function FileRoutes() {
+  return Promise.all(/*! import() | js/FileRoutes */[__webpack_require__.e("chunk/NotFound"), __webpack_require__.e("js/FileShow"), __webpack_require__.e("js/FileRoutes")]).then(__webpack_require__.bind(null, /*! ../views/Front/File/FileRoutes */ "./resources/js/views/Front/File/FileRoutes.vue"));
+};
+
+var FileShow = function FileShow() {
+  return __webpack_require__.e(/*! import() | js/FileShow */ "js/FileShow").then(__webpack_require__.bind(null, /*! ../views/Front/File/Show */ "./resources/js/views/Front/File/Show.vue"));
+};
+
 /* harmony default export */ __webpack_exports__["default"] = ([{
   path: '/',
   component: AppLayout,
@@ -73170,6 +73178,18 @@ var AdminFileRoutes = function AdminFileRoutes() {
     meta: {
       middleware: [_middleware_guest__WEBPACK_IMPORTED_MODULE_1__["default"]]
     }
+  }, {
+    path: 'file/:url',
+    props: true,
+    component: FileRoutes,
+    meta: {
+      middleware: [_middleware_auth__WEBPACK_IMPORTED_MODULE_0__["default"]]
+    },
+    children: [{
+      path: ':slug',
+      component: FileShow,
+      name: 'file-show'
+    }]
   }]
 }, {
   path: '/dashboard',

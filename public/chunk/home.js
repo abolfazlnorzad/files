@@ -517,11 +517,9 @@ var render = function() {
             ])
           : _vm._e(),
         _vm._v(" "),
-        _vm.file.membership_id
-          ? _c("p", { staticClass: "card-category" }, [
-              _vm._v(_vm._s(_vm.file.membership_name))
-            ])
-          : _vm._e(),
+        _c("p", { staticClass: "card-category" }, [
+          _vm._v(_vm._s(_vm.file.membership_name))
+        ]),
         _vm._v(" "),
         _c("h3", { staticClass: "card-title mt-2" }, [
           _vm._v(_vm._s(_vm.file.name))
@@ -532,18 +530,35 @@ var render = function() {
     ),
     _vm._v(" "),
     _c("div", { staticClass: "card-footer" }, [
-      _c("div", { staticClass: "stats w-100 d-flex justify-content-between" }, [
-        _c("p", { staticClass: "my-auto" }, [
-          _c("i", { staticClass: "fa fa-clock" }),
-          _vm._v(
-            " " +
-              _vm._s(_vm.moment(_vm.file.created_at).format("jYYYY/jM")) +
-              " "
+      _c(
+        "div",
+        { staticClass: "stats w-100 d-flex justify-content-between" },
+        [
+          _c("p", { staticClass: "my-auto" }, [
+            _c("i", { staticClass: "fa fa-clock" }),
+            _vm._v(
+              " " +
+                _vm._s(_vm.moment(_vm.file.created_at).format("jYYYY/jM")) +
+                " "
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "router-link",
+            {
+              staticClass: "btn btn-info",
+              attrs: {
+                to: {
+                  name: "file-show",
+                  params: { url: "show", slug: _vm.file.slug }
+                }
+              }
+            },
+            [_vm._v("خرید")]
           )
-        ]),
-        _vm._v(" "),
-        _c("button", { staticClass: "btn btn-info" }, [_vm._v("خرید")])
-      ])
+        ],
+        1
+      )
     ])
   ])
 }

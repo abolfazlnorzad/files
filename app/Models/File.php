@@ -21,7 +21,7 @@ class File extends Model
     protected $guarded = [];
     protected $hidden = ['file'];
     protected $appends = [
-        'membership_name', 'file_src', 'selectedTags'
+        'membership_name', 'file_src', 'selectedTags','price_toman'
     ];
 
     public function sluggable()
@@ -59,9 +59,9 @@ class File extends Model
     {
         if ($this->membership_id) {
             return $this->membership->name;
-        } else {
-            return 'خرید با عضویت ویژه امکان پذیر نیست ';
         }
+        return 'خرید با عضویت ویژه امکان پذیر نیست ';
+
     }
 
     public function getFileSrcAttribute()
@@ -104,9 +104,15 @@ class File extends Model
     {
         if ($this->price) {
             return $this->price . ',000 تومان';
-        } else {
-            return 'خرید نقدی امکان پذیر نیست';
         }
+            return 'خرید نقدی امکان پذیر نیست';
+
     }
 
+    public function getRelatedFilesAttribute()
+    {
+        return $this->where('id','!=',$this->id)->whereHas('categories',function ($query){
+            return $query->whereIn('categories.id',$this->categories->pluck('id')->toArray());
+        })->inRandomOrder()->limit(3)->get();
+    }
 }

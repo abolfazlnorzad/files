@@ -11,6 +11,10 @@ use Illuminate\Http\Response;
 
 class FileController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api')->except('index');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -42,7 +46,7 @@ class FileController extends Controller
      */
     public function show(File $file)
     {
-        //
+        return $file->append(['image_src','price_toman','membership_name','related_files']);
     }
 
     /**
