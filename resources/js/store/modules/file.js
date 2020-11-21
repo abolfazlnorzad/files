@@ -30,6 +30,12 @@ export const actions = {
                 window.history.pushState('files', 'FILES', `/admin/file?${data.meta.queries}`)
             })
     },
+    getPublicFiles({commit},queries){
+        return axios.get(`/api/file`, {params: queries})
+            .then(({data}) => {
+                commit('setFile', data)
+            })
+    },
     deleteFile({commit}, payload) {
         axios.delete(`/api/admin/file/${payload.slug}`)
             .then(() => {

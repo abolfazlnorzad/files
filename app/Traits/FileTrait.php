@@ -13,15 +13,19 @@ trait FileTrait
     /**
      * @param $request
      * @param null $file_name
+     * @param null $image_name
      * @param File|null $file
      * @return mixed
      */
-    public function dataForCrud($request, $file_name = null, File $file = null)
+    public function dataForCrud($request, $file_name = null, $image_name = null ,File $file = null)
     {
-        $data = $request->except('selectedTags', 'file');
+        $data = $request->except('selectedTags', 'file','image');
 
         if ($file_name) {
             $data['file'] = $file_name;
+        }
+        if ($image_name) {
+            $data['image'] = $image_name;
         }
 
         if ($file !== null) {
@@ -49,16 +53,36 @@ trait FileTrait
         return null;
     }
 
+    /**
+     * @param FileRequest $request
+     * @param File|null $file
+     * @return mixed
+     */
+    public function makePublicImage(FileRequest $request, File $file = null)
+    {
+        if ($request->hasFile('image')) {
+            if ($file !== null) {
+                $this->file->removePublicImage($file->image_src);
+            }
+            return $this->file->storePublicImage($request->file('image'));
+
+        }
+        return null;
+    }
+
+
     public function createOrUpdateFile(FileRequest $request, File $file = null)
     {
         return DB::transaction(function () use ($request, $file) {
             try {
                 if ($file !== null) {
                     $file_name = $this->makeFile($request, $file);
-                    $file = $this->dataForCrud($request, $file_name, $file);
+                    $image_name = $this->makePublicImage($request, $file);
+                    $file = $this->dataForCrud($request, $file_name, $image_name, $file);
                 } else {
                     $file_name = $this->makeFile($request);
-                    $file = $this->dataForCrud($request, $file_name);
+                    $image_name = $this->makePublicImage($request);
+                    $file = $this->dataForCrud($request, $file_name, $image_name);
                 }
                 $file->syncCategories($request->selectedTags);
                 return 200;

@@ -9,17 +9,34 @@
             <div class="card-body">
                 <form @submit.prevent="storeFile">
                     <base-input label="نام" name="name" v-model="form.name"/>
-                    <base-input label="توضیحات" name="description" v-model="form.description"/>
+                    <div class="form-group">
+                        <label for="description">توضیحات</label>
+                        <div class="form-group bmd-form-group">
+                            <textarea name="description"
+                                      id="description"
+                                      class="form-control"
+                                      v-model="form.description"
+                            ></textarea>
+                            <has-error :form="form" field="description"></has-error>
+                        </div>
+                    </div>
                     <div class="col-md-12">
-                        <input type="file" @change="changeFile"/>
+                        <label for="file">فایل</label>
+                        <input id="file" type="file" @change="changeFile"/>
                         <has-error :form="form" field="file"></has-error>
+                    </div>
+                    <div class="col-md-12 mt-4">
+                        <label for="image">تصویر شاخص</label>
+                        <input id="image" type="file" @change="changeImage"/>
+                        <has-error :form="form" field="image"></has-error>
                     </div>
                     <base-input label="قیمت" name="price" v-model="form.price"/>
                     <tags-input element-id="tags"
-                                :wrapper-class="form.errors.has('selectedTags.0')  ? 'form-control is-invalid tags-input-wrapper-default tags-input' : 'tags-input-wrapper-default tags-input'"
+                                :wrapper-class="form.errors.has('selectedTags.0') ? 'tags-input-wrapper-default tags-input form-control is-invalid' : 'tags-input-wrapper-default tags-input'"
                                 v-model="form.selectedTags"
                                 :only-existing-tags="true"
                                 :existing-tags="categories"
+                                placeholder="دسته بندی های فایل"
                                 :typeahead="true"></tags-input>
                     <has-error :form="form" field="selectedTags.0"></has-error>
                     <base-select label="اشتراک ویژه"
@@ -57,6 +74,7 @@
                     name: null,
                     description: null,
                     file: null,
+                    image: null,
                     price: null,
                     membership_id: null,
                     selectedTags: []
@@ -80,14 +98,17 @@
 
         methods: {
             storeFile() {
-                this.$store.dispatch('file/store',this.form)
+                this.$store.dispatch('file/store', this.form)
                     .then(() => {
                         swal.success();
-                        this.$router.push({ name: 'admin-file' });
+                        this.$router.push({name: 'admin-file'});
                     })
             },
             changeFile(event) {
                 this.form.file = event.target.files[0];
+            },
+            changeImage(event) {
+                this.form.image = event.target.files[0];
             }
         },
     }

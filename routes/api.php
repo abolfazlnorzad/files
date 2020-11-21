@@ -25,4 +25,5 @@ Route::group(['middleware' => ['auth:api', 'admin'], 'prefix' => 'admin', 'names
     Route::get('category-search','Search\CategoryController@index');
 
 });
+Route::apiResource('file', 'File\FileController');
 

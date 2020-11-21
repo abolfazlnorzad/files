@@ -67,7 +67,7 @@ class FileController extends Controller
     public function update(FileRequest $request, File $file)
     {
         $status = $this->createOrUpdateFile($request, $file);
-        return response('error', $status);
+        return response('ok', $status);
     }
 
 
@@ -80,6 +80,7 @@ class FileController extends Controller
     public function destroy(File $file)
     {
         $this->file->remove($file->file_src);
+        $this->file->removePublicImage($file->image_src);
         return response('deleted', 200);
     }
 

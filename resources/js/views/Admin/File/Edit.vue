@@ -9,10 +9,26 @@
             <div class="card-body">
                 <form @submit.prevent="updateFile">
                     <base-input label="نام" name="name" v-model="form.name"/>
-                    <base-input label="توضیحات" name="description" v-model="form.description"/>
+                    <div class="form-group">
+                        <label for="description">توضیحات</label>
+                        <div class="form-group bmd-form-group">
+                            <textarea name="description"
+                                      id="description"
+                                      class="form-control"
+                                      v-model="form.description"
+                            ></textarea>
+                            <has-error :form="form" field="description"></has-error>
+                        </div>
+                    </div>
                     <div class="col-md-12">
-                        <input type="file" @change="changeFile"/>
+                        <label for="file">فایل</label>
+                        <input id="file" type="file" @change="changeFile" />
                         <has-error :form="form" field="file"></has-error>
+                    </div>
+                    <div class="col-md-12 mt-4">
+                        <label for="image">تصویر شاخص</label>
+                        <input id="image" type="file" @change="changeImage" />
+                        <has-error :form="form" field="image"></has-error>
                     </div>
                     <base-input label="قیمت" name="price" v-model="form.price"/>
                     <tags-input element-id="tags"
@@ -34,7 +50,6 @@
         </div>
     </div>
 </template>
-
 <script>
     import {Form, HasError} from 'vform';
     import TagsInput from '@voerro/vue-tagsinput'
@@ -72,6 +87,7 @@
                         slug: data.slug,
                         description: data.description,
                         file: null,
+                        image: null,
                         price: data.price,
                         membership_id: data.membership_id.toString(),
                         selectedTags: data.selectedTags,
@@ -90,6 +106,9 @@
             },
             changeFile(event) {
                 this.form.file = event.target.files[0];
+            },
+            changeImage(event) {
+                this.form.image = event.target.files[0];
             }
         },
 

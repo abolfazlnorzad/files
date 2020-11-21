@@ -11,7 +11,7 @@ class File extends Model
     use HasFactory, Sluggable;
 
     protected $columns = [
-
+        'i' => 'id',
         'n' => 'name',
         'd' => 'description',
         'p' => 'price',
@@ -19,6 +19,7 @@ class File extends Model
         'ca' => 'created_at',
     ];
     protected $guarded = [];
+    protected $hidden = ['file'];
     protected $appends = [
         'membership_name', 'file_src', 'selectedTags'
     ];
@@ -56,13 +57,23 @@ class File extends Model
 
     public function getMembershipNameAttribute()
     {
-        return $this->membership->name;
+        if ($this->membership_id) {
+            return $this->membership->name;
+        } else {
+            return 'خرید با عضویت ویژه امکان پذیر نیست ';
+        }
     }
 
     public function getFileSrcAttribute()
     {
         return 'files/' . $this->file;
     }
+
+    public function getImageSrcAttribute()
+    {
+        return 'images/' . $this->image;
+    }
+
 
     public function getSelectedTagsAttribute()
     {
@@ -76,7 +87,8 @@ class File extends Model
     public function scopeSortByUrl($query)
     {
         $sortby = $this->columns[request()->sortBy] ?? 'id';
-        return $query->orderBy($sortby, request()->sortDir);
+        $sortdir = request()->sortDir === 'desc' ? 'desc' : 'asc';
+        return $query->orderBy($sortby, $sortdir);
     }
 
     public function scopeSearchByUrl($query)
@@ -86,6 +98,15 @@ class File extends Model
                 ->orWhere('description', "LIKE", "%" . request()->search . "%");
         }
         return $query;
+    }
+
+    public function getPriceTomanAttribute()
+    {
+        if ($this->price) {
+            return $this->price . ',000 تومان';
+        } else {
+            return 'خرید نقدی امکان پذیر نیست';
+        }
     }
 
 }
