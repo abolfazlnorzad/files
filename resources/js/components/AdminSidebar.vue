@@ -43,7 +43,7 @@
 
                 <li class="nav-item">
                     <router-link class="nav-link" :to="{ name: 'admin-discount' }">
-                        <i class="fa fa-discount"></i>
+                        <i class="fa fa-"></i>
                         <p> کد تخفیف</p>
                     </router-link>
                 </li>

@@ -19,10 +19,17 @@
                         </p>
                         <div class="card-footer">
                             <a href="#pablo" class="btn btn-primary btn-round" v-show="! form.discount">خرید</a>
-                            <base-btn v-show="form.discount" btn="info">اعمال کد تخفیف</base-btn>
+                            <base-btn v-show="form.discount"
+                                      @click="applyDiscount"
+                                      btn="info">اعمال کد تخفیف
+                            </base-btn>
+                            <p>قیمت تمام شده : {{item.price}}</p>
                             <div class="col-md-3">
-                                <base-input label="کد تخفیف" name="discount" v-model="form.discount"/>
+                                <base-input label="کد تخفیف"
+                                            v-if="file.price && ! item.discount_id"
+                                            name="discount" v-model="form.discount"/>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -47,7 +54,9 @@
                             {{ item.description }}
                         </p>
                         <div class="card-footer d-flex justify-content-center">
-                            <router-link :to="{ name: 'file-show', params: { url: 'show', slug: item.slug } }" class="btn btn-primary btn-round">خرید</router-link>
+                            <router-link :to="{ name: 'file-show', params: { url: 'show', slug: item.slug } }"
+                                         class="btn btn-primary btn-round">خرید
+                            </router-link>
                         </div>
                     </div>
                 </div>
@@ -68,17 +77,35 @@
         },
         data() {
             return {
-                form:new Form({
-                    discount:null
+                form: new Form({
+                    discount: null,
+                    price: null
                 }),
                 file: {},
-                slug:this.$route.params.slug
+                slug: this.$route.params.slug,
+                item: {
+                    price: null,
+                    discount_id: null
+                }
+            }
+        },
+        methods: {
+            applyDiscount() {
+                axios.post('/api/discount', this.form)
+                    .then(({data}) => {
+                        this.form = {};
+                        this.item.discount_id =data.id;
+                        this.item.price=data.price
+                    })
+
             }
         },
         created() {
             axios.get(`/api/file/${this.$route.params.slug}`)
                 .then(({data}) => {
                     this.file = data;
+                    this.form.price = data.price;
+                    this.item.price = data.price;
                 })
         }
     }
@@ -88,6 +115,7 @@
     .card-footer {
         border-top: 1px solid #eee;
     }
+
     #related_files {
         border-top: 1px solid #d1d1d1;
     }

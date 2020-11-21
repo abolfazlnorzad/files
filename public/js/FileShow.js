@@ -69,6 +69,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Show",
@@ -80,18 +89,37 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       form: new vform__WEBPACK_IMPORTED_MODULE_0__["Form"]({
-        discount: null
+        discount: null,
+        price: null
       }),
       file: {},
-      slug: this.$route.params.slug
+      slug: this.$route.params.slug,
+      item: {
+        price: null,
+        discount_id: null
+      }
     };
   },
-  created: function created() {
-    var _this = this;
+  methods: {
+    applyDiscount: function applyDiscount() {
+      var _this = this;
 
-    axios.get("/api/file/".concat(this.$route.params.slug)).then(function (_ref) {
-      var data = _ref.data;
-      _this.file = data;
+      axios.post('/api/discount', this.form).then(function (_ref) {
+        var data = _ref.data;
+        _this.form = {};
+        _this.item.discount_id = data.id;
+        _this.item.price = data.price;
+      });
+    }
+  },
+  created: function created() {
+    var _this2 = this;
+
+    axios.get("/api/file/".concat(this.$route.params.slug)).then(function (_ref2) {
+      var data = _ref2.data;
+      _this2.file = data;
+      _this2.form.price = data.price;
+      _this2.item.price = data.price;
     });
   }
 });
@@ -230,25 +258,30 @@ var render = function() {
                         expression: "form.discount"
                       }
                     ],
-                    attrs: { btn: "info" }
+                    attrs: { btn: "info" },
+                    on: { click: _vm.applyDiscount }
                   },
-                  [_vm._v("اعمال کد تخفیف")]
+                  [_vm._v("اعمال کد تخفیف\n                        ")]
                 ),
+                _vm._v(" "),
+                _c("p", [_vm._v("قیمت تمام شده : " + _vm._s(_vm.item.price))]),
                 _vm._v(" "),
                 _c(
                   "div",
                   { staticClass: "col-md-3" },
                   [
-                    _c("base-input", {
-                      attrs: { label: "کد تخفیف", name: "discount" },
-                      model: {
-                        value: _vm.form.discount,
-                        callback: function($$v) {
-                          _vm.$set(_vm.form, "discount", $$v)
-                        },
-                        expression: "form.discount"
-                      }
-                    })
+                    _vm.file.price && !_vm.item.discount_id
+                      ? _c("base-input", {
+                          attrs: { label: "کد تخفیف", name: "discount" },
+                          model: {
+                            value: _vm.form.discount,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "discount", $$v)
+                            },
+                            expression: "form.discount"
+                          }
+                        })
+                      : _vm._e()
                   ],
                   1
                 )
@@ -315,7 +348,7 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("خرید")]
+                    [_vm._v("خرید\n                        ")]
                   )
                 ],
                 1

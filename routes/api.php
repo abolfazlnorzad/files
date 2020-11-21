@@ -27,4 +27,4 @@ Route::group(['middleware' => ['auth:api', 'admin'], 'prefix' => 'admin', 'names
 
 });
 Route::apiResource('file', 'File\FileController');
-
+Route::post('discount','Front\ApplyDiscountController@store')->middleware('auth:api');

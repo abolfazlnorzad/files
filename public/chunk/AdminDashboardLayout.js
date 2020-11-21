@@ -275,7 +275,7 @@ var render = function() {
                   attrs: { to: { name: "admin-discount" } }
                 },
                 [
-                  _c("i", { staticClass: "fa fa-discount" }),
+                  _c("i", { staticClass: "fa fa-" }),
                   _vm._v(" "),
                   _c("p", [_vm._v(" کد تخفیف")])
                 ]
