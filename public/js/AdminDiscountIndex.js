@@ -13,8 +13,80 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Index"
+  name: "Index",
+  metaInfo: {
+    title: 'لیست کد تخفیف ها'
+  },
+  data: function data() {
+    return {
+      discounts: {}
+    };
+  },
+  methods: {
+    getDiscounts: function getDiscounts() {
+      var _this = this;
+
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      axios.get("/api/admin/discount?page=".concat(page)).then(function (_ref) {
+        var data = _ref.data;
+        _this.discounts = data;
+      });
+    },
+    removeDiscount: function removeDiscount(code, index) {
+      var _this2 = this;
+
+      axios["delete"]("/api/admin/discount/".concat(code)).then(function () {
+        _this2.discounts.data.splice(index, 1);
+
+        swal.success();
+      });
+    }
+  },
+  created: function created() {
+    this.getDiscounts();
+  }
 });
 
 /***/ }),
@@ -34,9 +106,121 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", { staticClass: "col-md-12" }, [
+    _c("div", { staticClass: "card" }, [
+      _c(
+        "div",
+        {
+          staticClass:
+            "card-header card-header-primary d-flex justify-content-between"
+        },
+        [
+          _c("h4", { staticClass: "card-title pt-2" }, [_vm._v("کد تخفیف ها")]),
+          _vm._v(" "),
+          _c(
+            "router-link",
+            {
+              staticClass: "btn btn-info",
+              attrs: {
+                to: { name: "admin-discounts", params: { url: "create" } }
+              }
+            },
+            [
+              _c("i", { staticClass: "fa fa-plus-circle" }),
+              _vm._v(" کد تخفیف جدید\n            ")
+            ]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body" }, [
+        _c(
+          "div",
+          { staticClass: "table-responsive" },
+          [
+            _c("table", { staticClass: "table" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.discounts.data, function(discount, index) {
+                  return _c("tr", { key: discount.id }, [
+                    _c("td", [_vm._v(_vm._s(discount.id))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(discount.code))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(discount.percent))]),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "btn btn-info",
+                            attrs: {
+                              to: {
+                                name: "admin-discount-edit",
+                                params: { url: "edit", code: discount.code }
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                                ویرایش\n                            "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-danger",
+                            on: {
+                              click: function($event) {
+                                return _vm.removeDiscount(discount.code, index)
+                              }
+                            }
+                          },
+                          [_vm._v("حذف\n                            ")]
+                        )
+                      ],
+                      1
+                    )
+                  ])
+                }),
+                0
+              )
+            ]),
+            _vm._v(" "),
+            _c("pagination", {
+              attrs: { data: _vm.discounts, limit: 5 },
+              on: { "pagination-change-page": _vm.getDiscounts }
+            })
+          ],
+          1
+        )
+      ])
+    ])
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "text-primary" }, [
+      _c("tr", [
+        _c("th", [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("کد")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("درصد تخفیف")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 

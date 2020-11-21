@@ -31,6 +31,7 @@ class FileController extends Controller
      */
     public function index()
     {
+
         return new FileCollection(File::sortByUrl()->SearchByUrl()->paginate(10));
     }
 

@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class FileCollection extends ResourceCollection
+class DiscountCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -14,16 +14,6 @@ class FileCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-
         return parent::toArray($request);
     }
-
- public function with($request)
- {
-     return [
-         'meta'=>[
-             'queries'=>$request->getQueryString()
-         ]
-     ];
- }
 }

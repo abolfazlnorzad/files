@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DiscountRequest;
+use App\Http\Resources\DiscountCollection;
 use App\Models\Discount;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -17,7 +18,9 @@ class DiscountController extends Controller
      */
     public function index()
     {
-        //
+        return new DiscountCollection(
+            Discount::paginate(1)
+        );
     }
 
     /**
@@ -66,6 +69,7 @@ class DiscountController extends Controller
      */
     public function destroy(Discount $discount)
     {
-        //
+        $discount->delete();
+        return response('ok',200);
     }
 }
