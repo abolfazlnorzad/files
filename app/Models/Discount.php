@@ -14,4 +14,9 @@ class Discount extends Model
     {
         return 'code';
     }
+
+    public function getRealPrice($price)
+    {
+        return $price - (($price * $this->percent) / 100);
+    }
 }

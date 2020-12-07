@@ -21,7 +21,7 @@ class File extends Model
     protected $guarded = [];
     protected $hidden = ['file'];
     protected $appends = [
-        'membership_name', 'file_src', 'selectedTags','price_toman'
+        'membership_name', 'file_src', 'selectedTags','price_toman','toman_price'
     ];
 
     public function sluggable()
@@ -54,6 +54,16 @@ class File extends Model
     {
         return $this->belongsTo(Membership::class);
     }
+
+    public function getTomanPriceAttribute()
+    {
+        if ($this->price) {
+            return (int) ($this->price . '000');
+        }
+        return null;
+    }
+
+
 
     public function getMembershipNameAttribute()
     {

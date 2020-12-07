@@ -78,6 +78,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Show",
@@ -96,9 +104,15 @@ __webpack_require__.r(__webpack_exports__);
       slug: this.$route.params.slug,
       item: {
         price: null,
-        discount_id: null
+        discount_id: null,
+        file_id: null
       }
     };
+  },
+  computed: {
+    csrf: function csrf() {
+      return window.csrf;
+    }
   },
   methods: {
     applyDiscount: function applyDiscount() {
@@ -120,6 +134,7 @@ __webpack_require__.r(__webpack_exports__);
       _this2.file = data;
       _this2.form.price = data.price;
       _this2.item.price = data.price;
+      _this2.item.file_id = data.id;
     });
   }
 });
@@ -230,22 +245,43 @@ var render = function() {
               "div",
               { staticClass: "card-footer" },
               [
-                _c(
-                  "a",
-                  {
-                    directives: [
-                      {
-                        name: "show",
-                        rawName: "v-show",
-                        value: !_vm.form.discount,
-                        expression: "! form.discount"
-                      }
-                    ],
-                    staticClass: "btn btn-primary btn-round",
-                    attrs: { href: "#pablo" }
-                  },
-                  [_vm._v("خرید")]
-                ),
+                _c("form", { attrs: { action: "/buy", method: "POST" } }, [
+                  _c("input", {
+                    attrs: { type: "hidden", name: "_token" },
+                    domProps: { value: _vm.csrf }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: { type: "hidden", name: "file_id" },
+                    domProps: { value: _vm.item.file_id }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: { type: "hidden", name: "discount_id" },
+                    domProps: { value: _vm.item.discount_id }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: { type: "hidden", name: "access_token" },
+                    domProps: { value: _vm.$store.state.auth.token }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: !_vm.form.discount,
+                          expression: "! form.discount"
+                        }
+                      ],
+                      staticClass: "btn btn-primary btn-round"
+                    },
+                    [_vm._v("خرید")]
+                  )
+                ]),
                 _vm._v(" "),
                 _c(
                   "base-btn",
@@ -264,7 +300,7 @@ var render = function() {
                   [_vm._v("اعمال کد تخفیف\n                        ")]
                 ),
                 _vm._v(" "),
-                _c("p", [_vm._v("قیمت تمام شده : " + _vm._s(_vm.item.price))]),
+                _c("p", [_vm._v("قیمت تمام شده " + _vm._s(_vm.item.price))]),
                 _vm._v(" "),
                 _c(
                   "div",

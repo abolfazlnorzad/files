@@ -14,7 +14,7 @@ class ApplyDiscountController extends Controller
     {
 
         $discount = Discount::whereCode($request->discount)->first();
-        $price = $request->price - (($request->price * $discount->percent) / 100);
+        $price =$discount->getRealPrice($request->price);
 
         return [
             'id' => $discount->id,

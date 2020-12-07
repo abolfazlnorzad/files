@@ -18,12 +18,20 @@
                             {{ file.description }}
                         </p>
                         <div class="card-footer">
-                            <a href="#pablo" class="btn btn-primary btn-round" v-show="! form.discount">خرید</a>
+                            <form action="/buy" method="POST">
+                                <input type="hidden" name="_token" :value="csrf">
+                                <input type="hidden" name="file_id" :value="item.file_id">
+                                <input type="hidden" name="discount_id" :value="item.discount_id">
+                                <input type="hidden" name="access_token" :value="$store.state.auth.token">
+
+                                <button class="btn btn-primary btn-round" v-show="! form.discount">خرید</button>
+                            </form>
+
                             <base-btn v-show="form.discount"
                                       @click="applyDiscount"
                                       btn="info">اعمال کد تخفیف
                             </base-btn>
-                            <p>قیمت تمام شده : {{item.price}}</p>
+                            <p>قیمت تمام شده {{ item.price }}</p>
                             <div class="col-md-3">
                                 <base-input label="کد تخفیف"
                                             v-if="file.price && ! item.discount_id"
@@ -85,8 +93,14 @@
                 slug: this.$route.params.slug,
                 item: {
                     price: null,
-                    discount_id: null
+                    discount_id: null,
+                    file_id: null,
                 }
+            }
+        },
+        computed: {
+            csrf() {
+                return window.csrf;
             }
         },
         methods: {
@@ -94,8 +108,8 @@
                 axios.post('/api/discount', this.form)
                     .then(({data}) => {
                         this.form = {};
-                        this.item.discount_id =data.id;
-                        this.item.price=data.price
+                        this.item.discount_id = data.id;
+                        this.item.price = data.price
                     })
 
             }
@@ -106,6 +120,7 @@
                     this.file = data;
                     this.form.price = data.price;
                     this.item.price = data.price;
+                    this.item.file_id = data.id;
                 })
         }
     }
