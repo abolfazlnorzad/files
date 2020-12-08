@@ -47,4 +47,14 @@ class User extends Authenticatable
         return $this->isAdmin ? 'ادمین' : 'کاربر عادی';
     }
 
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
+
+    public function files()
+    {
+        return $this->belongsToMany(File::class)->withPivot('payment_id');
+    }
+
 }

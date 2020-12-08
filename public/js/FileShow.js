@@ -122,7 +122,7 @@ __webpack_require__.r(__webpack_exports__);
         var data = _ref.data;
         _this.form = {};
         _this.item.discount_id = data.id;
-        _this.item.price = data.price;
+        _this.item.price = data.price + '000';
       });
     }
   },
@@ -133,7 +133,7 @@ __webpack_require__.r(__webpack_exports__);
       var data = _ref2.data;
       _this2.file = data;
       _this2.form.price = data.price;
-      _this2.item.price = data.price;
+      _this2.item.price = data.price + '000';
       _this2.item.file_id = data.id;
     });
   }
@@ -300,7 +300,7 @@ var render = function() {
                   [_vm._v("اعمال کد تخفیف\n                        ")]
                 ),
                 _vm._v(" "),
-                _c("p", [_vm._v("قیمت تمام شده " + _vm._s(_vm.item.price))]),
+                _c("p", [_vm._v("قیمت تمام شده : " + _vm._s(_vm.item.price))]),
                 _vm._v(" "),
                 _c(
                   "div",
@@ -351,7 +351,7 @@ var render = function() {
                 _vm._v(
                   "\n                        قیمت: " +
                     _vm._s(item.price_toman) +
-                    " /\n                        اشتراک ویژه: " +
+                    "/\n                        اشتراک ویژه: " +
                     _vm._s(item.membership_name) +
                     "\n                    "
                 )

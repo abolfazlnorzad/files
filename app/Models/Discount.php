@@ -19,4 +19,9 @@ class Discount extends Model
     {
         return $price - (($price * $this->percent) / 100);
     }
+
+    public function getDiscount($price)
+    {
+        return  (($price * $this->percent) / 100);
+    }
 }

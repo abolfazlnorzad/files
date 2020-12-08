@@ -31,7 +31,7 @@
                                       @click="applyDiscount"
                                       btn="info">اعمال کد تخفیف
                             </base-btn>
-                            <p>قیمت تمام شده {{ item.price }}</p>
+                            <p>قیمت تمام شده : {{ item.price }}</p>
                             <div class="col-md-3">
                                 <base-input label="کد تخفیف"
                                             v-if="file.price && ! item.discount_id"
@@ -54,7 +54,7 @@
                     </div>
                     <div class="card-body">
                         <h6 class="card-category text-gray">
-                            قیمت: {{ item.price_toman }} /
+                            قیمت: {{ item.price_toman }}/
                             اشتراک ویژه: {{ item.membership_name }}
                         </h6>
                         <h4 class="card-title">{{ item.name }}</h4>
@@ -109,7 +109,7 @@
                     .then(({data}) => {
                         this.form = {};
                         this.item.discount_id = data.id;
-                        this.item.price = data.price
+                        this.item.price = data.price+ '000';
                     })
 
             }
@@ -119,7 +119,7 @@
                 .then(({data}) => {
                     this.file = data;
                     this.form.price = data.price;
-                    this.item.price = data.price;
+                    this.item.price = data.price+ '000';
                     this.item.file_id = data.id;
                 })
         }

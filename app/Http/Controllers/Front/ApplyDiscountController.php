@@ -12,7 +12,6 @@ class ApplyDiscountController extends Controller
 {
     public function store(ApplyDiscountRequest $request)
     {
-
         $discount = Discount::whereCode($request->discount)->first();
         $price =$discount->getRealPrice($request->price);
 

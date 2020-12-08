@@ -14,4 +14,15 @@ class Payment extends Model
         'is_payed' => 'boolean',
         'extra_details' => 'json'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function file()
+    {
+        return $this->belongsTo(File::class);
+    }
+
 }

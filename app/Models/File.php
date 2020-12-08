@@ -21,7 +21,7 @@ class File extends Model
     protected $guarded = [];
     protected $hidden = ['file'];
     protected $appends = [
-        'membership_name', 'file_src', 'selectedTags','price_toman','toman_price'
+        'membership_name', 'file_src', 'selectedTags', 'price_toman', 'toman_price'
     ];
 
     public function sluggable()
@@ -58,11 +58,10 @@ class File extends Model
     public function getTomanPriceAttribute()
     {
         if ($this->price) {
-            return (int) ($this->price . '000');
+            return (int)($this->price . '000');
         }
         return null;
     }
-
 
 
     public function getMembershipNameAttribute()
@@ -115,14 +114,25 @@ class File extends Model
         if ($this->price) {
             return $this->price . ',000 تومان';
         }
-            return 'خرید نقدی امکان پذیر نیست';
+        return 'خرید نقدی امکان پذیر نیست';
 
     }
 
     public function getRelatedFilesAttribute()
     {
-        return $this->where('id','!=',$this->id)->whereHas('categories',function ($query){
-            return $query->whereIn('categories.id',$this->categories->pluck('id')->toArray());
+        return $this->where('id', '!=', $this->id)->whereHas('categories', function ($query) {
+            return $query->whereIn('categories.id', $this->categories->pluck('id')->toArray());
         })->inRandomOrder()->limit(3)->get();
+    }
+
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class)->withPivot('payment_id');
+    }
+
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
     }
 }
