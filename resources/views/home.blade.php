@@ -12,6 +12,7 @@
 <body>
 <div id="app">
     <router-view></router-view>
+    <notify :data='@json(session('notify'))'></notify>
 </div>
 
 <script src="/js/app.js"></script>

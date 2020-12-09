@@ -12,6 +12,16 @@ class sweetalert {
         })
     }
 
+    fire(title,text,icon,confirm_text) {
+        Swal.fire({
+           title,
+            text,
+            icon,
+            confirmButtonText:confirm_text
+        })
+    }
+
+
     error(title='به مشکل خوردیم',type='error') {
         this.success(title,type)
     }
