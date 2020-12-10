@@ -9,8 +9,23 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vform */ "./node_modules/vform/dist/vform.common.js");
-/* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vform__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vform */ "./node_modules/vform/dist/vform.common.js");
+/* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vform__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -86,6 +101,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Show",
@@ -96,7 +120,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      form: new vform__WEBPACK_IMPORTED_MODULE_0__["Form"]({
+      form: new vform__WEBPACK_IMPORTED_MODULE_1__["Form"]({
         discount: null,
         price: null
       }),
@@ -106,36 +130,94 @@ __webpack_require__.r(__webpack_exports__);
         price: null,
         discount_id: null,
         file_id: null
-      }
+      },
+      fileStatus: 0
     };
   },
-  computed: {
+  computed: _objectSpread({
     csrf: function csrf() {
       return window.csrf;
+    },
+    checkStatus: function checkStatus() {
+      return this.file.membership && this.user.current_membership && this.user.current_membership.priority <= this.file.membership.priority;
     }
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])('auth', ['user'])),
+  created: function created() {
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _this.getFile();
+
+            case 2:
+              _this.setFileStatus();
+
+            case 3:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
   },
   methods: {
+    getFile: function getFile() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var _yield$axios$get, data;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return axios.get("/api/file/".concat(_this2.$route.params.slug));
+
+              case 2:
+                _yield$axios$get = _context2.sent;
+                data = _yield$axios$get.data;
+                _this2.file = data;
+                _this2.form.price = data.price;
+                _this2.item.price = data.price + '000';
+                _this2.item.file_id = data.id;
+
+              case 8:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
     applyDiscount: function applyDiscount() {
-      var _this = this;
+      var _this3 = this;
 
       axios.post('/api/discount', this.form).then(function (_ref) {
         var data = _ref.data;
-        _this.form = {};
-        _this.item.discount_id = data.id;
-        _this.item.price = data.price + '000';
+        _this3.form = {};
+        _this3.item.discount_id = data.id;
+        _this3.item.price = data.price + '000';
+      });
+    },
+    setFileStatus: function setFileStatus() {
+      if (this.checkStatus) {
+        this.fileStatus = 1;
+      } else {
+        this.fileStatus = this.file.price ? 2 : 3;
+      }
+    },
+    addToMyFiles: function addToMyFiles() {
+      axios.post('/api/add-to-files', {
+        file_id: this.file.id
+      }).then(function () {
+        swal.success('فایل به درستی به فایل های شما اضافه شد');
       });
     }
-  },
-  created: function created() {
-    var _this2 = this;
-
-    axios.get("/api/file/".concat(this.$route.params.slug)).then(function (_ref2) {
-      var data = _ref2.data;
-      _this2.file = data;
-      _this2.form.price = data.price;
-      _this2.item.price = data.price + '000';
-      _this2.item.file_id = data.id;
-    });
   }
 });
 
@@ -245,43 +327,60 @@ var render = function() {
               "div",
               { staticClass: "card-footer" },
               [
-                _c("form", { attrs: { action: "/buy", method: "POST" } }, [
-                  _c("input", {
-                    attrs: { type: "hidden", name: "_token" },
-                    domProps: { value: _vm.csrf }
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    attrs: { type: "hidden", name: "file_id" },
-                    domProps: { value: _vm.item.file_id }
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    attrs: { type: "hidden", name: "discount_id" },
-                    domProps: { value: _vm.item.discount_id }
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    attrs: { type: "hidden", name: "access_token" },
-                    domProps: { value: _vm.$store.state.auth.token }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      directives: [
+                _vm.fileStatus === 1
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-info",
+                        on: { click: _vm.addToMyFiles }
+                      },
+                      [
+                        _vm._v(
+                          "\n                            اضافه کردن به فایل های من\n                        "
+                        )
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.fileStatus === 2
+                  ? _c("form", { attrs: { action: "/buy", method: "POST" } }, [
+                      _c("input", {
+                        attrs: { type: "hidden", name: "_token" },
+                        domProps: { value: _vm.csrf }
+                      }),
+                      _vm._v(" "),
+                      _c("input", {
+                        attrs: { type: "hidden", name: "file_id" },
+                        domProps: { value: _vm.item.file_id }
+                      }),
+                      _vm._v(" "),
+                      _c("input", {
+                        attrs: { type: "hidden", name: "discount_id" },
+                        domProps: { value: _vm.item.discount_id }
+                      }),
+                      _vm._v(" "),
+                      _c("input", {
+                        attrs: { type: "hidden", name: "access_token" },
+                        domProps: { value: _vm.$store.state.auth.token }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "button",
                         {
-                          name: "show",
-                          rawName: "v-show",
-                          value: !_vm.form.discount,
-                          expression: "! form.discount"
-                        }
-                      ],
-                      staticClass: "btn btn-primary btn-round"
-                    },
-                    [_vm._v("خرید")]
-                  )
-                ]),
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: !_vm.form.discount,
+                              expression: "! form.discount"
+                            }
+                          ],
+                          staticClass: "btn btn-primary btn-round"
+                        },
+                        [_vm._v("خرید")]
+                      )
+                    ])
+                  : _vm._e(),
                 _vm._v(" "),
                 _c(
                   "base-btn",
@@ -300,7 +399,9 @@ var render = function() {
                   [_vm._v("اعمال کد تخفیف\n                        ")]
                 ),
                 _vm._v(" "),
-                _c("p", [_vm._v("قیمت تمام شده : " + _vm._s(_vm.item.price))]),
+                _vm.form.price
+                  ? _c("p", [_vm._v("قیمت تمام شده " + _vm._s(_vm.item.price))])
+                  : _vm._e(),
                 _vm._v(" "),
                 _c(
                   "div",
@@ -373,19 +474,25 @@ var render = function() {
                 "div",
                 { staticClass: "card-footer d-flex justify-content-center" },
                 [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "btn btn-primary btn-round",
-                      attrs: {
-                        to: {
-                          name: "file-show",
-                          params: { url: "show", slug: item.slug }
-                        }
-                      }
-                    },
-                    [_vm._v("خرید\n                        ")]
-                  )
+                  _vm.fileStatus === 3
+                    ? _c(
+                        "router-link",
+                        {
+                          staticClass: "btn btn-info",
+                          attrs: {
+                            to: {
+                              name: "dashboards",
+                              params: { url: "membership" }
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                            خرید اشتراک ویژه\n                        "
+                          )
+                        ]
+                      )
+                    : _vm._e()
                 ],
                 1
               )

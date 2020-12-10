@@ -42,6 +42,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "DashboardSideBar",
   methods: {
@@ -147,12 +153,36 @@ var render = function() {
                 "router-link",
                 {
                   staticClass: "nav-link",
-                  attrs: { to: { name: "admin-user" } }
+                  attrs: {
+                    to: { name: "dashboards", params: { url: "membership" } }
+                  }
                 },
                 [
-                  _c("i", { staticClass: "fa fa-users" }),
+                  _c("i", { staticClass: "fa fa-user-circle" }),
                   _vm._v(" "),
-                  _c("p", [_vm._v("کاربران")])
+                  _c("p", [_vm._v("اشتراک های ویژه")])
+                ]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "li",
+            { staticClass: "nav-item" },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "nav-link",
+                  attrs: {
+                    to: { name: "dashboards", params: { url: "my-files" } }
+                  }
+                },
+                [
+                  _c("i", { staticClass: "fa fa-file-archive" }),
+                  _vm._v(" "),
+                  _c("p", [_vm._v("فایل های من")])
                 ]
               )
             ],

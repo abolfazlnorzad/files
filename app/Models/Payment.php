@@ -20,9 +20,9 @@ class Payment extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function file()
+    public function paymentable()
     {
-        return $this->belongsTo(File::class);
+        return $this->morphTo();
     }
 
 }

@@ -8,6 +8,7 @@
     "/chunk/AppLayout.js": "/chunk/AppLayout.js",
     "/chunk/AuthRoutes.js": "/chunk/AuthRoutes.js",
     "/chunk/DashboardLayout.js": "/chunk/DashboardLayout.js",
+    "/chunk/MembershipDashboard.js": "/chunk/MembershipDashboard.js",
     "/chunk/NotFound.js": "/chunk/NotFound.js",
     "/chunk/Profile.js": "/chunk/Profile.js",
     "/chunk/UserDashboard.js": "/chunk/UserDashboard.js",

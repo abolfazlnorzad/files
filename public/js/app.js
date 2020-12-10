@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"chunk/AccessDenied":"chunk/AccessDenied","chunk/AdminDashboard":"chunk/AdminDashboard","chunk/AdminDashboardLayout~chunk/AppLayout~chunk/DashboardLayout":"chunk/AdminDashboardLayout~chunk/AppLayout~chunk/DashboardLayout","chunk/AdminDashboardLayout":"chunk/AdminDashboardLayout","chunk/AppLayout":"chunk/AppLayout","chunk/DashboardLayout":"chunk/DashboardLayout","chunk/NotFound":"chunk/NotFound","chunk/AuthRoutes":"chunk/AuthRoutes","js/AdminCategoryRoutes":"js/AdminCategoryRoutes","js/AdminDiscountRoutes":"js/AdminDiscountRoutes","js/AdminMembershipRoutes":"js/AdminMembershipRoutes","js/FileShow":"js/FileShow","js/FileRoutes":"js/FileRoutes","js/admin-user-routes":"js/admin-user-routes","js/user-dashboard-routes":"js/user-dashboard-routes","chunk/Profile":"chunk/Profile","chunk/UserDashboard":"chunk/UserDashboard","js/AdminCategoryIndex":"js/AdminCategoryIndex","js/AdminDiscountIndex":"js/AdminDiscountIndex","js/AdminMembershipIndex":"js/AdminMembershipIndex","vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/admin-user":"vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/admin-user","chunk/home":"chunk/home","js/AdminFileIndex":"js/AdminFileIndex","js/admin-user":"js/admin-user","vendors~js/AdminFileRoutes":"vendors~js/AdminFileRoutes","js/AdminFileRoutes":"js/AdminFileRoutes"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"chunk/AccessDenied":"chunk/AccessDenied","chunk/AdminDashboard":"chunk/AdminDashboard","chunk/AdminDashboardLayout~chunk/AppLayout~chunk/DashboardLayout":"chunk/AdminDashboardLayout~chunk/AppLayout~chunk/DashboardLayout","chunk/AdminDashboardLayout":"chunk/AdminDashboardLayout","chunk/AppLayout":"chunk/AppLayout","chunk/DashboardLayout":"chunk/DashboardLayout","chunk/MembershipDashboard":"chunk/MembershipDashboard","chunk/NotFound":"chunk/NotFound","chunk/AuthRoutes":"chunk/AuthRoutes","js/user-dashboard-routes":"js/user-dashboard-routes","js/AdminCategoryRoutes":"js/AdminCategoryRoutes","js/AdminDiscountRoutes":"js/AdminDiscountRoutes","js/AdminMembershipRoutes":"js/AdminMembershipRoutes","js/FileShow":"js/FileShow","js/FileRoutes":"js/FileRoutes","js/admin-user-routes":"js/admin-user-routes","chunk/Profile":"chunk/Profile","chunk/UserDashboard":"chunk/UserDashboard","js/AdminCategoryIndex":"js/AdminCategoryIndex","js/AdminDiscountIndex":"js/AdminDiscountIndex","js/AdminMembershipIndex":"js/AdminMembershipIndex","vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/admin-user":"vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/admin-user","chunk/home":"chunk/home","js/AdminFileIndex":"js/AdminFileIndex","js/admin-user":"js/admin-user","vendors~js/AdminFileRoutes":"vendors~js/AdminFileRoutes","js/AdminFileRoutes":"js/AdminFileRoutes"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -73256,6 +73256,10 @@ var AdminDashboard = function AdminDashboard() {
   return __webpack_require__.e(/*! import() | chunk/AdminDashboard */ "chunk/AdminDashboard").then(__webpack_require__.bind(null, /*! ../views/Admin/AdminDashboard */ "./resources/js/views/Admin/AdminDashboard.vue"));
 };
 
+var MembershipDashboard = function MembershipDashboard() {
+  return __webpack_require__.e(/*! import() | chunk/MembershipDashboard */ "chunk/MembershipDashboard").then(__webpack_require__.bind(null, /*! ../views/Dashboard/Membership.vue */ "./resources/js/views/Dashboard/Membership.vue"));
+};
+
 var AdminUserRoutes = function AdminUserRoutes() {
   return Promise.all(/*! import() | js/admin-user-routes */[__webpack_require__.e("chunk/NotFound"), __webpack_require__.e("js/admin-user-routes")]).then(__webpack_require__.bind(null, /*! ../views/Admin/User/AdminUserRoutes.vue */ "./resources/js/views/Admin/User/AdminUserRoutes.vue"));
 };
@@ -73293,7 +73297,7 @@ var AdminDiscountRoutes = function AdminDiscountRoutes() {
 };
 
 var UserDashboardRoutes = function UserDashboardRoutes() {
-  return Promise.all(/*! import() | js/user-dashboard-routes */[__webpack_require__.e("chunk/NotFound"), __webpack_require__.e("js/user-dashboard-routes")]).then(__webpack_require__.bind(null, /*! ../views/Dashboard/DashboardRoutes */ "./resources/js/views/Dashboard/DashboardRoutes.vue"));
+  return Promise.all(/*! import() | js/user-dashboard-routes */[__webpack_require__.e("chunk/NotFound"), __webpack_require__.e("chunk/MembershipDashboard"), __webpack_require__.e("js/user-dashboard-routes")]).then(__webpack_require__.bind(null, /*! ../views/Dashboard/DashboardRoutes */ "./resources/js/views/Dashboard/DashboardRoutes.vue"));
 };
 
 var AdminFileRoutes = function AdminFileRoutes() {

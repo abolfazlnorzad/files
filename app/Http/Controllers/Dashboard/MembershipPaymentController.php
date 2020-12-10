@@ -1,52 +1,43 @@
 <?php
 
-namespace App\Http\Controllers\Front;
+namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Models\Discount;
-use App\Models\File;
+use App\Models\Membership;
 use App\Models\Payment;
+use App\Service\MembershipPay\MembershipPay;
 use App\Service\Payment\Payment as PaymentFacade;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use phpDocumentor\Reflection\Types\Collection;
 use Zarinpal\Laravel\Facade\Zarinpal;
 
-
-class PaymentController extends Controller
+class MembershipPaymentController extends Controller
 {
     public function buy(Request $request)
     {
         $user = $request->user();
-        $file = File::findOrFail($request->file_id);
-        $amount = $file->toman_price;
-        $RequestDiscount = $request->discount_id;
-        $statusUserBoughtFile = PaymentFacade::userBoughtFile($file, $user);
+        $membership = Membership::firstWhere('id', $request->membership_id);
+        $amount = $membership->price_in_toman;
+        $userBoughtHigherMembership = MembershipPay::userBoughtHigherMembership($user,$membership);
 
-        if ($statusUserBoughtFile) {
-            PaymentFacade::notifyError('خطایی رخ داده است', 'شما قبلا این فایل را خریداری کرید', 'info', 'تایید');
-            return back();
-        }
-        $prices = PaymentFacade::applyDiscount($RequestDiscount, $amount, $file);
-
-        $amount = $prices['amount'];
-        $discountPrice = $prices['discountPrice'];
-        $results = PaymentFacade::connectToPay($amount, $file);
-        if (PaymentFacade::checkAuthority($results)) {
-            PaymentFacade::createPaymentAndRedirectToPay($amount, $file, $user, $discountPrice, $results);
+        if ($userBoughtHigherMembership){
+            MembershipPay:: notifyError('خطایی رخ داده است', 'شما اشتراکی با اولویت بالاتری دارید', 'info', 'تایید');
+            return redirect('/');
         }
 
-        PaymentFacade::notifyError('خطایی رخ داده است', 'لطفا مجددا اقدام به ثبت سفارش کنید', 'error', 'تایید');
-        return back();
+
+            $results = MembershipPay::connectToPay($amount, $membership);
+
+        if (MembershipPay::checkAuthority($results)) {
+            MembershipPay::createPaymentAndRedirectToPay($amount, $membership, $user, $results);
+        }
     }
 
     public function callback()
     {
-        $payment = Payment::firstWhere('authority', \request('Authority'));
-        $status = Zarinpal::verify('ok', $payment->price, $payment->authority);
         $authority = \request('Authority');
+        $payment = Payment::firstWhere('authority', $authority);
+        $status = Zarinpal::verify('OK', $payment->price, $payment->authority);
         if (is_null($payment) || is_null($status) || is_null($authority)) {
-
             session()->flash('notify', [
                 'title' => 'خطایی رخ داده است',
                 'text' => 'در صورتی که وجه از حساب شما کسر شده و بعد از گذشت 48 ساعت بازگشت پیدا نکرد ، با پشتیبانی کانکت شوید',
@@ -63,14 +54,17 @@ class PaymentController extends Controller
                 'extra_details' => $status['ExtraDetail']
             ]);
 
-            $payment->paymentable->users()->attach($payment->user_id, ['payment_id' => $payment->id]);
+            $payment->paymentable->users()->attach($payment->user_id, [
+                'payment_id' => $payment->id,
+                'expired_at' => $payment->paymentable->expired_at
+            ]);
             session()->flash('notify', [
                 'title' => 'پرداخت موفقیت آمیز',
                 'text' => '  سپاس از خرید شما کد پیگیری شما :' . $status['RefID'],
                 'icon' => 'success',
                 'confirm_text' => 'بسیار خب'
             ]);
-            return redirect('/dashboard/my-files');
+            return redirect('/');
         } elseif ($status['Status'] == 'verfied_before') {
             session()->flash('notify', [
                 'title' => 'سفارش شما قبلا ثبت شده',

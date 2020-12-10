@@ -57,4 +57,14 @@ class User extends Authenticatable
         return $this->belongsToMany(File::class)->withPivot('payment_id');
     }
 
+    public function memberships()
+    {
+        return $this->belongsToMany(Membership::class)->withPivot(['payment_id','expired_at']);
+    }
+
+    public function getCurrentMembershipAttribute()
+    {
+        return $this->memberships()->where('membership_user.expired_at','>',now())->orderBy('membership_user.created_at','desc')->first();
+    }
+
 }

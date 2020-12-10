@@ -18,7 +18,12 @@
                             {{ file.description }}
                         </p>
                         <div class="card-footer">
-                            <form action="/buy" method="POST">
+                            <button class="btn btn-info"
+                                    @click="addToMyFiles"
+                                    v-if="fileStatus === 1">
+                                اضافه کردن به فایل های من
+                            </button>
+                            <form action="/buy" method="POST" v-if="fileStatus === 2">
                                 <input type="hidden" name="_token" :value="csrf">
                                 <input type="hidden" name="file_id" :value="item.file_id">
                                 <input type="hidden" name="discount_id" :value="item.discount_id">
@@ -31,7 +36,7 @@
                                       @click="applyDiscount"
                                       btn="info">اعمال کد تخفیف
                             </base-btn>
-                            <p>قیمت تمام شده : {{ item.price }}</p>
+                            <p v-if="form.price">قیمت تمام شده {{ item.price }}</p>
                             <div class="col-md-3">
                                 <base-input label="کد تخفیف"
                                             v-if="file.price && ! item.discount_id"
@@ -62,8 +67,11 @@
                             {{ item.description }}
                         </p>
                         <div class="card-footer d-flex justify-content-center">
-                            <router-link :to="{ name: 'file-show', params: { url: 'show', slug: item.slug } }"
-                                         class="btn btn-primary btn-round">خرید
+                            <router-link class="btn btn-info"
+                                         :to="{ name: 'dashboards', params: { url: 'membership' } }"
+                                         v-if="fileStatus === 3"
+                            >
+                                خرید اشتراک ویژه
                             </router-link>
                         </div>
                     </div>
@@ -75,6 +83,7 @@
 
 <script>
     import {Form} from 'vform';
+    import {mapState} from 'vuex';
 
     export default {
         name: "Show",
@@ -95,34 +104,58 @@
                     price: null,
                     discount_id: null,
                     file_id: null,
-                }
+                },
+                fileStatus: 0,
             }
         },
         computed: {
             csrf() {
                 return window.csrf;
-            }
+            },
+            checkStatus() {
+                return this.file.membership
+                    && this.user.current_membership
+                    && this.user.current_membership.priority <= this.file.membership.priority;
+            },
+            ...mapState('auth', ['user'])
+
+        },
+
+        async created() {
+            await this.getFile();
+            this.setFileStatus();
         },
         methods: {
+            async getFile() {
+                let {data} = await axios.get(`/api/file/${this.$route.params.slug}`)
+                this.file = data;
+                this.form.price = data.price;
+                this.item.price = data.price + '000';
+                this.item.file_id = data.id
+            },
             applyDiscount() {
                 axios.post('/api/discount', this.form)
                     .then(({data}) => {
                         this.form = {};
                         this.item.discount_id = data.id;
-                        this.item.price = data.price+ '000';
+                        this.item.price = data.price + '000';
                     })
 
+            },
+            setFileStatus() {
+                if (this.checkStatus) {
+                    this.fileStatus = 1;
+                } else {
+                    this.fileStatus = this.file.price ? 2 : 3;
+                }
+            },
+            addToMyFiles() {
+                axios.post('/api/add-to-files',{file_id:this.file.id})
+                .then(()=>{
+                    swal.success('فایل به درستی به فایل های شما اضافه شد')
+                })
             }
         },
-        created() {
-            axios.get(`/api/file/${this.$route.params.slug}`)
-                .then(({data}) => {
-                    this.file = data;
-                    this.form.price = data.price;
-                    this.item.price = data.price+ '000';
-                    this.item.file_id = data.id;
-                })
-        }
     }
 
 </script>

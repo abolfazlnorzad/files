@@ -9,9 +9,15 @@
                     </router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" :to="{ name: 'admin-user' }">
-                        <i class="fa fa-users"></i>
-                        <p>کاربران</p>
+                    <router-link class="nav-link" :to="{ name: 'dashboards',params:{url:'membership'} }">
+                        <i class="fa fa-user-circle"></i>
+                        <p>اشتراک های ویژه</p>
+                    </router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link class="nav-link" :to="{ name: 'dashboards',params:{url:'my-files'} }">
+                        <i class="fa fa-file-archive"></i>
+                        <p>فایل های من</p>
                     </router-link>
                 </li>
                 <li class="nav-item">

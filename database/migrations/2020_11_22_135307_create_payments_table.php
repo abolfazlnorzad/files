@@ -18,7 +18,7 @@ class CreatePaymentsTable extends Migration
             $table->unsignedInteger('price');
             $table->unsignedInteger('original_price');
             $table->unsignedInteger('discounted_price');
-            $table->unsignedBigInteger('file_id');
+            $table->morphs('paymentable');
             $table->unsignedBigInteger('user_id');
             $table->string('authority')->nullable();
             $table->string('ref_id')->nullable();

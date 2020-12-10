@@ -21,7 +21,7 @@ class File extends Model
     protected $guarded = [];
     protected $hidden = ['file'];
     protected $appends = [
-        'membership_name', 'file_src', 'selectedTags', 'price_toman', 'toman_price'
+        'membership_name', 'file_src', 'selectedTags', 'price_toman', 'toman_price','image_src'
     ];
 
     public function sluggable()
@@ -128,11 +128,12 @@ class File extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class)->withPivot('payment_id');
+        return $this->belongsToMany(User::class)
+            ->withPivot('payment_id');
     }
 
     public function payments()
     {
-        return $this->hasMany(Payment::class);
+        return $this->morphMany(Payment::class,'paymentable');
     }
 }

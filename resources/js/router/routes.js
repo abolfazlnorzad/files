@@ -12,6 +12,7 @@ const AccessDenied = () => import( /*  webpackChunkName:"chunk/AccessDenied" */ 
 const UserDashboard = () => import( /*  webpackChunkName:"chunk/UserDashboard" */ "../views/Dashboard/Index");
 const Profile = () => import( /*  webpackChunkName:"chunk/Profile" */ "../views/Dashboard/Profile");
 const AdminDashboard = () => import( /*  webpackChunkName:"chunk/AdminDashboard" */ "../views/Admin/AdminDashboard");
+const MembershipDashboard = () => import( /*  webpackChunkName:"chunk/MembershipDashboard" */ "../views/Dashboard/Membership.vue");
 const AdminUserRoutes = () => import( /* webpackChunkName: "js/admin-user-routes" */ '../views/Admin/User/AdminUserRoutes.vue');
 const AdminCategoryRoutes = () => import( /* webpackChunkName: "js/AdminCategoryRoutes" */ '../views/Admin/Category/AdminCategoryRoutes.vue');
 const AdminMembershipRoutes = () => import( /* webpackChunkName: "js/AdminMembershipRoutes" */ '../views/Admin/Membership/AdminMembershipRoutes.vue');
