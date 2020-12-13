@@ -29,5 +29,7 @@
     "/vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/admin-user.js": "/vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/admin-user.js",
     "/vendors~js/AdminFileRoutes.js": "/vendors~js/AdminFileRoutes.js",
     "/js/AdminPaymentIndex.js": "/js/AdminPaymentIndex.js",
-    "/vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js/admin-user.js": "/vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js/admin-user.js"
+    "/vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js/admin-user.js": "/vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js/admin-user.js",
+    "/vendors~chunk/AdminDashboard.js": "/vendors~chunk/AdminDashboard.js",
+    "/vendors~chunk/AdminDashboard~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js~47a87855.js": "/vendors~chunk/AdminDashboard~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js~47a87855.js"
 }

@@ -16,7 +16,7 @@ class Payment extends Model
     ];
 
     protected $appends = [
-        'price_pay', 'origin_price', 'discount_price', 'payment_type','type_class'
+        'price_pay', 'origin_price', 'discount_price', 'payment_type','type_class','type'
     ];
 
     public function user()
@@ -55,5 +55,16 @@ class Payment extends Model
     public function getTypeClassAttribute()
     {
         return $this->paymentable_type === 'App\Models\File' ? 'فایل' : 'اشتراک ویژه';
+    }
+
+    public function getTypeAttribute()
+    {
+        return $this->paymentable_type === 'App\Models\File' ? 'file' : 'membership';
+    }
+
+
+    public function getCreateTimeAttribute()
+    {
+        return $this->created_at->format('Y-m-d');
     }
 }
