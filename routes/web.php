@@ -9,6 +9,7 @@ Route::fallback(function () {
 Route::get('download/{file}', function (\App\Models\File $file) {
     return \Illuminate\Support\Facades\Storage::download($file->file_src);
 })->middleware(['auth:api', 'admin']);
+Route::get('download-zip/{download}', 'DownloadController@downloadZip')->middleware('auth:api');
 
 Route::post('buy', 'Front\PaymentController@buy')->middleware('auth:api');
 Route::post('buy/membership', 'Dashboard\MembershipPaymentController@buy')->middleware('auth:api');

@@ -399,7 +399,7 @@ var render = function() {
                   [_vm._v("اعمال کد تخفیف\n                        ")]
                 ),
                 _vm._v(" "),
-                _vm.form.price
+                _vm.item.price
                   ? _c("p", [_vm._v("قیمت تمام شده " + _vm._s(_vm.item.price))])
                   : _vm._e(),
                 _vm._v(" "),

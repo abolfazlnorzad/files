@@ -15,6 +15,10 @@ class Payment extends Model
         'extra_details' => 'json'
     ];
 
+    protected $appends = [
+        'price_pay', 'origin_price', 'discount_price', 'payment_type','type_class'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -25,4 +29,31 @@ class Payment extends Model
         return $this->morphTo();
     }
 
+    public function getOriginPriceAttribute()
+    {
+        return $this->original_price;
+    }
+
+    public function getPricePayAttribute()
+    {
+        return $this->price;
+    }
+
+    public function getDiscountPriceAttribute()
+    {
+        return $this->discounted_price
+            ? $this->discounted_price . ' تومان'
+            : 'تخفیف ندارد';
+
+    }
+
+    public function getPaymentTypeAttribute()
+    {
+        return $this->is_payed ? 'پرداخت شده' : 'پرداخت نشده';
+    }
+
+    public function getTypeClassAttribute()
+    {
+        return $this->paymentable_type === 'App\Models\File' ? 'فایل' : 'اشتراک ویژه';
+    }
 }

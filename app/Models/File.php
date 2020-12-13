@@ -21,7 +21,7 @@ class File extends Model
     protected $guarded = [];
     protected $hidden = ['file'];
     protected $appends = [
-        'membership_name', 'file_src', 'selectedTags', 'price_toman', 'toman_price','image_src'
+        'membership_name', 'file_src', 'selectedTags', 'price_toman', 'toman_price','image_src','storage_path'
     ];
 
     public function sluggable()
@@ -135,5 +135,10 @@ class File extends Model
     public function payments()
     {
         return $this->morphMany(Payment::class,'paymentable');
+    }
+
+    public function getStoragePathAttribute()
+    {
+        return storage_path("app\\files\\{$this->file}");
     }
 }

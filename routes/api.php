@@ -20,6 +20,7 @@ Route::group(['middleware' => ['auth:api', 'admin'], 'prefix' => 'admin', 'names
     Route::apiResource('memberships', 'MembershipController');
     Route::apiResource('file', 'FileController');
     Route::apiResource('discount', 'DiscountController');
+    Route::get('payments', 'PaymentController@index');
 
 
     Route::get('membership-search', 'Search\MembershipController@index');
@@ -32,3 +33,4 @@ Route::post('discount', 'Front\ApplyDiscountController@store')->middleware('auth
 Route::get('membership', 'Dashboard\MembershipController@index')->middleware('auth:api');
 Route::get('dashboard/my-files', 'Dashboard\MyfilesController@index')->middleware('auth:api');
 Route::post('add-to-files', 'Dashboard\MyfilesController@addFile')->middleware('auth:api');
+Route::get('generate-zip/{file}', 'Dashboard\MyfilesController@generateZip')->middleware('auth:api');

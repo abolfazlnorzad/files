@@ -28,6 +28,13 @@
                 </li>
 
                 <li class="nav-item">
+                    <router-link class="nav-link" :to="{ name: 'admin-payments' }">
+                        <i class="fa fa-"></i>
+                        <p>لیست تراکنش ها</p>
+                    </router-link>
+                </li>
+
+                <li class="nav-item">
                     <router-link class="nav-link" :to="{ name: 'admin-membership' }">
                         <i class="fa fa-user-friends"></i>
                         <p> اشتراک های ویژه </p>

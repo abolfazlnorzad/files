@@ -36,7 +36,7 @@
                                       @click="applyDiscount"
                                       btn="info">اعمال کد تخفیف
                             </base-btn>
-                            <p v-if="form.price">قیمت تمام شده {{ item.price }}</p>
+                            <p v-if="item.price">قیمت تمام شده {{ item.price }}</p>
                             <div class="col-md-3">
                                 <base-input label="کد تخفیف"
                                             v-if="file.price && ! item.discount_id"

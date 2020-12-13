@@ -20,6 +20,7 @@ const AdminUserIndex = () => import( /* webpackChunkName: "js/admin-user" */ '..
 const AdminCategoryIndex = () => import( /* webpackChunkName: "js/AdminCategoryIndex" */ '../views/Admin/Category/Index');
 const AdminMembershipIndex = () => import( /* webpackChunkName: "js/AdminMembershipIndex" */ '../views/Admin/Membership/Index');
 const AdminFileIndex = () => import( /* webpackChunkName: "js/AdminFileIndex" */ '../views/Admin/File/Index');
+const AdminPaymentIndex = () => import( /* webpackChunkName: "js/AdminPaymentIndex" */ '../views/Admin/Payment/Index');
 const AdminDiscountIndex = () => import( /* webpackChunkName: "js/AdminDiscountIndex" */ '../views/Admin/Discount/Index');
 const AdminDiscountRoutes = () => import( /* webpackChunkName: "js/AdminDiscountRoutes" */ '../views/Admin/Discount/AdminDiscountRoutes');
 const UserDashboardRoutes = () => import( /* webpackChunkName: "js/user-dashboard-routes" */ '../views/Dashboard/DashboardRoutes');
@@ -118,6 +119,12 @@ export default [
                 path: 'user',
                 name: 'admin-user',
                 component: AdminUserIndex,
+
+            },
+            {
+                path: 'payments',
+                name: 'admin-payments',
+                component: AdminPaymentIndex,
 
             },
             {
