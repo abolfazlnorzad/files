@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use App\Models\File;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Support\Facades\Storage;
 
 class FileUserCollection extends ResourceCollection
 {
@@ -18,6 +19,8 @@ class FileUserCollection extends ResourceCollection
         return [
             'data'=>$this->collection->map(function ($item){
                 return $item->append('price_toman');
+            })->filter(function ($file){
+                return Storage::exists($file->file_src);
             })
         ];
     }

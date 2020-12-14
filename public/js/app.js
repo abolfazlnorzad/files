@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"chunk/AccessDenied":"chunk/AccessDenied","chunk/AdminDashboardLayout~chunk/AppLayout~chunk/DashboardLayout":"chunk/AdminDashboardLayout~chunk/AppLayout~chunk/DashboardLayout","chunk/AdminDashboardLayout":"chunk/AdminDashboardLayout","chunk/AppLayout":"chunk/AppLayout","chunk/DashboardLayout":"chunk/DashboardLayout","chunk/MembershipDashboard":"chunk/MembershipDashboard","chunk/NotFound":"chunk/NotFound","chunk/AuthRoutes":"chunk/AuthRoutes","js/user-dashboard-routes":"js/user-dashboard-routes","js/AdminCategoryRoutes":"js/AdminCategoryRoutes","js/AdminDiscountRoutes":"js/AdminDiscountRoutes","js/AdminMembershipRoutes":"js/AdminMembershipRoutes","js/FileShow":"js/FileShow","js/FileRoutes":"js/FileRoutes","js/admin-user-routes":"js/admin-user-routes","chunk/Profile":"chunk/Profile","chunk/UserDashboard":"chunk/UserDashboard","js/AdminCategoryIndex":"js/AdminCategoryIndex","js/AdminDiscountIndex":"js/AdminDiscountIndex","js/AdminMembershipIndex":"js/AdminMembershipIndex","vendors~chunk/AdminDashboard~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js~47a87855":"vendors~chunk/AdminDashboard~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js~47a87855","vendors~chunk/AdminDashboard":"vendors~chunk/AdminDashboard","chunk/AdminDashboard":"chunk/AdminDashboard","vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js/admin-user":"vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js/admin-user","chunk/home":"chunk/home","js/AdminFileIndex":"js/AdminFileIndex","js/AdminPaymentIndex":"js/AdminPaymentIndex","js/admin-user":"js/admin-user","vendors~js/AdminFileRoutes":"vendors~js/AdminFileRoutes","js/AdminFileRoutes":"js/AdminFileRoutes"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"chunk/AccessDenied":"chunk/AccessDenied","chunk/AdminDashboardLayout~chunk/AppLayout~chunk/DashboardLayout":"chunk/AdminDashboardLayout~chunk/AppLayout~chunk/DashboardLayout","chunk/AdminDashboardLayout":"chunk/AdminDashboardLayout","chunk/AppLayout":"chunk/AppLayout","chunk/DashboardLayout":"chunk/DashboardLayout","chunk/MembershipDashboard":"chunk/MembershipDashboard","chunk/NotFound":"chunk/NotFound","chunk/AuthRoutes":"chunk/AuthRoutes","js/user-dashboard-routes":"js/user-dashboard-routes","js/AdminCategoryRoutes":"js/AdminCategoryRoutes","js/AdminDiscountRoutes":"js/AdminDiscountRoutes","js/AdminMembershipRoutes":"js/AdminMembershipRoutes","js/FileShow":"js/FileShow","js/FileRoutes":"js/FileRoutes","js/admin-user-routes":"js/admin-user-routes","chunk/Profile":"chunk/Profile","chunk/UserDashboard":"chunk/UserDashboard","js/AdminCategoryIndex":"js/AdminCategoryIndex","js/AdminDiscountIndex":"js/AdminDiscountIndex","js/AdminMembershipIndex":"js/AdminMembershipIndex","vendors~chunk/AdminDashboard~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js~e9c98fe2":"vendors~chunk/AdminDashboard~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js~e9c98fe2","vendors~chunk/AdminDashboard":"vendors~chunk/AdminDashboard","chunk/AdminDashboard":"chunk/AdminDashboard","vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js/Tagged~js/admin-user":"vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js/Tagged~js/admin-user","chunk/home":"chunk/home","js/AdminFileIndex":"js/AdminFileIndex","js/AdminPaymentIndex":"js/AdminPaymentIndex","js/Tagged":"js/Tagged","js/admin-user":"js/admin-user","vendors~js/AdminFileRoutes":"vendors~js/AdminFileRoutes","js/AdminFileRoutes":"js/AdminFileRoutes"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -73229,7 +73229,7 @@ var AdminDashboardLayout = function AdminDashboardLayout() {
 };
 
 var Home = function Home() {
-  return Promise.all(/*! import() | chunk/home */[__webpack_require__.e("vendors~chunk/AdminDashboard~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js~47a87855"), __webpack_require__.e("vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js/admin-user"), __webpack_require__.e("chunk/home")]).then(__webpack_require__.bind(null, /*! ../views/Home */ "./resources/js/views/Home.vue"));
+  return Promise.all(/*! import() | chunk/home */[__webpack_require__.e("vendors~chunk/AdminDashboard~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js~e9c98fe2"), __webpack_require__.e("vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js/Tagged~js/admin-user"), __webpack_require__.e("chunk/home")]).then(__webpack_require__.bind(null, /*! ../views/Home */ "./resources/js/views/Home.vue"));
 };
 
 var AuthRoutes = function AuthRoutes() {
@@ -73253,7 +73253,7 @@ var Profile = function Profile() {
 };
 
 var AdminDashboard = function AdminDashboard() {
-  return Promise.all(/*! import() | chunk/AdminDashboard */[__webpack_require__.e("vendors~chunk/AdminDashboard~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js~47a87855"), __webpack_require__.e("vendors~chunk/AdminDashboard"), __webpack_require__.e("chunk/AdminDashboard")]).then(__webpack_require__.bind(null, /*! ../views/Admin/AdminDashboard */ "./resources/js/views/Admin/AdminDashboard.vue"));
+  return Promise.all(/*! import() | chunk/AdminDashboard */[__webpack_require__.e("vendors~chunk/AdminDashboard~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js~e9c98fe2"), __webpack_require__.e("vendors~chunk/AdminDashboard"), __webpack_require__.e("chunk/AdminDashboard")]).then(__webpack_require__.bind(null, /*! ../views/Admin/AdminDashboard */ "./resources/js/views/Admin/AdminDashboard.vue"));
 };
 
 var MembershipDashboard = function MembershipDashboard() {
@@ -73273,7 +73273,7 @@ var AdminMembershipRoutes = function AdminMembershipRoutes() {
 };
 
 var AdminUserIndex = function AdminUserIndex() {
-  return Promise.all(/*! import() | js/admin-user */[__webpack_require__.e("vendors~chunk/AdminDashboard~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js~47a87855"), __webpack_require__.e("vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js/admin-user"), __webpack_require__.e("js/admin-user")]).then(__webpack_require__.bind(null, /*! ../views/Admin/User/Index.vue */ "./resources/js/views/Admin/User/Index.vue"));
+  return Promise.all(/*! import() | js/admin-user */[__webpack_require__.e("vendors~chunk/AdminDashboard~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js~e9c98fe2"), __webpack_require__.e("vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js/Tagged~js/admin-user"), __webpack_require__.e("js/admin-user")]).then(__webpack_require__.bind(null, /*! ../views/Admin/User/Index.vue */ "./resources/js/views/Admin/User/Index.vue"));
 };
 
 var AdminCategoryIndex = function AdminCategoryIndex() {
@@ -73285,11 +73285,11 @@ var AdminMembershipIndex = function AdminMembershipIndex() {
 };
 
 var AdminFileIndex = function AdminFileIndex() {
-  return Promise.all(/*! import() | js/AdminFileIndex */[__webpack_require__.e("vendors~chunk/AdminDashboard~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js~47a87855"), __webpack_require__.e("vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js/admin-user"), __webpack_require__.e("js/AdminFileIndex")]).then(__webpack_require__.bind(null, /*! ../views/Admin/File/Index */ "./resources/js/views/Admin/File/Index.vue"));
+  return Promise.all(/*! import() | js/AdminFileIndex */[__webpack_require__.e("vendors~chunk/AdminDashboard~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js~e9c98fe2"), __webpack_require__.e("vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js/Tagged~js/admin-user"), __webpack_require__.e("js/AdminFileIndex")]).then(__webpack_require__.bind(null, /*! ../views/Admin/File/Index */ "./resources/js/views/Admin/File/Index.vue"));
 };
 
 var AdminPaymentIndex = function AdminPaymentIndex() {
-  return Promise.all(/*! import() | js/AdminPaymentIndex */[__webpack_require__.e("vendors~chunk/AdminDashboard~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js~47a87855"), __webpack_require__.e("vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js/admin-user"), __webpack_require__.e("js/AdminPaymentIndex")]).then(__webpack_require__.bind(null, /*! ../views/Admin/Payment/Index */ "./resources/js/views/Admin/Payment/Index.vue"));
+  return Promise.all(/*! import() | js/AdminPaymentIndex */[__webpack_require__.e("vendors~chunk/AdminDashboard~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js~e9c98fe2"), __webpack_require__.e("vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js/Tagged~js/admin-user"), __webpack_require__.e("js/AdminPaymentIndex")]).then(__webpack_require__.bind(null, /*! ../views/Admin/Payment/Index */ "./resources/js/views/Admin/Payment/Index.vue"));
 };
 
 var AdminDiscountIndex = function AdminDiscountIndex() {
@@ -73305,7 +73305,7 @@ var UserDashboardRoutes = function UserDashboardRoutes() {
 };
 
 var AdminFileRoutes = function AdminFileRoutes() {
-  return Promise.all(/*! import() | js/AdminFileRoutes */[__webpack_require__.e("vendors~chunk/AdminDashboard~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js~47a87855"), __webpack_require__.e("vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js/admin-user"), __webpack_require__.e("vendors~js/AdminFileRoutes"), __webpack_require__.e("chunk/NotFound"), __webpack_require__.e("js/AdminFileIndex"), __webpack_require__.e("js/AdminFileRoutes")]).then(__webpack_require__.bind(null, /*! ../views/Admin/File/AdminFileRoutes */ "./resources/js/views/Admin/File/AdminFileRoutes.vue"));
+  return Promise.all(/*! import() | js/AdminFileRoutes */[__webpack_require__.e("vendors~chunk/AdminDashboard~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js~e9c98fe2"), __webpack_require__.e("vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js/Tagged~js/admin-user"), __webpack_require__.e("vendors~js/AdminFileRoutes"), __webpack_require__.e("chunk/NotFound"), __webpack_require__.e("js/AdminFileIndex"), __webpack_require__.e("js/AdminFileRoutes")]).then(__webpack_require__.bind(null, /*! ../views/Admin/File/AdminFileRoutes */ "./resources/js/views/Admin/File/AdminFileRoutes.vue"));
 };
 
 var FileRoutes = function FileRoutes() {
@@ -73316,6 +73316,10 @@ var FileShow = function FileShow() {
   return __webpack_require__.e(/*! import() | js/FileShow */ "js/FileShow").then(__webpack_require__.bind(null, /*! ../views/Front/File/Show */ "./resources/js/views/Front/File/Show.vue"));
 };
 
+var Tagged = function Tagged() {
+  return Promise.all(/*! import() | js/Tagged */[__webpack_require__.e("vendors~chunk/AdminDashboard~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js~e9c98fe2"), __webpack_require__.e("vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js/Tagged~js/admin-user"), __webpack_require__.e("js/Tagged")]).then(__webpack_require__.bind(null, /*! ../views/Front/HomeTagged */ "./resources/js/views/Front/HomeTagged.vue"));
+};
+
 /* harmony default export */ __webpack_exports__["default"] = ([{
   path: '/',
   component: AppLayout,
@@ -73323,6 +73327,10 @@ var FileShow = function FileShow() {
     path: '',
     component: Home,
     name: 'home'
+  }, {
+    path: '/tagged/:slug',
+    component: Tagged,
+    name: 'tagged'
   }, {
     path: 'auth/:url',
     component: AuthRoutes,
@@ -73645,23 +73653,35 @@ var actions = {
       window.history.pushState('files', 'FILES', "/admin/file?".concat(data.meta.queries));
     });
   },
-  getPublicFiles: function getPublicFiles(_ref4, queries) {
+  getTaggedFiles: function getTaggedFiles(_ref4, _ref5) {
     var commit = _ref4.commit;
+    var queries = _ref5.queries,
+        params = _ref5.params;
+    return axios.get("/api/file/tagged/".concat(params.slug), {
+      params: queries
+    }).then(function (_ref6) {
+      var data = _ref6.data;
+      commit('setFile', data);
+      window.history.pushState('files', 'FILES', "/admin/file/tagged?".concat(data.meta.queries));
+    });
+  },
+  getPublicFiles: function getPublicFiles(_ref7, queries) {
+    var commit = _ref7.commit;
     return axios.get("/api/file", {
       params: queries
-    }).then(function (_ref5) {
-      var data = _ref5.data;
+    }).then(function (_ref8) {
+      var data = _ref8.data;
       commit('setFile', data);
     });
   },
-  deleteFile: function deleteFile(_ref6, payload) {
-    var commit = _ref6.commit;
+  deleteFile: function deleteFile(_ref9, payload) {
+    var commit = _ref9.commit;
     axios["delete"]("/api/admin/file/".concat(payload.slug)).then(function () {
       commit('deleteFile', payload.index);
       swal.success('فایل به درستی حذف شد.');
     });
   },
-  get: function get(_ref7, slug) {
+  get: function get(_ref10, slug) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       var state, _yield$axios$get, data;
 
@@ -73669,7 +73689,7 @@ var actions = {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              state = _ref7.state;
+              state = _ref10.state;
               _context.next = 3;
               return axios.get('/api/admin/file/' + slug);
 
@@ -73686,8 +73706,8 @@ var actions = {
       }, _callee);
     }))();
   },
-  update: function update(_ref8, form) {
-    var commit = _ref8.commit;
+  update: function update(_ref11, form) {
+    var commit = _ref11.commit;
     return form.submit('post', "/api/admin/file/".concat(form.slug), {
       transformRequest: [function (data, header) {
         return Object(object_to_formdata__WEBPACK_IMPORTED_MODULE_1__["default"])(data);

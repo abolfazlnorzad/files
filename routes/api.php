@@ -29,6 +29,7 @@ Route::group(['middleware' => ['auth:api', 'admin'], 'prefix' => 'admin', 'names
 
 });
 Route::apiResource('file', 'File\FileController');
+Route::get('file/tagged/{category}', 'File\FileTaggedController@index');
 Route::post('discount', 'Front\ApplyDiscountController@store')->middleware('auth:api');
 
 Route::get('membership', 'Dashboard\MembershipController@index')->middleware('auth:api');

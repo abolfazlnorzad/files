@@ -31,6 +31,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "File",
@@ -509,7 +516,14 @@ var render = function() {
       "div",
       { staticClass: "card-header card-header-success card-header-icon" },
       [
-        _vm._m(0),
+        _c("img", {
+          staticClass: "card-icon",
+          attrs: {
+            width: "222",
+            src: "/" + _vm.file.image_src,
+            alt: _vm.file.name
+          }
+        }),
         _vm._v(" "),
         _vm.file.name
           ? _c("p", { staticClass: "card-category" }, [
@@ -525,7 +539,26 @@ var render = function() {
           _vm._v(_vm._s(_vm.file.name))
         ]),
         _vm._v(" "),
-        _c("p", { staticClass: "card-category mt-4" }, [_vm._v("دسته بندی ها")])
+        _c(
+          "div",
+          { staticClass: "card-category mt-4" },
+          [
+            _c("p", [_vm._v("دسته بندی ها")]),
+            _vm._v(" "),
+            _vm._l(_vm.file.categories, function(cate) {
+              return _c(
+                "router-link",
+                {
+                  key: cate.slug,
+                  staticClass: "badge-info rounded p-1 mr-2",
+                  attrs: { to: { name: "tagged", params: { slug: cate.slug } } }
+                },
+                [_vm._v("\n" + _vm._s(cate.name) + "\n               ")]
+              )
+            })
+          ],
+          2
+        )
       ]
     ),
     _vm._v(" "),
@@ -562,16 +595,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-icon" }, [
-      _c("i", { staticClass: "fa fa-file" })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

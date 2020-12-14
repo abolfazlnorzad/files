@@ -27,6 +27,7 @@ const UserDashboardRoutes = () => import( /* webpackChunkName: "js/user-dashboar
 const AdminFileRoutes = () => import( /* webpackChunkName: "js/AdminFileRoutes" */ '../views/Admin/File/AdminFileRoutes');
 const FileRoutes = () => import( /* webpackChunkName: "js/FileRoutes" */ '../views/Front/File/FileRoutes');
 const FileShow = () => import( /* webpackChunkName: "js/FileShow" */ '../views/Front/File/Show');
+const Tagged = () => import( /* webpackChunkName: "js/Tagged" */ '../views/Front/HomeTagged');
 
 export default [
     {
@@ -37,6 +38,11 @@ export default [
                 path: '',
                 component: Home,
                 name: 'home',
+
+            },      {
+                path: '/tagged/:slug',
+                component: Tagged,
+                name: 'tagged',
 
             },
             {

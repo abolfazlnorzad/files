@@ -30,7 +30,19 @@ export const actions = {
                 window.history.pushState('files', 'FILES', `/admin/file?${data.meta.queries}`)
             })
     },
-    getPublicFiles({commit},queries){
+
+    getTaggedFiles({commit}, {queries, params}) {
+        return axios.get(`/api/file/tagged/${params.slug}`,
+            {
+                params: queries
+            })
+            .then(({data}) => {
+                commit('setFile', data)
+                window.history.pushState('files', 'FILES', `/admin/file/tagged?${data.meta.queries}`)
+            })
+    },
+
+    getPublicFiles({commit}, queries) {
         return axios.get(`/api/file`, {params: queries})
             .then(({data}) => {
                 commit('setFile', data)
@@ -43,17 +55,17 @@ export const actions = {
                 swal.success('فایل به درستی حذف شد.');
             })
     },
-    async get({ state }, slug) {
+    async get({state}, slug) {
         // if (! _.isEmpty(state.files)) {
         //     let file = state.files.data.find(file => file.slug === slug);
         //     if (file) {
         //         return file;
         //     }
         // }
-        let { data } = await axios.get('/api/admin/file/' + slug);
+        let {data} = await axios.get('/api/admin/file/' + slug);
         return data;
     },
-    update({commit},form){
+    update({commit}, form) {
         return form.submit('post', `/api/admin/file/${form.slug}`, {
             transformRequest: [function (data, header) {
                 return objectToFormData(data)

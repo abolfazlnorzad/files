@@ -21,15 +21,17 @@
     "/js/AdminFileRoutes.js": "/js/AdminFileRoutes.js",
     "/js/AdminMembershipIndex.js": "/js/AdminMembershipIndex.js",
     "/js/AdminMembershipRoutes.js": "/js/AdminMembershipRoutes.js",
+    "/js/AdminPaymentIndex.js": "/js/AdminPaymentIndex.js",
     "/js/FileRoutes.js": "/js/FileRoutes.js",
     "/js/FileShow.js": "/js/FileShow.js",
     "/js/admin-user.js": "/js/admin-user.js",
     "/js/admin-user-routes.js": "/js/admin-user-routes.js",
     "/js/user-dashboard-routes.js": "/js/user-dashboard-routes.js",
-    "/vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/admin-user.js": "/vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/admin-user.js",
-    "/vendors~js/AdminFileRoutes.js": "/vendors~js/AdminFileRoutes.js",
-    "/js/AdminPaymentIndex.js": "/js/AdminPaymentIndex.js",
-    "/vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js/admin-user.js": "/vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js/admin-user.js",
     "/vendors~chunk/AdminDashboard.js": "/vendors~chunk/AdminDashboard.js",
-    "/vendors~chunk/AdminDashboard~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js~47a87855.js": "/vendors~chunk/AdminDashboard~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js~47a87855.js"
+    "/vendors~chunk/AdminDashboard~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js~47a87855.js": "/vendors~chunk/AdminDashboard~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js~47a87855.js",
+    "/vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js/admin-user.js": "/vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js/admin-user.js",
+    "/vendors~js/AdminFileRoutes.js": "/vendors~js/AdminFileRoutes.js",
+    "/js/Tagged.js": "/js/Tagged.js",
+    "/vendors~chunk/AdminDashboard~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js~e9c98fe2.js": "/vendors~chunk/AdminDashboard~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js~e9c98fe2.js",
+    "/vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js/Tagged~js/admin-user.js": "/vendors~chunk/home~js/AdminFileIndex~js/AdminFileRoutes~js/AdminPaymentIndex~js/Tagged~js/admin-user.js"
 }
