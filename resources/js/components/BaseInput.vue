@@ -10,7 +10,6 @@
                @input="updateInput"
                @focus="isFocused = 'is-focused'"
                @blur="blurInput"
-
         >
         <span class="password-eye"
               v-if="type === 'password'"
@@ -62,8 +61,7 @@
         },
         data() {
             return {
-                inputType: this.type,
-                isFocused: ''
+                inputType: this.type
             }
         },
         computed: {
@@ -72,6 +70,14 @@
             },
             fieldName() {
                 return this.field ? this.field : this.name
+            },
+            isFocused: {
+                get() {
+                    return this.value ? 'is-focused' : '';
+                },
+                set(newValue) {
+                    return newValue;
+                }
             }
         },
         methods: {

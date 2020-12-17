@@ -4,8 +4,9 @@
 namespace App\Traits;
 
 
-use App\Http\Requests\LoginRequest;
+
 use Illuminate\Http\Request;
+
 
 trait TokenTrait
 {
@@ -40,5 +41,7 @@ trait TokenTrait
         return $this->response = app()->handle($req);
 
     }
+
+
 
 }

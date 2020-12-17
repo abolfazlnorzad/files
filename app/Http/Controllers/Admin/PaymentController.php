@@ -12,7 +12,7 @@ class PaymentController extends Controller
     public function index()
     {
         return PaymentCollection::make(
-            Payment::with(['user','paymentable'])
+            Payment::with(['user','paymentable',])
                 ->paginate(10)
         );
     }

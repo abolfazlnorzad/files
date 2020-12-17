@@ -270,10 +270,15 @@ var render = function() {
                             },
                             [
                               _c(
-                                "a",
+                                "router-link",
                                 {
                                   staticClass: "dropdown-item",
-                                  attrs: { href: "#" }
+                                  attrs: {
+                                    to: {
+                                      name: "dashboards",
+                                      params: { url: "profile" }
+                                    }
+                                  }
                                 },
                                 [_vm._v("پروفایل")]
                               ),
@@ -285,16 +290,18 @@ var render = function() {
                                       staticClass: "dropdown-item",
                                       attrs: { to: { name: "admin-dashboard" } }
                                     },
-                                    [_vm._v("داشبورد")]
+                                    [_vm._v("پنل مدیریت")]
                                   )
-                                : _c(
-                                    "router-link",
-                                    {
-                                      staticClass: "dropdown-item",
-                                      attrs: { to: { name: "dashboard" } }
-                                    },
-                                    [_vm._v("داشبورد")]
-                                  ),
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c(
+                                "router-link",
+                                {
+                                  staticClass: "dropdown-item",
+                                  attrs: { to: { name: "dashboard" } }
+                                },
+                                [_vm._v("داشبورد")]
+                              ),
                               _vm._v(" "),
                               _c(
                                 "a",

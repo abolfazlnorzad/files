@@ -31,14 +31,14 @@
                                     {{user.name }}
                                 </button>
                                 <div class="dropdown-menu" :class="dropDownShow">
-                                    <a class="dropdown-item" href="#">پروفایل</a>
+                                    <router-link class="dropdown-item" :to="{name:'dashboards',params:{url:'profile'}}">پروفایل</router-link>
                                     <router-link
                                         :to="{name:'admin-dashboard'}"
                                         v-if="user.isAdmin==true"
-                                        class="dropdown-item" >داشبورد</router-link>
+                                        class="dropdown-item" >پنل مدیریت</router-link>
                                     <router-link
                                         :to="{name:'dashboard'}"
-                                        v-else
+
                                         class="dropdown-item" >داشبورد</router-link>
                                     <a class="dropdown-item" href="#" @click="logout">خروج</a>
                                 </div>

@@ -21,7 +21,7 @@
                     </router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" :to="{ name: 'profile' }">
+                    <router-link class="nav-link" :to="{ name: 'dashboards',params:{url:'profile'} }">
                         <i class="fa fa-user"></i>
                         <p>پروفایل</p>
                     </router-link>
@@ -44,7 +44,7 @@
             logout() {
                 this.$store.dispatch('auth/logout');
 
-                this.$router.push({ name: 'home' });
+                this.$router.push({name: 'home'});
             }
         },
     }

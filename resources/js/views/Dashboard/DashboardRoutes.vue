@@ -6,20 +6,22 @@
     import NotFound from "@/views/errors/NotFound";
     import Membership from "./Membership";
     import MyFiles from "./MyFiles";
+    import Profile from "./Profile";
     export default {
         name: "DashboardRoutes",
 
         components: {
             NotFound,
             Membership,
-            MyFiles
+            MyFiles,
+            Profile
         },
 
         props: ['url'],
 
         computed: {
             componentName() {
-                return ['membership','my-files'].includes(this.url) ? this.url : 'not-found'
+                return ['membership','my-files','profile'].includes(this.url) ? this.url : 'not-found'
             }
         }
     }

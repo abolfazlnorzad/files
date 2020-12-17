@@ -19,8 +19,7 @@ class User extends Authenticatable
      */
 
     protected $guarded = [];
-    protected $appends=['type'];
-
+    protected $appends = ['type', 'profile_src'];
 
 
     /**
@@ -59,12 +58,17 @@ class User extends Authenticatable
 
     public function memberships()
     {
-        return $this->belongsToMany(Membership::class)->withPivot(['payment_id','expired_at']);
+        return $this->belongsToMany(Membership::class)->withPivot(['payment_id', 'expired_at']);
     }
 
     public function getCurrentMembershipAttribute()
     {
-        return $this->memberships()->where('membership_user.expired_at','>',now())->orderBy('membership_user.created_at','desc')->first();
+        return $this->memberships()->where('membership_user.expired_at', '>', now())->orderBy('membership_user.created_at', 'desc')->first();
+    }
+
+    public function getProfileSrcAttribute()
+    {
+        return $this->profile ?? '/images/1.png';
     }
 
 }

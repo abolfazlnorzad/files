@@ -23,7 +23,7 @@ class FileController extends Controller
     public function index()
     {
         return new FileUserCollection(
-            File::sortByUrl()->SearchByUrl()->paginate(5)
+            File::with('categories','membership')->sortByUrl()->SearchByUrl()->paginate(5)
     );
     }
 
@@ -46,7 +46,7 @@ class FileController extends Controller
      */
     public function show(File $file)
     {
-        return $file->append(['image_src','price_toman','membership_name','related_files']);
+        return $file->load('categories')->append(['image_src','price_toman','membership_name','related_files']);
     }
 
     /**

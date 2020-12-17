@@ -36,3 +36,4 @@ Route::get('membership', 'Dashboard\MembershipController@index')->middleware('au
 Route::get('dashboard/my-files', 'Dashboard\MyfilesController@index')->middleware('auth:api');
 Route::post('add-to-files', 'Dashboard\MyfilesController@addFile')->middleware('auth:api');
 Route::get('generate-zip/{file}', 'Dashboard\MyfilesController@generateZip')->middleware('auth:api');
+Route::patch('/dashboard/profile/{user}','Dashboard\ProfileController@update')->middleware('auth:api');

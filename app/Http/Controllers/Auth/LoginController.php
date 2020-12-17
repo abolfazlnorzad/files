@@ -1,6 +1,8 @@
-<?php
+<?
 
 namespace App\Http\Controllers\Auth;
+
+
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
@@ -15,7 +17,7 @@ class LoginController extends Controller
 {
     use TokenTrait;
 
-    protected $response;
+    public $response;
 
     public function login(LoginRequest $request)
     {
@@ -31,6 +33,7 @@ class LoginController extends Controller
 
 
     }
+
 
 
     protected function getUser(LoginRequest $request)

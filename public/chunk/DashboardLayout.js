@@ -195,7 +195,12 @@ var render = function() {
             [
               _c(
                 "router-link",
-                { staticClass: "nav-link", attrs: { to: { name: "profile" } } },
+                {
+                  staticClass: "nav-link",
+                  attrs: {
+                    to: { name: "dashboards", params: { url: "profile" } }
+                  }
+                },
                 [
                   _c("i", { staticClass: "fa fa-user" }),
                   _vm._v(" "),

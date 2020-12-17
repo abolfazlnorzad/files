@@ -13,9 +13,10 @@ class FileTaggedController extends Controller
     public function index(Category $category)
     {
         return new FileUserCollection(
-            File::whereHas('categories', function ($query) use($category){
-                 $query->where('slug',$category->slug);
-            })->sortByUrl()->SearchByUrl()->paginate(15)
+            File::with('categories')
+                ->whereHas('categories', function ($query) use ($category) {
+                    $query->where('slug', $category->slug);
+                })->sortByUrl()->SearchByUrl()->paginate(15)
         );
     }
 }
